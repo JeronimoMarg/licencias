@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -22,7 +24,9 @@ public class Titular {
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
+    @Enumerated(EnumType.STRING)
     private FactorSanguíneo factorSanguíneo; //Podriamos hacerlo una clase en vez de una enum, mas manejable
+    @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     private String numeroDocumento;
     private Boolean donanteDeOrganos;
