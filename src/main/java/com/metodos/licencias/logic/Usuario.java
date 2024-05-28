@@ -19,6 +19,8 @@ public class Usuario {
 
     private String nombreUsuario;
     private String contrasenia;
+    private String nombre;
+    private String apellido;
     private Rol rol; //Tiene 3 roles, usuario normal, admin y superadmin, por eso no lo puse como bool.
 
 }

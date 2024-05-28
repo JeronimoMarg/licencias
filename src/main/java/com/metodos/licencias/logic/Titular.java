@@ -2,9 +2,11 @@ package com.metodos.licencias.logic;
 
 import java.sql.Date;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Entity(name="titulares")
@@ -25,7 +27,7 @@ public class Titular {
     private String numeroDocumento;
     private Boolean donanteDeOrganos;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
     private Domicilio domicilio;
     
 }

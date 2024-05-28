@@ -15,4 +15,6 @@ public class Costo {
     private TipoLicencia licenciaPerteneciente;
     private Double costo;
     private Integer vigencia;
+
+    private TipoLicencia tipoLicencia;
 }
