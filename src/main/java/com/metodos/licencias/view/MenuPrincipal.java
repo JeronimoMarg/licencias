@@ -6,7 +6,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
-public class MenuPrincipal {
+public class MenuPrincipal extends javax.swing.JFrame{
+    
+    public MenuPrincipal() {
+        // Create the frame
+        super("Menu principal");
+        JFrame frame = new JFrame("Simple Swing Application");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1920, 1080); // Set the size of the window
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+    }
     
     // Create and show the GUI
     public static void createAndShowGUI() {
