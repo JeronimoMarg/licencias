@@ -29,4 +29,5 @@ public class Licencia {
     
     @OneToOne(cascade = CascadeType.ALL)
     private Usuario emitidaPor;
+    
 }
