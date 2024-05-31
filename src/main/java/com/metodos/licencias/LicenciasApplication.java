@@ -12,10 +12,8 @@ public class LicenciasApplication {
 	public static void main(String[] args) {
                 
         //SpringApplication.run(LicenciasApplication.class, args);
-        ConfigurableApplicationContext context = new SpringApplicationBuilder(LicenciasApplication.class).headless(false).run(args);
-    	MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-                
+        //ConfigurableApplicationContext context = new SpringApplicationBuilder(LicenciasApplication.class).headless(false).run(args);
+    	MenuPrincipal menu = new MenuPrincipal();                
 	}
 
 }
