@@ -28,6 +28,7 @@ public class TabButton extends JButton {
         setForeground(new java.awt.Color(242, 242, 242));
         */
         setBackground(blanco);
+        setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         setForeground(new Color(12, 12, 12));
         setBorder(null);
         setBorderPainted(false);

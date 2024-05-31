@@ -10,12 +10,12 @@ import java.awt.FlowLayout;
  *
  * @author valec
  */
-public class TabPanel extends javax.swing.JPanel {
+public class IGNORAR_TabPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form TabPanel
      */
-    public TabPanel() {
+    public IGNORAR_TabPanel() {
         initComponents();
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
     }
@@ -41,6 +41,7 @@ public class TabPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(157, 50));
         setPreferredSize(new java.awt.Dimension(624, 50));
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(242, 242, 242));
         jButton1.setText("Licencias");
         jButton1.setBorder(null);
