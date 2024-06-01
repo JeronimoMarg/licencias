@@ -37,8 +37,6 @@ public class MenuPrincipal extends javax.swing.JFrame{
         cl = (CardLayout) (mainPanel.getLayout());
 
         
-        
-        
         panelContenedor.add(barraSuperior,BorderLayout.NORTH);
       
         panelContenedor.add(mainPanel,BorderLayout.CENTER);
