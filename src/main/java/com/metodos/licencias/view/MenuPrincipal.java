@@ -122,7 +122,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
        botonLicencias.setSeleccionado(false);
        botonTitulares.setSeleccionado(true);
        botonUsuarios.setSeleccionado(false);
-       cl.show(mainPanel, "Card2");
+       cl.show(mainPanel, "Titulares");
     }   
     
     private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -139,10 +139,8 @@ public class MenuPrincipal extends javax.swing.JFrame{
         JPanel card1 = new JPanel();
         card1.add(new JLabel("PANTALLA LICENCIAS"));
         card1.setBackground(Color.GRAY);
-
-        JPanel card2 = new JPanel();
-        card2.add(new JLabel("PANTALLA TITULARES"));
-        card2.setBackground(Color.DARK_GRAY);
+        
+        JPanel card2 = new Titulares();
 
         JPanel card3 = new JPanel();
         card3.add(new JLabel("PANTALLA USUARIOS"));
@@ -150,7 +148,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         
         // Add the cards to the panel with identifiers
         mainPanel.add(card1, "Card1");
-        mainPanel.add(card2, "Card2");
+        mainPanel.add(card2, "Titulares");
         mainPanel.add(card3, "Card3");
                 
     }
