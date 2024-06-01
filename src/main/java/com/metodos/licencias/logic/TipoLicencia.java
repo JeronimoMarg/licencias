@@ -32,5 +32,4 @@ public class TipoLicencia {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_costo")
     private List<Costo> costos;
-    
 }
