@@ -9,7 +9,7 @@ package com.metodos.licencias.view;
  *
  * @author valec
  */
-public class Titulares extends javax.swing.JPanel {
+public class InfoTitular extends javax.swing.JPanel {
 
     /**
      * Creates new form Usuarios
@@ -17,7 +17,7 @@ public class Titulares extends javax.swing.JPanel {
     
     private int cornerRadius;
     
-    public Titulares() {
+    public InfoTitular() {
         initComponents();
     }
 
@@ -37,7 +37,6 @@ public class Titulares extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Alta_titular_numerodni = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Alta_titular_clase = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         Alta_titular_gruposanguineo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
@@ -51,22 +50,11 @@ public class Titulares extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         Alta_titular_altura = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         Alta_titular_tipodni = new javax.swing.JComboBox<>();
         Alta_titular_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jPanel2 = new RoundedPanel(30);
-        Busqueda_titular_nombre = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        Busqueda_titular_apellido = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        Busqueda_titular_numerodni = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Busqueda_titular_tipodni = new javax.swing.JComboBox<>();
-        jLabel19 = new javax.swing.JLabel();
-        Busqueda_titular_buscarBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -106,9 +94,6 @@ public class Titulares extends javax.swing.JPanel {
 
         jLabel3.setText("Tipo DNI");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
-
-        Alta_titular_clase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(Alta_titular_clase, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 170, 40));
 
         jLabel4.setText("Número DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 90, -1));
@@ -164,22 +149,15 @@ public class Titulares extends javax.swing.JPanel {
         jLabel12.setText("Altura");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 60, -1));
 
-        jLabel13.setText("Clase solicitada");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setText("Licencia");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
-
         Alta_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(Alta_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 40));
 
         Alta_titular_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
-        Alta_titular_guardarBtn.setText("Guardar");
+        Alta_titular_guardarBtn.setText("Editar");
         jPanel1.add(Alta_titular_guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, 120, 40));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel18.setText("Alta de titular");
+        jLabel18.setText("Información del titular");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -193,68 +171,23 @@ public class Titulares extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Busqueda_titular_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_nombreActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Busqueda_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 140, 40));
-
-        jLabel14.setText("Nombre");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-
-        Busqueda_titular_apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_apellidoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Busqueda_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, 40));
-
-        jLabel15.setText("Apellido");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
-
-        jLabel17.setText("Numero DNI");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
-
-        Busqueda_titular_numerodni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_numerodniActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Busqueda_titular_numerodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 140, 40));
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Búsqueda de titular");
+        jLabel2.setText("Licencias solicitadas");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-
-        Busqueda_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(Busqueda_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 110, 40));
-
-        jLabel19.setText("Tipo DNI");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
-
-        Busqueda_titular_buscarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupita_chica.png"))); // NOI18N
-        Busqueda_titular_buscarBtn.setBorderPainted(false);
-        Busqueda_titular_buscarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_buscarBtnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(Busqueda_titular_buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 40, 40));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Tipo DNI", "Numero DNI"
+                "Nombre", "Apellido", "Tipo DNI", "Numero DNI", "Clase", "Grupo Sanguineo", "Donante"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -267,7 +200,7 @@ public class Titulares extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 630, -1));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 87, 630, 490));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -300,22 +233,6 @@ public class Titulares extends javax.swing.JPanel {
     private void Alta_titular_alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_alturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Alta_titular_alturaActionPerformed
-
-    private void Busqueda_titular_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_nombreActionPerformed
-
-    private void Busqueda_titular_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_apellidoActionPerformed
-
-    private void Busqueda_titular_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_numerodniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_numerodniActionPerformed
-
-    private void Busqueda_titular_buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_buscarBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_buscarBtnActionPerformed
     
  
 
@@ -323,7 +240,6 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_altura;
     private javax.swing.JTextField Alta_titular_apellido;
     private javax.swing.JTextField Alta_titular_calle;
-    private javax.swing.JComboBox<String> Alta_titular_clase;
     private javax.swing.JCheckBox Alta_titular_esdonante;
     public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
     private javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
@@ -331,21 +247,10 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_nombre;
     private javax.swing.JTextField Alta_titular_numerodni;
     private javax.swing.JComboBox<String> Alta_titular_tipodni;
-    private javax.swing.JTextField Busqueda_titular_apellido;
-    private javax.swing.JButton Busqueda_titular_buscarBtn;
-    private javax.swing.JTextField Busqueda_titular_nombre;
-    private javax.swing.JTextField Busqueda_titular_numerodni;
-    private javax.swing.JComboBox<String> Busqueda_titular_tipodni;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
