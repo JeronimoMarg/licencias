@@ -142,9 +142,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         
         JPanel card2 = new Titulares();
 
-        JPanel card3 = new JPanel();
-        card3.add(new JLabel("PANTALLA USUARIOS"));
-        card3.setBackground(Color.LIGHT_GRAY);
+        JPanel card3 = new Usuarios();
         
         // Add the cards to the panel with identifiers
         mainPanel.add(card1, "Card1");
