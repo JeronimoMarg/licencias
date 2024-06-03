@@ -294,17 +294,23 @@ public class Usuarios extends javax.swing.JPanel {
     }
     
     public void usuarioCreado(){
-        
+        //ventana emergente con confirmacion
+        //limpiar inputs
     }
     
     public void nombreUsuarioExistente(){
-        
+        //ventana emergente error
+        //cambiar borde a rojo
     }
-    
+
     public void dniExistente(){
-        
-        
+        //ventana emergente error
+        //cambiar borde a rojo                
     }
-    
+        
+    public void nombreDniExistentes(){
+        //ventana emergente error
+        //cambiar ambos bordes a rojo 
+    }
     
 }

@@ -13,15 +13,14 @@ import com.metodos.licencias.logic.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.String;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**
  *
  * @author valec
  */
-public class UsuariosController {
+public class UsuariosController{
     
     private UsuarioService usuarioService;
     private Usuarios usuarioView;
@@ -36,6 +35,11 @@ public class UsuariosController {
     
     private void validarUsuario(UsuarioDTO usuario) throws Exception{
         //falta manejor exceptions
+        
+        if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
+           throw new Exception(); 
+        }
+        
         if(usuarioService.usuarioExistente(usuario.getUsuario())){
             throw new Exception();
         }
