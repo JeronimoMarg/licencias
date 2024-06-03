@@ -19,8 +19,17 @@ public class Usuario {
 
     private String nombreUsuario;
     private String contrasenia;
-    private String nombre;
-    private String apellido;
-    private Rol rol; //Tiene 3 roles, usuario normal, admin y superadmin, por eso no lo puse como bool.
+    private TipoDocumento tipoDocumento;
+    private String nroDocumento;
+    private Rol rol;
+
+    public Usuario(String usuario, String contrasenia, TipoDocumento tipoDocumento, String nroDocumento, Rol rol) {
+        
+        nombreUsuario = usuario;
+        this.contrasenia = contrasenia;
+        this.tipoDocumento = tipoDocumento;
+        this.nroDocumento = nroDocumento;
+        this.rol = rol;
+    }
 
 }

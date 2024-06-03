@@ -1,15 +1,24 @@
 package com.metodos.licencias.service;
 
-import java.util.List;
-
+import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Usuario;
+import org.springframework.stereotype.Service;
 
-public interface UsuarioService {
+@Service
 
-    public List<Usuario> obtenerTodosLosUsuarios();
+public class UsuarioService {
 
-    public Usuario obtenerPorId(Long id);
+    public boolean usuarioExistente(String nombreUsuario){
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    };
 
-    public Usuario guardarUsuario(Usuario usuario);
+    public void guardarUsuario(Usuario crearUsuario) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean dniExistente(String nroDocumento, TipoDocumento stringToTipoDocumento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }
