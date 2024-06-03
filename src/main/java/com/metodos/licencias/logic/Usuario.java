@@ -14,14 +14,13 @@ public class Usuario {
     @Id
     @GeneratedValue
     private Long id;
-
-    //No se si agregar mas datos personales como puse en la maqueta
-
+    
     private String nombreUsuario;
     private String contrasenia;
     private TipoDocumento tipoDocumento;
     private String nroDocumento;
     private Rol rol;
+    private Tramite tramiteRegistro;
 
     public Usuario(String usuario, String contrasenia, TipoDocumento tipoDocumento, String nroDocumento, Rol rol) {
         

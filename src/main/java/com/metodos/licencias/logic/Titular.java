@@ -33,5 +33,8 @@ public class Titular {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Domicilio domicilio;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Tramite emitidaPor;
     
 }

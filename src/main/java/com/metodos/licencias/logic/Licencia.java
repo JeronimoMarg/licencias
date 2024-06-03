@@ -8,7 +8,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import lombok.Data;
 
 @Entity(name="licencias")
@@ -28,6 +27,6 @@ public class Licencia {
     private TipoLicencia tipoLicencia;
     
     @OneToOne(cascade = CascadeType.ALL)
-    private Usuario emitidaPor;
+    private Tramite emitidaPor;
     
 }
