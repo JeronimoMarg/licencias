@@ -4,6 +4,8 @@
  */
 package com.metodos.licencias.view;
 
+import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.controller.TitularesController;
 
 /**
  *
@@ -19,6 +21,11 @@ public class Titulares extends javax.swing.JPanel {
     
     public Titulares() {
         initComponents();
+        initController();
+    }
+
+    private void initController() {
+        new TitularesController(this);
     }
 
     /**
@@ -323,14 +330,14 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_altura;
     private javax.swing.JTextField Alta_titular_apellido;
     private javax.swing.JTextField Alta_titular_calle;
-    private javax.swing.JComboBox<String> Alta_titular_clase;
+    public javax.swing.JComboBox<String> Alta_titular_clase;
     private javax.swing.JCheckBox Alta_titular_esdonante;
     public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
-    private javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
-    private javax.swing.JButton Alta_titular_guardarBtn;
+    public javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
+    public javax.swing.JButton Alta_titular_guardarBtn;
     private javax.swing.JTextField Alta_titular_nombre;
     private javax.swing.JTextField Alta_titular_numerodni;
-    private javax.swing.JComboBox<String> Alta_titular_tipodni;
+    public javax.swing.JComboBox<String> Alta_titular_tipodni;
     private javax.swing.JTextField Busqueda_titular_apellido;
     private javax.swing.JButton Busqueda_titular_buscarBtn;
     private javax.swing.JTextField Busqueda_titular_nombre;
@@ -359,4 +366,21 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public TitularDTO getTitularDTO(){
+
+        return new TitularDTO(
+            this.Alta_titular_nombre.getText().toString().trim(),
+            this.Alta_titular_apellido.getText().toString().trim(),
+            this.Alta_titular_tipodni.getSelectedItem().toString(),
+            this.Alta_titular_numerodni.getText().toString().trim(),
+            this.Alta_titular_gruposanguineo.getSelectedItem().toString(),
+            this.Alta_titular_fechanac.getDate(),
+            this.Alta_titular_esdonante.isSelected(),
+            this.Alta_titular_calle.getText().toString().trim(),
+            this.Alta_titular_altura.getText().toString().trim(),
+            this.Alta_titular_clase.getSelectedItem().toString()
+        );
+
+    }
 }
