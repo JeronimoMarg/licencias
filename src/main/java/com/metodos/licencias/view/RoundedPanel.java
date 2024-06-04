@@ -17,12 +17,10 @@ import javax.swing.JPanel;
  */
 public class RoundedPanel extends JPanel {
     private int cornerRadius;
-    private Color shadowColor;
 
     public RoundedPanel(int radius) {
         super();
         this.cornerRadius = radius;
-        this.shadowColor = new Color(0, 0, 0); // Semi-transparent black color for shadow
         setOpaque(false); // Make sure the background is not painted by the superclass
     }
 

@@ -13,6 +13,8 @@ import com.metodos.licencias.logic.Usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.String;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -33,19 +35,19 @@ public class UsuariosController{
     }
 
     
-    private void validarUsuario(UsuarioDTO usuario) throws Exception{
+    private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException{
         //falta manejor exceptions
-        
+        /*
         if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
-           throw new Exception(); 
+           throw new UsuarioDNIExistenteException("El usuario y el documento ya estan registrados en el sistema."); 
         }
         
         if(usuarioService.usuarioExistente(usuario.getUsuario())){
-            throw new Exception();
+            throw new UsuarioExistenteException("El usuario ya esta registrado en el sistema.");
         }
         if(usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
-            throw new Exception();
-        }
+            throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
+        }*/
     }
     
     private Usuario crearUsuario(UsuarioDTO usuario){        
@@ -63,19 +65,41 @@ public class UsuariosController{
     public class SaveButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-            
+
             UsuarioDTO usuario = usuarioView.getUsuarioDTO();
             
             try {
                 //validacion
                 validarUsuario(usuario);
-                usuarioService.guardarUsuario(crearUsuario(usuario));
+                //usuarioService.guardarUsuario(crearUsuario(usuario));
                 usuarioView.usuarioCreado();
-            }catch (Exception ex1) {
-                //falta manejo exceptions
-                usuarioView.nombreUsuarioExistente();
+            }catch (UsuarioDNIExistenteException ex1) {
+                usuarioView.nombreDniExistentes(ex1.getMessage());
+            }catch (UsuarioExistenteException ex2) {
+                usuarioView.nombreUsuarioExistente(ex2.getMessage());
+            }catch (DNIExistenteException ex3){
+                usuarioView.dniExistente(ex3.getMessage());
             }
         }
     }
     
+    public class UsuarioDNIExistenteException extends Exception {
+    public UsuarioDNIExistenteException(String message) {
+        super(message);
+    }
+}
+
+    public class UsuarioExistenteException extends Exception {
+        public UsuarioExistenteException(String message) {
+            super(message);
+        }
+    }
+
+    public class DNIExistenteException extends Exception {
+        public DNIExistenteException(String message) {
+            super(message);
+        }
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.metodos.licencias.view;
 
+import com.metodos.licencias.controller.UsuariosController;
+import com.metodos.licencias.service.UsuarioService;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -18,12 +20,20 @@ public class MenuPrincipal extends javax.swing.JFrame{
     JPanel mainPanel = new JPanel(new CardLayout());
     CardLayout cl;
     
+    Usuarios panelUsuarios = new Usuarios();
+    
+    
     public MenuPrincipal() {
         
         //creacion Frame
         JFrame frame = new JFrame("Licencias");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
+        setLocationRelativeTo(null);
+        
+        //
+        UsuarioService serviceUsuarios = new UsuarioService();
+        UsuariosController controllerUsuarios = new UsuariosController(serviceUsuarios, panelUsuarios);
         
         //creacion paneles principales
         JPanel panelContenedor = new JPanel(new BorderLayout());
@@ -129,7 +139,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
        botonLicencias.setSeleccionado(false);
        botonTitulares.setSeleccionado(false);
        botonUsuarios.setSeleccionado(true);
-       cl.show(mainPanel, "Card3");
+       cl.show(mainPanel, "Usuarios");
     }  
     
     private void mainPanelInit(JPanel mainPanel){
@@ -142,12 +152,12 @@ public class MenuPrincipal extends javax.swing.JFrame{
         
         JPanel card2 = new Titulares();
 
-        JPanel card3 = new Usuarios();
+        JPanel card3 = panelUsuarios;
         
         // Add the cards to the panel with identifiers
         mainPanel.add(card1, "Card1");
         mainPanel.add(card2, "Titulares");
-        mainPanel.add(card3, "Card3");
+        mainPanel.add(card3, "Usuarios");
                 
     }
     

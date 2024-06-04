@@ -6,7 +6,7 @@ package com.metodos.licencias.view;
 
 import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
-
+import java.awt.Color;
 
 /**
  *
@@ -19,6 +19,7 @@ public class Usuarios extends javax.swing.JPanel {
      */
     
     private int cornerRadius;
+    private Color grisOscuro = new Color(80,80,80);
     
     public Usuarios() {
         initComponents();
@@ -40,25 +41,25 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Alta_usuario_usuario = new javax.swing.JTextField();
+        Alta_usuario_usuario = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
-        Alta_usuario_contrasenia = new javax.swing.JTextField();
+        Alta_usuario_contrasenia = new RoundedTextField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Alta_usuario_tipodni = new javax.swing.JComboBox<>();
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        Alta_usuario_numerodni1 = new javax.swing.JTextField();
+        Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
         jPanel2 = new RoundedPanel(30);
         jLabel17 = new javax.swing.JLabel();
-        Busqueda_usuario_numerodni = new javax.swing.JTextField();
+        Busqueda_usuario_numerodni = new RoundedTextField(15,grisOscuro);
         jLabel2 = new javax.swing.JLabel();
         Busqueda_usuario_tipodni = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         Busqueda_usuario_buscarBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        Busqueda_usuario_usuario = new javax.swing.JTextField();
+        Busqueda_usuario_usuario = new RoundedTextField(15,grisOscuro);
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         Busqueda_usuario_rol = new javax.swing.JComboBox<>();
@@ -280,7 +281,7 @@ public class Usuarios extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void addSaveButtonListener(UsuariosController.SaveButtonListener saveButtonListener) {
-             Busqueda_usuario_buscarBtn.addActionListener(saveButtonListener);
+        Busqueda_usuario_guardarBtn.addActionListener(saveButtonListener);
     }
     
     public UsuarioDTO getUsuarioDTO(){
@@ -295,22 +296,38 @@ public class Usuarios extends javax.swing.JPanel {
     
     public void usuarioCreado(){
         //ventana emergente con confirmacion
+        VentanaEmergente ventanaEmergente = new VentanaEmergente("Usuario creado exitosamente.");
+        ventanaEmergente.setVisible(true);
         //limpiar inputs
+        Alta_usuario_numerodni1.setText("");
+        Alta_usuario_contrasenia.setText("");
+        Alta_usuario_usuario.setText("");
     }
     
-    public void nombreUsuarioExistente(){
+    public void nombreUsuarioExistente(String mensajeError){
         //ventana emergente error
+        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
+        ventanaEmergente.setVisible(true);
         //cambiar borde a rojo
+        ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
     }
 
-    public void dniExistente(){
+    public void dniExistente(String mensajeError){
         //ventana emergente error
-        //cambiar borde a rojo                
+        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
+        ventanaEmergente.setVisible(true);
+        //cambiar borde a rojo         
+        ((RoundedTextField)Alta_usuario_numerodni1).setBorderColor(Color.RED);
     }
         
-    public void nombreDniExistentes(){
+    public void nombreDniExistentes(String mensajeError){
         //ventana emergente error
+        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
+        ventanaEmergente.setVisible(true);
         //cambiar ambos bordes a rojo 
+        ((RoundedTextField)Alta_usuario_numerodni1).setBorderColor(Color.RED);
+        ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
+
     }
     
 }
