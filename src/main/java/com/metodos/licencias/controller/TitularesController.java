@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.FactorSanguíneo;
@@ -36,7 +37,10 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     private Titulares titularesGUI;
     private TitularDTO titularDTO;
-    private TitularService titularService; 
+
+    @Autowired
+    private TitularService titularService;
+    @Autowired
     private TipoLicenciaService tipoLicenciaService;
 
     public TitularesController(Titulares GUI){

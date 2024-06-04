@@ -5,12 +5,15 @@ import org.springframework.stereotype.Service;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class TitularService {
     private TitularRepository titularRepository; 
     
     public boolean dniExistente(String nroDni){
-        Titular titular = titularRepository.findByDni(Long.parseLong(nroDni));
+        Titular titular = titularRepository.findByNumeroDocumento(Long.parseLong(nroDni));
         if(titular == null) return false;
         return true;
     }

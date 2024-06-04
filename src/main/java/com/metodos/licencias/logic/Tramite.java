@@ -4,12 +4,14 @@ import java.sql.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
-@Entity(name="tramite")
+@Entity(name="Tramite")
 
 @Data
 
@@ -19,7 +21,9 @@ public class Tramite {
     @GeneratedValue
     private Long id;
     private Date fechaRealizacion;
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_usuario")
     private Usuario usuarioAdministrativo;
     
 }

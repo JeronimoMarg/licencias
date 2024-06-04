@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-@Entity(name="Usuarios")
+@Entity(name="Usuario")
 
 @Data
 
@@ -20,7 +20,6 @@ public class Usuario {
     private TipoDocumento tipoDocumento;
     private String nroDocumento;
     private Rol rol;
-    private Tramite tramiteRegistro;
 
     public Usuario(String usuario, String contrasenia, TipoDocumento tipoDocumento, String nroDocumento, Rol rol) {
         

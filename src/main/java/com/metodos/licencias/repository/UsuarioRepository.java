@@ -8,6 +8,6 @@ import com.metodos.licencias.logic.Usuario;;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Long>{
 
-    Usuario findByNombre(String name);
+    Usuario findByNombreUsuario(String name);
     
 }

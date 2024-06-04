@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.metodos.licencias.logic.Titular;
 @Repository
 public interface TitularRepository extends JpaRepository<Titular,Long>{
-    Titular findByDni(Long dni);
+    Titular findByNumeroDocumento(Long dni);
 }

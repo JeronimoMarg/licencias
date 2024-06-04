@@ -28,13 +28,15 @@ public class Titular {
     private FactorSanguíneo factorSanguíneo; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento; //Podriamos hacerlo una clase en vez de una enum, mas manejable
-    private String numeroDocumento;
+    private Long numeroDocumento;
     private Boolean donanteDeOrganos;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Domicilio domicilio;
 
+    /* 
     @OneToOne(cascade = CascadeType.ALL)
     private Tramite emitidaPor;
+    */
     
 }
