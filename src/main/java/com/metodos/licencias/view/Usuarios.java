@@ -4,7 +4,7 @@
  */
 package com.metodos.licencias.view;
 
-import DTO.UsuarioDTO;
+import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
 
 

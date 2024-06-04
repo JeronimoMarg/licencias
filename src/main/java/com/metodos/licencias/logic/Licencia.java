@@ -1,13 +1,13 @@
 package com.metodos.licencias.logic;
 
-import java.sql.Date;
-
+import java.time.LocalDate;
 
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity(name="licencias")
@@ -20,13 +20,16 @@ public class Licencia {
     @GeneratedValue
     private Long numeroLicencia;
 
-    private Date inicioVigencia;
-    private Date finVigencia;
+    private LocalDate inicioVigencia;
+    private LocalDate finVigencia;
 
     @OneToOne(cascade = CascadeType.ALL)
     private TipoLicencia tipoLicencia;
     
     @OneToOne(cascade = CascadeType.ALL)
     private Tramite emitidaPor;
+
+    @ManyToOne
+    private Titular titular;
     
 }

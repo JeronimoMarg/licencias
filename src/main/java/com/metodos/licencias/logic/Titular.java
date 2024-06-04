@@ -1,6 +1,6 @@
 package com.metodos.licencias.logic;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -23,7 +23,7 @@ public class Titular {
 
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     @Enumerated(EnumType.STRING)
     private FactorSanguíneo factorSanguíneo; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     @Enumerated(EnumType.STRING)

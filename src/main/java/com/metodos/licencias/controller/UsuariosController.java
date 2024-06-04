@@ -4,7 +4,7 @@
  */
 package com.metodos.licencias.controller;
 
-import DTO.UsuarioDTO;
+import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.logic.Rol;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.view.Usuarios;
