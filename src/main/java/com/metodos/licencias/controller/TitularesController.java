@@ -149,6 +149,19 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == titularesGUI.Busqueda_titular_tabla){
+            try {
+                if (e.getClickCount() == 2) {
+                    int row = titularesGUI.Busqueda_titular_tabla.getSelectedRow();
+                    if(row >= 0){
+                        //obtener el valor de dni
+                        //pasar a la siguiente interfaz
+                    }
+                }
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        } 
     }
 
     @Override
