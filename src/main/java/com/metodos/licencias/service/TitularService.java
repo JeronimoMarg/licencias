@@ -1,7 +1,12 @@
 package com.metodos.licencias.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
 
@@ -39,5 +44,19 @@ public class TitularService {
     public boolean formatErrorAltura(String altura){
         if(altura !=null && altura.matches("\\d+")) return false; 
         return true;
+    }
+    public void guardarTitular(TitularDTO titularDTO) {
+        Titular titular = this.aDto(titularDTO);
+        titularRepository.save(titular);
+    }
+    public Titular aDto(TitularDTO titularDTO){
+        return new Titular();
+        //IMPLEMENTAR!!
+    }
+    public List<TitularDTO> getBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) {
+        
+        TipoDocumento tipoDocEnum = TipoDocumento.valueOf(tipoDoc);
+
+        return new ArrayList<TitularDTO>();
     }
 }

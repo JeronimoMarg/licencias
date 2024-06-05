@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     private Titulares titularesGUI;
     private TitularDTO titularDTO;
+    private DefaultTableModel tabla;
 
     @Autowired
     private TitularService titularService;
@@ -51,7 +53,14 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     @PostConstruct
     private void init(){
+
+        tabla = new DefaultTableModel();
+
+        //listener para el boton guardar alta titular
         this.titularesGUI.Alta_titular_guardarBtn.addActionListener(this);
+
+        //listener para el boton busqueda titular
+        this.titularesGUI.Busqueda_titular_buscarBtn.addActionListener(this);
         inicializar_cmbx();
     }
 
@@ -61,9 +70,35 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             titularDTO = titularesGUI.getTitularDTO();
             try {
                 validarTitular(titularDTO);
+                titularService.guardarTitular(titularDTO);
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
+        } else if(e.getSource() == titularesGUI.Busqueda_titular_buscarBtn){
+            String nombre = titularesGUI.Busqueda_titular_nombre.getText().toString().trim();
+            String apellido = titularesGUI.Busqueda_titular_apellido.getText().toString().trim();
+            String tipoDoc = titularesGUI.Busqueda_titular_tipodni.getSelectedItem().toString().trim();
+            String numeroDoc = titularesGUI.Busqueda_titular_numerodni.getText().toString().trim();
+            try {
+                validarCamposBusqueda(nombre, apellido, tipoDoc, numeroDoc);
+                List<TitularDTO> resultados = titularService.getBusqueda(nombre, apellido, tipoDoc, numeroDoc);
+                listarTitulares(resultados);
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        }
+    }
+
+    private void listarTitulares(List<TitularDTO> titulares) {
+
+        tabla = (DefaultTableModel) titularesGUI.Busqueda_titular_tabla.getModel();
+        Object[] row = new Object[4];
+        for (int i = 0; i < titulares.size(); i++) {
+            row[0] = titulares.get(i).getNombre();
+            row[1] = titulares.get(i).getApellido();
+            row[2] = titulares.get(i).getTipoDoc();
+            row[3] = titulares.get(i).getNumDNI();
+            tabla.addRow(row);
         }
     }
 
@@ -84,6 +119,10 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             throw new Exception();
         }
     }
+
+    private void validarCamposBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) throws Exception{
+        //metodo de validacion de los campos de busqueda de titular
+    }
     
     public void inicializar_cmbx(){
 
@@ -91,6 +130,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         TipoDocumento[] documentos = TipoDocumento.values();
         for(TipoDocumento documento:documentos){
             titularesGUI.Alta_titular_tipodni.addItem(documento.toString());
+            titularesGUI.Busqueda_titular_tipodni.addItem(documento.toString());
         }
 
         //combo de tipo de factores
