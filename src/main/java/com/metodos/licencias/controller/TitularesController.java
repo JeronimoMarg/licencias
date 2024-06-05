@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -20,12 +19,10 @@ import org.springframework.stereotype.Controller;
 
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.FactorSanguíneo;
-import com.metodos.licencias.logic.Licencia;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
-import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.view.Titulares;
 
 /**
@@ -33,6 +30,7 @@ import com.metodos.licencias.view.Titulares;
  * @author JeroM
  */
 
+ @Controller
 public class TitularesController implements ActionListener, KeyListener, MouseListener{
 
     private Titulares titularesGUI;
