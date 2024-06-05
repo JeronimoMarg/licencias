@@ -15,6 +15,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import com.metodos.licencias.DTO.TitularDTO;
@@ -24,6 +25,8 @@ import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.Titulares;
+
+import jakarta.annotation.PostConstruct;
 
 /**
  *
@@ -41,17 +44,14 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     @Autowired
     private TipoLicenciaService tipoLicenciaService;
 
+    @Autowired
     public TitularesController(Titulares GUI){
         this.titularesGUI = GUI;
+    }
 
-        //agregar eventos de escucha a botones
+    @PostConstruct
+    private void init(){
         this.titularesGUI.Alta_titular_guardarBtn.addActionListener(this);
-
-        //agregar validaciones a los campos
-
-        //evento de escucha a la tabla
-
-        //inicializar comboboxes
         inicializar_cmbx();
     }
 
@@ -137,6 +137,10 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+
+    public void setTitularesGUI(Titulares titulares) {
+        this.titularesGUI=titulares;
     }
     
 }

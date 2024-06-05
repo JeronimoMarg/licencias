@@ -1,5 +1,6 @@
 package com.metodos.licencias.view;
 
+import com.metodos.licencias.controller.TitularesController;
 import com.metodos.licencias.controller.UsuariosController;
 import com.metodos.licencias.service.UsuarioService;
 import java.awt.BorderLayout;
@@ -12,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 //import javax.swing.JTabbedPane;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MenuPrincipal extends javax.swing.JFrame{
     
     TabButton botonLicencias = new TabButton();
@@ -20,10 +25,15 @@ public class MenuPrincipal extends javax.swing.JFrame{
     JPanel mainPanel = new JPanel(new CardLayout());
     CardLayout cl;
     
-    Usuarios panelUsuarios = new Usuarios();
+    private final Usuarios panelUsuarios;
+    private final Titulares panelTitulares;
+    //private final UsuariosController usuariosController;
+    //private final TitularesController titularesController;
     
-    
-    public MenuPrincipal() {
+    @Autowired
+    public MenuPrincipal(Titulares panelTitulares, Usuarios panelUsuarios) {
+        this.panelUsuarios = panelUsuarios;
+        this.panelTitulares = panelTitulares;
         
         //creacion Frame
         JFrame frame = new JFrame("Licencias");
@@ -31,9 +41,10 @@ public class MenuPrincipal extends javax.swing.JFrame{
         frame.setSize(1280, 720);
         setLocationRelativeTo(null);
         
-        //
+        /*
         UsuarioService serviceUsuarios = new UsuarioService();
         UsuariosController controllerUsuarios = new UsuariosController(serviceUsuarios, panelUsuarios);
+        */
         
         //creacion paneles principales
         JPanel panelContenedor = new JPanel(new BorderLayout());
@@ -50,13 +61,6 @@ public class MenuPrincipal extends javax.swing.JFrame{
         panelContenedor.add(barraSuperior,BorderLayout.NORTH);
       
         panelContenedor.add(mainPanel,BorderLayout.CENTER);
-        
-        
-        /*
-        JTabbedPane tabbedPane = new JTabbedPane();
-        JPanel usuarios = new Usuarios();
-        tabbedPane.addTab("Tab 1", usuarios);
-        */
         
         frame.setContentPane(panelContenedor);
         frame.setVisible(true);
@@ -150,8 +154,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         card1.add(new JLabel("PANTALLA LICENCIAS"));
         card1.setBackground(Color.GRAY);
         
-        JPanel card2 = new Titulares();
-
+        JPanel card2 = panelTitulares;
         JPanel card3 = panelUsuarios;
         
         // Add the cards to the panel with identifiers

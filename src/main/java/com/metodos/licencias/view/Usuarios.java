@@ -8,10 +8,13 @@ import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
 import java.awt.Color;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author valec
  */
+@Component
 public class Usuarios extends javax.swing.JPanel {
 
     /**

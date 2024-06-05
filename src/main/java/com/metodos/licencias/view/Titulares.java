@@ -4,13 +4,20 @@
  */
 package com.metodos.licencias.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.controller.TitularesController;
+
+import jakarta.annotation.PostConstruct;
 
 /**
  *
  * @author valec
  */
+
+@Component
 public class Titulares extends javax.swing.JPanel {
 
     /**
@@ -18,14 +25,10 @@ public class Titulares extends javax.swing.JPanel {
      */
     
     private int cornerRadius;
+
     
     public Titulares() {
         initComponents();
-        initController();
-    }
-
-    private void initController() {
-        new TitularesController(this);
     }
 
     /**
@@ -114,13 +117,11 @@ public class Titulares extends javax.swing.JPanel {
         jLabel3.setText("Tipo DNI");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
-        Alta_titular_clase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(Alta_titular_clase, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 170, 40));
 
         jLabel4.setText("Número DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 90, -1));
 
-        Alta_titular_gruposanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(Alta_titular_gruposanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 170, 40));
 
         jLabel5.setText("Fecha Nacimiento");
@@ -178,7 +179,6 @@ public class Titulares extends javax.swing.JPanel {
         jLabel10.setText("Licencia");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
-        Alta_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(Alta_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 40));
 
         Alta_titular_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
@@ -234,7 +234,6 @@ public class Titulares extends javax.swing.JPanel {
         jLabel2.setText("Búsqueda de titular");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        Busqueda_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(Busqueda_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 110, 40));
 
         jLabel19.setText("Tipo DNI");
