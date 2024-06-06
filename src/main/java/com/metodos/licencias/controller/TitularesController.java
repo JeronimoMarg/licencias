@@ -103,12 +103,13 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     }
 
     private void validarTitular(TitularDTO titularDTO) throws Exception{
+        
         if(titularService.dniExistente(titularDTO.getNumDNI()) || titularService.formatErrorDni(titularDTO.getNumDNI())){
             throw new Exception(); 
         }
         if(titularService.formatErrorNombre(titularDTO.getNombre())){
             throw new Exception();
-        }
+        } 
         if(titularService.formatErrorApellido(titularDTO.getApellido())){
             throw new Exception();
         }
@@ -121,6 +122,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         if(titularService.invalidFechaNac(titularDTO.getFechaNacimiento())){
             throw new Exception();
         }
+        
     }
 
     private void validarCamposBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) throws Exception{

@@ -1,5 +1,7 @@
 package com.metodos.licencias.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,18 +31,15 @@ public class TitularService {
         return true;
     }
     public boolean formatErrorNombre(String nombre){
-        //falta probar expresión regular.
         if(nombre !=null && nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) return false; 
         return true;
     }
     public boolean formatErrorApellido(String apellido){
-        //falta probar expresión regular.
         if(apellido !=null && apellido.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) return false; 
         return true;
     }
     public boolean formatErrorCalle(String calle){
-        //falta expresión regular
-        if(calle != null) return false; 
+        if(calle != null && calle.matches("^[a-zA-Z0-9\\s]+$")) return false; 
         return true;
     }
     public boolean formatErrorAltura(String altura){
@@ -48,13 +47,11 @@ public class TitularService {
         return true;
     }
     public boolean invalidFechaNac(Date fechaNac){
-        Calendar fechaActual = Calendar.getInstance();
-        Calendar fechaNacimiento = Calendar.getInstance();
-
-        fechaNacimiento.setTime(fechaNac);
-        fechaActual.add(Calendar.YEAR, -18);
+        LocalDate fechaNacimiento = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
-        return !fechaNacimiento.before(fechaActual.getTime());
+        LocalDate fechaActual = LocalDate.now().minusYears(18);
+
+        return fechaNacimiento.isAfter(fechaActual);
     }
     public void guardarTitular(TitularDTO titularDTO) {
         Titular titular = this.aDto(titularDTO);
