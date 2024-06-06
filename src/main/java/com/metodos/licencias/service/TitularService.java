@@ -1,6 +1,8 @@
 package com.metodos.licencias.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -44,6 +46,15 @@ public class TitularService {
     public boolean formatErrorAltura(String altura){
         if(altura !=null && altura.matches("\\d+")) return false; 
         return true;
+    }
+    public boolean invalidFechaNac(Date fechaNac){
+        Calendar fechaActual = Calendar.getInstance();
+        Calendar fechaNacimiento = Calendar.getInstance();
+
+        fechaNacimiento.setTime(fechaNac);
+        fechaActual.add(Calendar.YEAR, -18);
+        
+        return !fechaNacimiento.before(fechaActual.getTime());
     }
     public void guardarTitular(TitularDTO titularDTO) {
         Titular titular = this.aDto(titularDTO);

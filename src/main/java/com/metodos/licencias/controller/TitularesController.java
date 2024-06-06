@@ -118,6 +118,9 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         if(titularService.formatErrorAltura(titularDTO.getAltura())){
             throw new Exception();
         }
+        if(titularService.invalidFechaNac(titularDTO.getFechaNacimiento())){
+            throw new Exception();
+        }
     }
 
     private void validarCamposBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) throws Exception{
