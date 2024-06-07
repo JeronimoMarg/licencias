@@ -6,6 +6,7 @@ package com.metodos.licencias.view;
 
 import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
+import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
 
 import org.springframework.stereotype.Component;
@@ -40,7 +41,6 @@ public class Usuarios extends javax.swing.JPanel {
 
         jPanel1 = new RoundedPanel(30);
         jLabel3 = new javax.swing.JLabel();
-        Alta_usuario_rol = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -48,7 +48,6 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         Alta_usuario_contrasenia = new RoundedTextField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         Alta_usuario_tipodni = new javax.swing.JComboBox<>();
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
@@ -78,9 +77,6 @@ public class Usuarios extends javax.swing.JPanel {
 
         jLabel3.setText("Tipo DNI");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-
-        Alta_usuario_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(Alta_usuario_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 170, 40));
 
         jLabel4.setText("Número DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 90, -1));
@@ -113,10 +109,7 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel12.setText("Contraseña");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
 
-        jLabel13.setText("Rol");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
-
-        Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
         jPanel1.add(Alta_usuario_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 40));
 
         Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
@@ -160,7 +153,7 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel2.setText("Búsqueda de usuario");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        Busqueda_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Busqueda_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
         jPanel2.add(Busqueda_usuario_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 110, 40));
 
         jLabel19.setText("Tipo DNI");
@@ -215,7 +208,7 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel20.setText("Rol");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 50, -1));
 
-        Busqueda_usuario_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Busqueda_usuario_rol.setModel(new javax.swing.DefaultComboBoxModel<>());
         jPanel2.add(Busqueda_usuario_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, 40));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -255,7 +248,6 @@ public class Usuarios extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Alta_usuario_contrasenia;
     private javax.swing.JTextField Alta_usuario_numerodni1;
-    private javax.swing.JComboBox<String> Alta_usuario_rol;
     private javax.swing.JComboBox<String> Alta_usuario_tipodni;
     private javax.swing.JTextField Alta_usuario_usuario;
     private javax.swing.JButton Busqueda_usuario_buscarBtn;
@@ -266,7 +258,6 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JTextField Busqueda_usuario_usuario;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -293,7 +284,7 @@ public class Usuarios extends javax.swing.JPanel {
         Alta_usuario_numerodni1.getText(),
         Alta_usuario_usuario.getText(),
         Alta_usuario_contrasenia.getText(),
-        Busqueda_usuario_rol.getSelectedItem().toString()
+        Rol.ADMINISTRATIVO.toString()
         );
     }
     
@@ -337,6 +328,18 @@ public class Usuarios extends javax.swing.JPanel {
         //ventana emergente con confirmacion
         VentanaEmergente ventanaEmergente = new VentanaEmergente(message);
         ventanaEmergente.setVisible(true);
+    }
+    
+    public void setAltaTipoDNI(String tipo){
+        Alta_usuario_tipodni.addItem(tipo);
+    }
+    
+    public void setBusquedaTipoDNI(String tipo){
+        Busqueda_usuario_tipodni.addItem(tipo);
+    }
+    
+    public void setBusquedaRol(String rol){
+        Busqueda_usuario_rol.addItem(rol);
     }
     
 }

@@ -44,41 +44,40 @@ public class UsuariosController{
 
         this.usuarioView.addSaveButtonListener(new SaveButtonListener());
         
+        //combo de tipo de documentos
+        TipoDocumento[] documentos = TipoDocumento.values();
+        for(TipoDocumento documento:documentos){
+            usuarioView.setAltaTipoDNI(documento.toString());
+            usuarioView.setBusquedaTipoDNI(documento.toString());
+        }
+        
+        Rol[] roles = Rol.values();
+        for(Rol r:roles){
+            usuarioView.setBusquedaRol(r.toString());
+        }
     }
     
     private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException, Exception{
         //falta manejor exceptions
 
         try{
-            if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
+            if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),usuario.getTipoDocumento())){
                 throw new UsuarioDNIExistenteException("El usuario y el documento ya estan registrados en el sistema."); 
              }
              
              if(usuarioService.usuarioExistente(usuario.getUsuario())){
                  throw new UsuarioExistenteException("El usuario ya esta registrado en el sistema.");
              }
-             if(usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
+             if(usuarioService.dniExistente(usuario.getNroDocumento(),usuario.getTipoDocumento())){
                  throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
              }
         } catch(Exception e){
 
             throw e;
-
         };
     }
     
-    private Usuario crearUsuario(UsuarioDTO usuario){        
-        return new Usuario(usuario.getUsuario(),usuario.getContrasenia(),stringToTipoDocumento(usuario.getTipoDocumento()),usuario.getNroDocumento(),stringToRol(usuario.getRol()));
-    }
-    
-    private Rol stringToRol(String string){
-        return Rol.valueOf(string);
-    }
-    
-    private TipoDocumento stringToTipoDocumento(String string){
-        return TipoDocumento.valueOf(string);
-    }
-    
+
     public class SaveButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -88,7 +87,7 @@ public class UsuariosController{
             try {
                 //validacion
                 validarUsuario(usuario);
-                //usuarioService.guardarUsuario(crearUsuario(usuario));
+                usuarioService.guardarUsuario(usuario);
                 usuarioView.usuarioCreado();
             }catch (UsuarioDNIExistenteException ex1) {
                 usuarioView.nombreDniExistentes(ex1.getMessage());

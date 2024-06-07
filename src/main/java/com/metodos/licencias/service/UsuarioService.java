@@ -1,5 +1,7 @@
 package com.metodos.licencias.service;
 
+import com.metodos.licencias.DTO.UsuarioDTO;
+import com.metodos.licencias.logic.Rol;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.repository.UsuarioRepository;
@@ -22,27 +24,38 @@ public class UsuarioService {
             return (user != null);
 
         } catch (Exception e) {
+            System.out.println("UsuarioService usuarioExistente");
             throw new Exception("Error en la base de datos, vuelva a intentarlo");
         }        
     };
 
-    public void guardarUsuario(Usuario crearUsuario) throws Exception{
+    public void guardarUsuario(UsuarioDTO usuario) throws Exception{
 
         try {
-            uRepository.save(crearUsuario);
+            uRepository.save(crearUsuario(usuario));
         } catch (Exception e) {
             throw new Exception("Error en la base de datos al intentar crear el usuario");
         }
 
     }
+    
+      private Usuario crearUsuario(UsuarioDTO usuario){        
+        return new Usuario(usuario.getUsuario(),usuario.getContrasenia(),stringToTipoDocumento(usuario.getTipoDocumento()),usuario.getNroDocumento(),Rol.ADMINISTRATIVO);
+    }
+      
 
-    public boolean dniExistente (String nroDocumento, TipoDocumento tipoDocumento) throws Exception {
+    private TipoDocumento stringToTipoDocumento(String string){
+        return TipoDocumento.valueOf(string);
+    }  
+      
+    public boolean dniExistente (String nroDocumento, String tipoDocumento) throws Exception {
         try {
 
-            Usuario user = uRepository.findFirstByTipoDocumentoAndNroDocumento(tipoDocumento,nroDocumento);
+            Usuario user = uRepository.findFirstByTipoDocumentoAndNroDocumento(stringToTipoDocumento(tipoDocumento),nroDocumento);
             return (user != null);
 
         } catch (Exception e) {
+            System.out.println("UsuarioService dniExistente");
             throw new Exception("Error en la base de datos, vuelva a intentarlo");
         }    
     }
