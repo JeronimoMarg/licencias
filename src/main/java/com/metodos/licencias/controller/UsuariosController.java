@@ -43,6 +43,7 @@ public class UsuariosController{
     private void init(){
 
         this.usuarioView.addSaveButtonListener(new SaveButtonListener());
+        this.usuarioView.addSearchButtonListener(new SearchButtonListener());
         
         //combo de tipo de documentos
         TipoDocumento[] documentos = TipoDocumento.values();
@@ -98,6 +99,16 @@ public class UsuariosController{
             }catch(Exception ex4){
                 usuarioView.ventanaError(ex4.getMessage());
             }
+        }
+    }
+    
+    public class SearchButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            //validacion
+            //validarUsuario(usuario);
+            usuarioService.busquedaFiltrosUsuario(usuarioView.getBusquedaNombreUsuario(),usuarioView.getBusquedaRol(),usuarioView.getBusquedaTipoDocumento(),usuarioView.getBusquedaNroDocumento());
+            
         }
     }
     

@@ -278,6 +278,10 @@ public class Usuarios extends javax.swing.JPanel {
         Busqueda_usuario_guardarBtn.addActionListener(saveButtonListener);
     }
     
+    public void addSearchButtonListener(UsuariosController.SearchButtonListener searchButtonListener) {
+        Busqueda_usuario_buscarBtn.addActionListener(searchButtonListener);
+    }
+    
     public UsuarioDTO getUsuarioDTO(){
         return new UsuarioDTO(
         Alta_usuario_tipodni.getSelectedItem().toString(),
@@ -342,4 +346,19 @@ public class Usuarios extends javax.swing.JPanel {
         Busqueda_usuario_rol.addItem(rol);
     }
     
+    public String getBusquedaNombreUsuario(){
+        return Busqueda_usuario_usuario.getText();
+    }
+    
+    public String getBusquedaRol(){
+        return Busqueda_usuario_rol.getSelectedItem().toString();
+    }
+    
+    public String getBusquedaTipoDocumento(){
+        return Busqueda_usuario_tipodni.getSelectedItem().toString();
+    }
+    
+    public String getBusquedaNroDocumento(){
+        return Busqueda_usuario_numerodni.getText();
+    }
 }

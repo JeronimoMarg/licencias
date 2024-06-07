@@ -64,15 +64,14 @@ public class UsuarioService {
         }    
     }
 
-    private List<UsuarioDTO> busquedaFiltrosUsuario(String nombreUsuario, String rol, String tipoDocumento, String numDocumento){
-        List<Usuario> usuariosEncontrados = uRepository.findAll(search(nombreUsuario, Rol.valueOf(rol), TipoDocumento.valueOf(tipoDocumento), numDocumento));
+    public List<UsuarioDTO> busquedaFiltrosUsuario(String nombreUsuario, String rol, String tipoDocumento, String numDocumento){
+        List<Usuario> usuariosEncontrados = uRepository.findAll(search(nombreUsuario, rol, tipoDocumento, numDocumento));
         return ListaUsuariosADTO(usuariosEncontrados);
     }
 
     private List<UsuarioDTO> ListaUsuariosADTO(List<Usuario> usuariosEncontrados) {
 
         List<UsuarioDTO> usuarioDTOs = new ArrayList();
-
         for (Usuario usuario : usuariosEncontrados) {
             usuarioDTOs.add(crearUsuarioDto(usuario));
             System.out.println(crearUsuarioDto(usuario).getUsuario());
@@ -85,7 +84,7 @@ public class UsuarioService {
         return new UsuarioDTO(usuario.getTipoDocumento().toString(), usuario.getNroDocumento(), usuario.getNombreUsuario(), usuario.getContrasenia(), usuario.getRol().toString());
     }
 
-    private Specification<Usuario> search(String usuario, Rol rol, TipoDocumento tipoDoc, String numeroDoc) {
+    private Specification<Usuario> search(String usuario, String rol, String tipoDoc, String numeroDoc) {
         
         return (root, query, criteriaBuilder) -> {
             
@@ -94,10 +93,10 @@ public class UsuarioService {
             if (usuario != null && !usuario.isEmpty()) {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nombreUsuario")), "%" + usuario.toLowerCase() + "%"));
             }
-            if (rol != null) {
+            if (rol != null && !rol.isEmpty()) {
                 predicates.add(criteriaBuilder.equal(root.get("rol"), rol));
             }
-            if (tipoDoc != null) {
+            if (tipoDoc != null && !tipoDoc.isEmpty()) {
                 predicates.add(criteriaBuilder.equal(root.get("tipoDocumento"), tipoDoc));
             }
             if (numeroDoc != null && !numeroDoc.isEmpty()) {
