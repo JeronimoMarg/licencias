@@ -10,11 +10,12 @@ import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.view.Usuarios;
 import com.metodos.licencias.service.UsuarioService;
 import com.metodos.licencias.logic.Usuario;
+import jakarta.annotation.PostConstruct;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.String;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 
 
@@ -22,18 +23,28 @@ import java.util.logging.Logger;
  *
  * @author valec
  */
+ @Controller
 public class UsuariosController{
     
+    @Autowired
     private UsuarioService usuarioService;
+    
     private Usuarios usuarioView;
 
+    
     public UsuariosController(UsuarioService userService, Usuarios usuarioView) {
         this.usuarioService = userService;
         this.usuarioView = usuarioView;
 
-        this.usuarioView.addSaveButtonListener(new SaveButtonListener());
+        
     }
 
+    @PostConstruct
+    private void init(){
+
+        this.usuarioView.addSaveButtonListener(new SaveButtonListener());
+        
+    }
     
     private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException{
         //falta manejor exceptions
@@ -47,7 +58,9 @@ public class UsuariosController{
         }
         if(usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
             throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
-        }*/
+        }
+        */
+        
     }
     
     private Usuario crearUsuario(UsuarioDTO usuario){        
