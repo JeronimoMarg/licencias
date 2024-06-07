@@ -19,6 +19,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = "com.metodos.licencias.logic")
 @EnableJpaRepositories(basePackages = "com.metodos.licencias.repository")
 public class LicenciasApplication {
+        
 
 	public static void main(String[] args) {
                 
