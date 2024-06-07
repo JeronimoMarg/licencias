@@ -332,5 +332,11 @@ public class Usuarios extends javax.swing.JPanel {
         ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
 
     }
+
+    public void ventanaError(String message) {
+        //ventana emergente con confirmacion
+        VentanaEmergente ventanaEmergente = new VentanaEmergente(message);
+        ventanaEmergente.setVisible(true);
+    }
     
 }

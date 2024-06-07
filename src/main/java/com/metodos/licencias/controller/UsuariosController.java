@@ -46,21 +46,25 @@ public class UsuariosController{
         
     }
     
-    private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException{
+    private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException, Exception{
         //falta manejor exceptions
-        /*
-        if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
-           throw new UsuarioDNIExistenteException("El usuario y el documento ya estan registrados en el sistema."); 
-        }
-        
-        if(usuarioService.usuarioExistente(usuario.getUsuario())){
-            throw new UsuarioExistenteException("El usuario ya esta registrado en el sistema.");
-        }
-        if(usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
-            throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
-        }
-        */
-        
+
+        try{
+            if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
+                throw new UsuarioDNIExistenteException("El usuario y el documento ya estan registrados en el sistema."); 
+             }
+             
+             if(usuarioService.usuarioExistente(usuario.getUsuario())){
+                 throw new UsuarioExistenteException("El usuario ya esta registrado en el sistema.");
+             }
+             if(usuarioService.dniExistente(usuario.getNroDocumento(),stringToTipoDocumento(usuario.getTipoDocumento()))){
+                 throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
+             }
+        } catch(Exception e){
+
+            throw e;
+
+        };
     }
     
     private Usuario crearUsuario(UsuarioDTO usuario){        
@@ -92,6 +96,8 @@ public class UsuariosController{
                 usuarioView.nombreUsuarioExistente(ex2.getMessage());
             }catch (DNIExistenteException ex3){
                 usuarioView.dniExistente(ex3.getMessage());
+            }catch(Exception ex4){
+                usuarioView.ventanaError(ex4.getMessage());
             }
         }
     }

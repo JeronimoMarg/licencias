@@ -2,6 +2,8 @@ package com.metodos.licencias.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Usuario;;
 
 @Repository
@@ -9,5 +11,9 @@ import com.metodos.licencias.logic.Usuario;;
 public interface UsuarioRepository extends JpaRepository<Usuario,Long>{
 
     Usuario findByNombreUsuario(String name);
+
+    Usuario findFirstByNombreUsuario(String nombreUsuario);
+
+    Usuario findFirstByTipoDocumentoAndNroDocumento(TipoDocumento tipoDocumento, String nroDocumento);
     
 }
