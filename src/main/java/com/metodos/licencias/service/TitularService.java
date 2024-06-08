@@ -1,5 +1,6 @@
 package com.metodos.licencias.service;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.logic.Domicilio;
+import com.metodos.licencias.logic.FactorSanguíneo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
@@ -54,12 +57,31 @@ public class TitularService {
         return fechaNacimiento.isAfter(fechaActual);
     }
     public void guardarTitular(TitularDTO titularDTO) {
-        Titular titular = this.aDto(titularDTO);
+        Titular titular = this.aEntidad(titularDTO);
         titularRepository.save(titular);
     }
-    public Titular aDto(TitularDTO titularDTO){
-        return new Titular();
-        //IMPLEMENTAR!!
+    public Titular aEntidad(TitularDTO titularDTO){
+
+        Domicilio domicilio = new Domicilio(
+            titularDTO.getCalle(),
+            titularDTO.getAltura()
+        );
+
+        //Pasaje de DATE a LOCALDATE
+        Instant instant = titularDTO.getFechaNacimiento().toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDate localdate = instant.atZone(zoneId).toLocalDate();
+
+        return new Titular(
+            titularDTO.getNombre(),
+            titularDTO.getApellido(),
+            localdate,
+            FactorSanguíneo.valueOf(titularDTO.getGrupoSanguineo()),
+            TipoDocumento.valueOf(titularDTO.getTipoDoc()),
+            titularDTO.getNumDNI(),
+            titularDTO.isDonante(),
+            domicilio
+        );
     }
     public List<TitularDTO> getBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) {
         

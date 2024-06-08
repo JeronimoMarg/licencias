@@ -15,12 +15,18 @@ public class Domicilio {
     @GeneratedValue
     private Long id;
 
-    private String localidad;
-    private String provincia;
+    //private String localidad;
+    //private String provincia;
     private String nombreCalle;
     private String numeroCalle;
     //private String pisoDepartamento;
     //private String numeroDepartamento; No me parecen importante para el dominio
-    private Integer codigoPostal;
+    //private Integer codigoPostal;
+
+    public Domicilio(String nombre, String numero){
+        this.nombreCalle = nombre;
+        this.numeroCalle = numero;
+
+    }
     
 }

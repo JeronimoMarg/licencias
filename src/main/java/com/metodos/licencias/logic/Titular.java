@@ -39,4 +39,16 @@ public class Titular {
     private Tramite emitidaPor;
     */
     
+    public Titular(String nombre, String apellido, LocalDate nacimiento, FactorSanguíneo factor,
+    TipoDocumento tipoDoc, String numDNI, boolean donante, Domicilio domicilio) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fechaNacimiento = nacimiento;
+        this.factorSanguíneo = factor;
+        this.tipoDocumento = tipoDoc;
+        this.numeroDocumento = Long.parseLong(numDNI);
+        this.donanteDeOrganos = donante;
+        this.domicilio = domicilio;
+    }
+
 }
