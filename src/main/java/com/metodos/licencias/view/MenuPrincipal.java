@@ -27,24 +27,19 @@ public class MenuPrincipal extends javax.swing.JFrame{
     
     private final Usuarios panelUsuarios;
     private final Titulares panelTitulares;
-    //private final UsuariosController usuariosController;
-    //private final TitularesController titularesController;
+    private final InfoTitular panelInfoTitular;
     
     @Autowired
-    public MenuPrincipal(Titulares panelTitulares, Usuarios panelUsuarios) {
+    public MenuPrincipal(Titulares panelTitulares, Usuarios panelUsuarios, InfoTitular infoTitular) {
         this.panelUsuarios = panelUsuarios;
         this.panelTitulares = panelTitulares;
+        this.panelInfoTitular = infoTitular;
         
         //creacion Frame
         JFrame frame = new JFrame("Licencias");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
         setLocationRelativeTo(null);
-        
-        /*
-        UsuarioService serviceUsuarios = new UsuarioService();
-        UsuariosController controllerUsuarios = new UsuariosController(serviceUsuarios, panelUsuarios);
-        */
         
         //creacion paneles principales
         JPanel panelContenedor = new JPanel(new BorderLayout());
@@ -156,11 +151,13 @@ public class MenuPrincipal extends javax.swing.JFrame{
         
         JPanel card2 = panelTitulares;
         JPanel card3 = panelUsuarios;
+        JPanel card4 = panelInfoTitular;
         
         // Add the cards to the panel with identifiers
         mainPanel.add(card1, "Card1");
         mainPanel.add(card2, "Titulares");
         mainPanel.add(card3, "Usuarios");
+        mainPanel.add(card4, "Informacion Titular");
                 
     }
     

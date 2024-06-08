@@ -4,11 +4,16 @@
  */
 package com.metodos.licencias.view;
 
+import org.springframework.stereotype.Component;
+
+import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.logic.TipoDocumento;
 
 /**
  *
  * @author valec
  */
+@Component
 public class InfoTitular extends javax.swing.JPanel {
 
     /**
@@ -264,4 +269,16 @@ public class InfoTitular extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public void setTitular(TitularDTO titularDTO) {
+        //este metodo recibe el DTO del titular y llena los campos
+        Alta_titular_nombre.setText(titularDTO.getNombre());
+        Alta_titular_apellido.setText(titularDTO.getApellido());
+        Alta_titular_numerodni.setText(titularDTO.getNumDNI());
+        Alta_titular_tipodni.setSelectedItem(TipoDocumento.valueOf(titularDTO.getTipoDoc()));
+        Alta_titular_altura.setText(titularDTO.getAltura());
+        Alta_titular_calle.setText(titularDTO.getCalle());
+        Alta_titular_esdonante.setSelected(titularDTO.isDonante());
+        Alta_titular_fechanac.setDate(titularDTO.getFechaNacimiento());
+    }
 }

@@ -4,13 +4,9 @@
  */
 package com.metodos.licencias.view;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.metodos.licencias.DTO.TitularDTO;
-import com.metodos.licencias.controller.TitularesController;
-
-import jakarta.annotation.PostConstruct;
 
 /**
  *

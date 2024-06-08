@@ -4,6 +4,7 @@
  */
 package com.metodos.licencias.controller;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,7 +13,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,8 @@ import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
+import com.metodos.licencias.view.InfoTitular;
+import com.metodos.licencias.view.MenuPrincipal;
 import com.metodos.licencias.view.Titulares;
 
 import jakarta.annotation.PostConstruct;
@@ -38,6 +43,8 @@ import jakarta.annotation.PostConstruct;
 public class TitularesController implements ActionListener, KeyListener, MouseListener{
 
     private Titulares titularesGUI;
+    private InfoTitular infoTitular;
+
     private TitularDTO titularDTO;
     private DefaultTableModel tabla;
 
@@ -47,8 +54,9 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     private TipoLicenciaService tipoLicenciaService;
 
     @Autowired
-    public TitularesController(Titulares GUI){
-        this.titularesGUI = GUI;
+    public TitularesController(Titulares titulares, InfoTitular infoTitular){
+        this.titularesGUI = titulares;
+        this.infoTitular = infoTitular;
     }
 
     @PostConstruct
@@ -61,6 +69,10 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
         //listener para el boton busqueda titular
         this.titularesGUI.Busqueda_titular_buscarBtn.addActionListener(this);
+
+        //listener del click en la tabla
+        this.titularesGUI.Busqueda_titular_tabla.addMouseListener(this);
+
         inicializar_cmbx();
     }
 
@@ -158,11 +170,16 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == titularesGUI.Busqueda_titular_tabla){
             try {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() >= 2) {
                     int row = titularesGUI.Busqueda_titular_tabla.getSelectedRow();
                     if(row >= 0){
-                        //obtener el valor de dni
-                        //pasar a la siguiente interfaz
+                        //buscar los datos completos del titular
+                        String numDNI = (String) titularesGUI.Busqueda_titular_tabla.getValueAt(row, 3);
+                        TitularDTO seleccionado = titularService.findByDNI(numDNI);
+                        //inicializar interfaz siguiente
+                        infoTitular.setTitular(seleccionado);
+                        JOptionPane.showMessageDialog(null, "Usuario seleccionado");
+                        //MOSTRAR INTERFAZ
                     }
                 }
             } catch (Exception e1) {

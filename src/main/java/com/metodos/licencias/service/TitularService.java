@@ -116,12 +116,6 @@ public class TitularService {
         
         TipoDocumento tipoDocEnum = TipoDocumento.valueOf(tipoDoc);
 
-        
-        /* PARA HACER EL SELECTOR DE LA QUERY
-         * Enlace GPT
-         * https://chatgpt.com/share/cada92fd-603f-439c-b2e6-3d88acee98b8
-         */
-
         Specification<Titular> specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -146,6 +140,11 @@ public class TitularService {
             throw new NoResultException("No se han encontrado resultados para los campos indicados.");
         }
         return resultado;
+    }
+
+    public TitularDTO findByDNI(String dni){
+        Titular titular = titularRepository.findByNumeroDocumento(Long.parseLong(dni));
+        return aDTO(titular);
     }
 
 }
