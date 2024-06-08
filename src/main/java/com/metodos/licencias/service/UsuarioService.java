@@ -36,10 +36,12 @@ public class UsuarioService {
 
     public void guardarUsuario(UsuarioDTO usuario) throws Exception{
 
+        //El save tambien se usa para actualizar.
+
         try {
             uRepository.save(crearUsuario(usuario));
         } catch (Exception e) {
-            throw new Exception("Error en la base de datos al intentar crear el usuario");
+            throw new Exception("Error en la base de datos al intentar guardar el usuario");
         }
 
     }
@@ -82,6 +84,10 @@ public class UsuarioService {
 
     private UsuarioDTO crearUsuarioDto(Usuario usuario){
         return new UsuarioDTO(usuario.getTipoDocumento().toString(), usuario.getNroDocumento(), usuario.getNombreUsuario(), usuario.getContrasenia(), usuario.getRol().toString());
+    }
+
+    private Usuario buscarUsuario(String tipoDoc, String numDoc){
+        return uRepository.findFirstByTipoDocumentoAndNroDocumento(TipoDocumento.valueOf(tipoDoc),numDoc);
     }
 
     private Specification<Usuario> search(String usuario, String rol, String tipoDoc, String numeroDoc) {
