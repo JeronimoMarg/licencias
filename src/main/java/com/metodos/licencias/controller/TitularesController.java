@@ -71,6 +71,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             try {
                 validarTitular(titularDTO);
                 titularService.guardarTitular(titularDTO);
+                JOptionPane.showMessageDialog(null, "Titular guardado con exito!");
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
@@ -91,6 +92,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     private void listarTitulares(List<TitularDTO> titulares) {
 
+        tabla.setRowCount(0);
         tabla = (DefaultTableModel) titularesGUI.Busqueda_titular_tabla.getModel();
         Object[] row = new Object[4];
         for (int i = 0; i < titulares.size(); i++) {

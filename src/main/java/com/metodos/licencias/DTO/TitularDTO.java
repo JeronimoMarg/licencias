@@ -21,7 +21,7 @@ public class TitularDTO {
     private String calle;
     private String altura;
     //licencia
-    private String claseSolicitada;
+    //private String claseSolicitada;
 
 
     

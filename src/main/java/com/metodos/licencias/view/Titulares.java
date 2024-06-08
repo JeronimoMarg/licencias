@@ -378,8 +378,8 @@ public class Titulares extends javax.swing.JPanel {
                 this.Alta_titular_fechanac.getDate(),
                 this.Alta_titular_esdonante.isSelected(),
                 this.Alta_titular_calle.getText().toString().trim(),
-                this.Alta_titular_altura.getText().toString().trim(),
-                "A"
+                this.Alta_titular_altura.getText().toString().trim()
+                //,"A"
             ); 
         }
         return new TitularDTO(
@@ -391,8 +391,8 @@ public class Titulares extends javax.swing.JPanel {
             this.Alta_titular_fechanac.getDate(),
             this.Alta_titular_esdonante.isSelected(),
             this.Alta_titular_calle.getText().toString().trim(),
-            this.Alta_titular_altura.getText().toString().trim(),
-            this.Alta_titular_clase.getSelectedItem().toString()
+            this.Alta_titular_altura.getText().toString().trim()
+            //,this.Alta_titular_clase.getSelectedItem().toString()
         );
 
     }

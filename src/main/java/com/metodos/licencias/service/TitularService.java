@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.metodos.licencias.DTO.TitularDTO;
@@ -17,11 +19,15 @@ import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
 
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.criteria.Predicate;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class TitularService {
+
+    @Autowired
     private TitularRepository titularRepository; 
     
     public boolean dniExistente(String nroDni){
@@ -83,7 +89,30 @@ public class TitularService {
             domicilio
         );
     }
-    public List<TitularDTO> getBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) {
+
+    public TitularDTO aDTO(Titular titular){
+
+        return new TitularDTO(
+            titular.getNombre(), 
+            titular.getApellido(), 
+            titular.getTipoDocumento().toString(), 
+            Long.toString(titular.getNumeroDocumento()), 
+            titular.getFactorSanguíneo().toString(), 
+            Date.from(titular.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+            titular.getDonanteDeOrganos(),
+            titular.getDomicilio().getNombreCalle(), 
+            titular.getDomicilio().getNumeroCalle());
+
+    }
+
+    public List<TitularDTO> getBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc){
+
+        List<Titular> titulares = searchEntidades(nombre, apellido, tipoDoc, numeroDoc);
+        return titulares.stream().map(t -> aDTO(t)).toList();
+        
+    }
+
+    public List<Titular> searchEntidades(String nombre, String apellido, String tipoDoc, String numeroDoc) {
         
         TipoDocumento tipoDocEnum = TipoDocumento.valueOf(tipoDoc);
 
@@ -93,6 +122,30 @@ public class TitularService {
          * https://chatgpt.com/share/cada92fd-603f-439c-b2e6-3d88acee98b8
          */
 
-        return new ArrayList<TitularDTO>();
+        Specification<Titular> specification = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (nombre != null && !nombre.isEmpty()) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nombre")), "%" + nombre.toLowerCase() + "%"));
+            }
+            if (apellido != null && !apellido.isEmpty()) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("apellido")), "%" + apellido.toLowerCase() + "%"));
+            }
+            if (tipoDoc != null && !tipoDoc.isEmpty()) {
+                predicates.add(criteriaBuilder.equal(root.get("tipoDocumento"), tipoDocEnum));
+            }
+            if (numeroDoc != null && !numeroDoc.isEmpty()) {
+                predicates.add(criteriaBuilder.equal(root.get("numeroDoc"), numeroDoc));
+            }
+
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+
+        List<Titular> resultado = titularRepository.findAll(specification);
+        if (resultado.isEmpty()){
+            throw new NoResultException("No se han encontrado resultados para los campos indicados.");
+        }
+        return resultado;
     }
+
 }
