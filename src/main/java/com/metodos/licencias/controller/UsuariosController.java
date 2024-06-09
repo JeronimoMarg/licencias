@@ -24,14 +24,12 @@ import org.springframework.stereotype.Controller;
  * @author valec
  */
  @Controller
-public class UsuariosController{
+public class UsuariosController{  
     
-    @Autowired
     private UsuarioService usuarioService;
-    
     private Usuarios usuarioView;
 
-    
+    @Autowired
     public UsuariosController(UsuarioService userService, Usuarios usuarioView) {
         this.usuarioService = userService;
         this.usuarioView = usuarioView;

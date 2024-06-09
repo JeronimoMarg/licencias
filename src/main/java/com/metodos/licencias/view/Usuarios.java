@@ -22,7 +22,7 @@ public class Usuarios extends javax.swing.JPanel {
      * Creates new form Usuarios
      */
     
-    private int cornerRadius;
+    private int cornerRadius = 15;
     private Color grisOscuro = new Color(80,80,80);
     
     public Usuarios() {
@@ -48,15 +48,16 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         Alta_usuario_contrasenia = new RoundedTextField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
-        Alta_usuario_tipodni = new javax.swing.JComboBox<>();
+        Alta_usuario_tipodni = new RoundedComboBox(cornerRadius, grisOscuro);
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new RoundedPanel(30);
         jLabel17 = new javax.swing.JLabel();
         Busqueda_usuario_numerodni = new RoundedTextField(15,grisOscuro);
         jLabel2 = new javax.swing.JLabel();
-        Busqueda_usuario_tipodni = new javax.swing.JComboBox<>();
+        Busqueda_usuario_tipodni = new RoundedComboBox(cornerRadius,grisOscuro);
         jLabel19 = new javax.swing.JLabel();
         Busqueda_usuario_buscarBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,7 +65,8 @@ public class Usuarios extends javax.swing.JPanel {
         Busqueda_usuario_usuario = new RoundedTextField(15,grisOscuro);
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        Busqueda_usuario_rol = new javax.swing.JComboBox<>();
+        Busqueda_usuario_rol = new RoundedComboBox(cornerRadius,grisOscuro);
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -73,52 +75,124 @@ public class Usuarios extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(252, 252, 252));
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setText("Tipo DNI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("Número DNI");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 90, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Datos Personales");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel1.add(jLabel8, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Datos usuario");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel1.add(jLabel9, gridBagConstraints);
 
         Alta_usuario_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Alta_usuario_usuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(Alta_usuario_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_usuario_usuario, gridBagConstraints);
 
         jLabel11.setText("Usuario");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel11, gridBagConstraints);
 
         Alta_usuario_contrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Alta_usuario_contraseniaActionPerformed(evt);
             }
         });
-        jPanel1.add(Alta_usuario_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_usuario_contrasenia, gridBagConstraints);
 
         jLabel12.setText("Contraseña");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel12, gridBagConstraints);
 
+        Alta_usuario_tipodni.setBackground(new java.awt.Color(252, 252, 252));
+        Alta_usuario_tipodni.setForeground(new java.awt.Color(0, 0, 0));
         Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
-        jPanel1.add(Alta_usuario_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_usuario_tipodni, gridBagConstraints);
 
         Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
         Busqueda_usuario_guardarBtn.setText("Guardar");
-        jPanel1.add(Busqueda_usuario_guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, 120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
+        jPanel1.add(Busqueda_usuario_guardarBtn, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Alta de usuario");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        jPanel1.add(jLabel18, gridBagConstraints);
 
         Alta_usuario_numerodni1.setToolTipText("");
         Alta_usuario_numerodni1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +200,26 @@ public class Usuarios extends javax.swing.JPanel {
                 Alta_usuario_numerodni1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Alta_usuario_numerodni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_usuario_numerodni1, gridBagConstraints);
+
+        jPanel3.setBackground(new java.awt.Color(252, 252, 252));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -137,27 +230,62 @@ public class Usuarios extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(252, 252, 252));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel17.setText("Numero DNI");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
+        jPanel2.add(jLabel17, gridBagConstraints);
 
         Busqueda_usuario_numerodni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Busqueda_usuario_numerodniActionPerformed(evt);
             }
         });
-        jPanel2.add(Busqueda_usuario_numerodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 160, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jPanel2.add(Busqueda_usuario_numerodni, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Búsqueda de usuario");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        jPanel2.add(jLabel2, gridBagConstraints);
 
+        Busqueda_usuario_tipodni.setBackground(new java.awt.Color(252, 252, 252));
         Busqueda_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
-        jPanel2.add(Busqueda_usuario_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 110, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jPanel2.add(Busqueda_usuario_tipodni, gridBagConstraints);
 
         jLabel19.setText("Tipo DNI");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
+        jPanel2.add(jLabel19, gridBagConstraints);
 
         Busqueda_usuario_buscarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupita_chica.png"))); // NOI18N
         Busqueda_usuario_buscarBtn.setBorderPainted(false);
@@ -166,7 +294,12 @@ public class Usuarios extends javax.swing.JPanel {
                 Busqueda_usuario_buscarBtnActionPerformed(evt);
             }
         });
-        jPanel2.add(Busqueda_usuario_buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 40, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 30);
+        jPanel2.add(Busqueda_usuario_buscarBtn, gridBagConstraints);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,23 +326,72 @@ public class Usuarios extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 147, 630, 430));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 614;
+        gridBagConstraints.ipady = 410;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 30);
+        jPanel2.add(jScrollPane1, gridBagConstraints);
 
         Busqueda_usuario_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Busqueda_usuario_usuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(Busqueda_usuario_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 140, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 10, 10);
+        jPanel2.add(Busqueda_usuario_usuario, gridBagConstraints);
 
         jLabel16.setText("Usuario");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 50, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 5, 0);
+        jPanel2.add(jLabel16, gridBagConstraints);
 
         jLabel20.setText("Rol");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 50, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
+        jPanel2.add(jLabel20, gridBagConstraints);
 
+        Busqueda_usuario_rol.setBackground(new java.awt.Color(252, 252, 252));
         Busqueda_usuario_rol.setModel(new javax.swing.DefaultComboBoxModel<>());
-        jPanel2.add(Busqueda_usuario_rol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
+        jPanel2.add(Busqueda_usuario_rol, gridBagConstraints);
+
+        jButton1.setText("magic button");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        jPanel2.add(jButton1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -256,6 +438,7 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> Busqueda_usuario_rol;
     private javax.swing.JComboBox<String> Busqueda_usuario_tipodni;
     private javax.swing.JTextField Busqueda_usuario_usuario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
@@ -270,6 +453,7 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

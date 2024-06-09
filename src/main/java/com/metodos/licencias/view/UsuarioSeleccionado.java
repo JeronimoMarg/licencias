@@ -55,6 +55,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_tipodni1 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -113,7 +114,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Busqueda_usuario_guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 70, 40));
-        Busqueda_usuario_guardarBtn.getAccessibleContext().setAccessibleName("Editar");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del usuario");
@@ -142,6 +142,14 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         });
         jPanel1.add(Busqueda_usuario_guardarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 170, 40));
 
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
@@ -169,6 +177,9 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private void Busqueda_usuario_guardarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_guardarBtn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Busqueda_usuario_guardarBtn1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
     
  
 
@@ -180,6 +191,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_usuario_usuario;
     private javax.swing.JButton Busqueda_usuario_guardarBtn;
     private javax.swing.JButton Busqueda_usuario_guardarBtn1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

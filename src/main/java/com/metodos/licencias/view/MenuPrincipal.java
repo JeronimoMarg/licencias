@@ -1,17 +1,12 @@
 package com.metodos.licencias.view;
 
-import com.metodos.licencias.controller.TitularesController;
-import com.metodos.licencias.controller.UsuariosController;
-import com.metodos.licencias.service.UsuarioService;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-//import javax.swing.JTabbedPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,19 +22,16 @@ public class MenuPrincipal extends javax.swing.JFrame{
     
     private final Usuarios panelUsuarios;
     private final Titulares panelTitulares;
-    private final InfoTitular panelInfoTitular;
     
     @Autowired
     public MenuPrincipal(Titulares panelTitulares, Usuarios panelUsuarios, InfoTitular infoTitular) {
         this.panelUsuarios = panelUsuarios;
         this.panelTitulares = panelTitulares;
-        this.panelInfoTitular = infoTitular;
         
         //creacion Frame
         JFrame frame = new JFrame("Licencias");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
-        setLocationRelativeTo(null);
         
         //creacion paneles principales
         JPanel panelContenedor = new JPanel(new BorderLayout());
@@ -58,7 +50,10 @@ public class MenuPrincipal extends javax.swing.JFrame{
         panelContenedor.add(mainPanel,BorderLayout.CENTER);
         
         frame.setContentPane(panelContenedor);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
     }
 
     private void barraSuperiorInit(JPanel barraSuperior) {
@@ -151,13 +146,11 @@ public class MenuPrincipal extends javax.swing.JFrame{
         
         JPanel card2 = panelTitulares;
         JPanel card3 = panelUsuarios;
-        JPanel card4 = panelInfoTitular;
         
         // Add the cards to the panel with identifiers
         mainPanel.add(card1, "Card1");
         mainPanel.add(card2, "Titulares");
         mainPanel.add(card3, "Usuarios");
-        mainPanel.add(card4, "Informacion Titular");
                 
     }
     

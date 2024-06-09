@@ -4,25 +4,26 @@
  */
 package com.metodos.licencias.view;
 
-/**
- *
- * @author valec
- */
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JComboBox;
 
-public class RoundedTextField extends JTextField {
+/**
+ *
+ * @author valec
+ */
+public class RoundedComboBox extends JComboBox {
     private Shape shape;
     private int cornerRadius;
     Color borderColor;
-    public RoundedTextField(int radius, Color color) {
+    public RoundedComboBox(int radius, Color color) {
         super();
         this.cornerRadius = radius;
         this.borderColor = color;
         setOpaque(false); 
+        setUI(new RoundedComboBoxUI());
     }
     
     public void setBorderColor(Color newBorderColor){
@@ -45,4 +46,6 @@ public class RoundedTextField extends JTextField {
          }
          return shape.contains(x, y);
     }
+    
+    
 }
