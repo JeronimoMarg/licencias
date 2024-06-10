@@ -17,11 +17,11 @@ import org.springframework.stereotype.Component;
 public class TitularesMain extends JPanel{
     
     CardLayout cl;
-    newTitulares titulares;
+    NewTitulares titulares;
     InfoTitular infoTitular;
     
     @Autowired
-    public TitularesMain(newTitulares titulares, InfoTitular infoTitular) {
+    public TitularesMain(NewTitulares titulares, InfoTitular infoTitular) {
         this.titulares = titulares;
         this.titulares.setMain(this);
         this.infoTitular = infoTitular;

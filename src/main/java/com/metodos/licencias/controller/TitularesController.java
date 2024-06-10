@@ -31,7 +31,7 @@ import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.view.MenuPrincipal;
 import com.metodos.licencias.view.Titulares;
-import com.metodos.licencias.view.newTitulares;
+import com.metodos.licencias.view.NewTitulares;
 
 import jakarta.annotation.PostConstruct;
 
@@ -43,7 +43,7 @@ import jakarta.annotation.PostConstruct;
  @Controller
 public class TitularesController implements ActionListener, KeyListener, MouseListener{
 
-    private newTitulares titularesGUI;
+    private NewTitulares titularesGUI;
     private InfoTitular infoTitular;
 
     private TitularDTO titularDTO;
@@ -55,7 +55,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     private TipoLicenciaService tipoLicenciaService;
 
     @Autowired
-    public TitularesController(newTitulares titulares, InfoTitular infoTitular){
+    public TitularesController(NewTitulares titulares, InfoTitular infoTitular){
         this.titularesGUI = titulares;
         this.infoTitular = infoTitular;
     }
@@ -73,6 +73,12 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
         //listener del click en la tabla
         this.titularesGUI.Busqueda_titular_tabla.addMouseListener(this);
+
+        //listener para el boton editar
+        this.infoTitular.Mod_titular_editar.addActionListener(this);
+
+        //listener para el boton volver
+        this.infoTitular.Mod_titular_volver.addActionListener(this);
 
         inicializar_cmbx();
     }
@@ -100,6 +106,17 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
+        } else if(e.getSource() == infoTitular.Mod_titular_editar){
+            titularDTO = infoTitular.getTitularDTO();
+            try {
+                validarTitular(titularDTO);
+                titularService.guardarTitular(titularDTO);
+                JOptionPane.showMessageDialog(null, "Titular editado con exito!");
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        } else if(e.getSource() == infoTitular.Mod_titular_volver){
+            this.titularesGUI.getTitularesMain().switchScreen("Titulares");
         }
     }
 
@@ -151,12 +168,14 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         for(TipoDocumento documento:documentos){
             titularesGUI.Alta_titular_tipodni.addItem(documento.toString());
             titularesGUI.Busqueda_titular_tipodni.addItem(documento.toString());
+            infoTitular.Mod_titular_tipodni.addItem(documento.toString());
         }
 
         //combo de tipo de factores
         FactorSanguíneo[] factores = FactorSanguíneo.values();
         for(FactorSanguíneo factor:factores){
             titularesGUI.Alta_titular_gruposanguineo.addItem(factor.toString());
+            infoTitular.Mod_titular_gruposanguineo.addItem(factor.toString());
         }
 
         //combo de tipo de licencias
@@ -164,6 +183,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         for(TipoLicencia tipo: tipos){
             titularesGUI.Alta_titular_clase.addItem(tipo.getLetraClase());
         }
+
 
     }
 
@@ -181,6 +201,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
                         infoTitular.setTitular(seleccionado);
                         JOptionPane.showMessageDialog(null, "Usuario seleccionado");
                         //MOSTRAR INTERFAZ
+                        titularesGUI.getTitularesMain().switchScreen("InfoTitular");
                     }
                 }
             } catch (Exception e1) {
@@ -217,7 +238,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     public void keyTyped(KeyEvent e) {
     }
 
-    public void setTitularesGUI(newTitulares titulares) {
+    public void setTitularesGUI(NewTitulares titulares) {
         this.titularesGUI=titulares;
     }
     

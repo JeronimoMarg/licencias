@@ -66,6 +66,7 @@ public class TitularService {
         Titular titular = this.aEntidad(titularDTO);
         titularRepository.save(titular);
     }
+
     public Titular aEntidad(TitularDTO titularDTO){
 
         Domicilio domicilio = new Domicilio(

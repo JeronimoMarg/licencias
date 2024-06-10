@@ -5,9 +5,6 @@
 package com.metodos.licencias.view;
 
 import com.metodos.licencias.DTO.TitularDTO;
-import com.metodos.licencias.DTO.UsuarioDTO;
-import com.metodos.licencias.controller.UsuariosController;
-import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
 
 import org.springframework.stereotype.Component;
@@ -17,13 +14,13 @@ import org.springframework.stereotype.Component;
  * @author valec
  */
 @Component
-public class newTitulares extends javax.swing.JPanel {
+public class NewTitulares extends javax.swing.JPanel {
 
     private int cornerRadius = 15;
     private Color grisOscuro = new Color(80,80,80);
     private TitularesMain main;
     
-    public newTitulares() {
+    public NewTitulares() {
         initComponents();
     }
 
@@ -124,11 +121,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
-        Alta_titular_numerodni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_numerodniActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -184,11 +176,7 @@ public class newTitulares extends javax.swing.JPanel {
         jPanel1.add(jLabel18, gridBagConstraints);
 
         Alta_titular_nombre.setToolTipText("");
-        Alta_titular_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_nombreActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -201,11 +189,6 @@ public class newTitulares extends javax.swing.JPanel {
         jPanel1.add(Alta_titular_nombre, gridBagConstraints);
 
         Alta_titular_apellido.setToolTipText("");
-        Alta_titular_apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_apellidoActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -217,11 +200,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Alta_titular_apellido, gridBagConstraints);
 
-        Alta_titular_altura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_alturaActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
@@ -233,11 +211,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Alta_titular_altura, gridBagConstraints);
 
-        Alta_titular_calle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_calleActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
@@ -352,11 +325,7 @@ public class newTitulares extends javax.swing.JPanel {
 
         Alta_titular_esdonante.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_esdonante.setText("Es donante de órganos");
-        Alta_titular_esdonante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_esdonanteActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -394,11 +363,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
         jPanel2.add(jLabel17, gridBagConstraints);
 
-        Busqueda_titular_numerodni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_numerodniActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -445,11 +409,7 @@ public class newTitulares extends javax.swing.JPanel {
         Busqueda_titular_buscarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupita_chica.png"))); // NOI18N
         Busqueda_titular_buscarBtn.setBorder(null);
         Busqueda_titular_buscarBtn.setBorderPainted(false);
-        Busqueda_titular_buscarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_buscarBtnActionPerformed(evt);
-            }
-        });
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -497,11 +457,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 30);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        Busqueda_titular_apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_apellidoActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -529,11 +484,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
         jPanel2.add(jLabel20, gridBagConstraints);
 
-        Busqueda_titular_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_titular_nombreActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -552,48 +502,6 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Alta_titular_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_numerodniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_numerodniActionPerformed
-
-    private void Alta_titular_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_nombreActionPerformed
-
-    private void Busqueda_titular_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_apellidoActionPerformed
-
-    private void Busqueda_titular_buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_buscarBtnActionPerformed
-        main.switchScreen("InfoTitular");
-    }//GEN-LAST:event_Busqueda_titular_buscarBtnActionPerformed
-
-    private void Busqueda_titular_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_numerodniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_titular_numerodniActionPerformed
-
-    private void Alta_titular_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_apellidoActionPerformed
-
-    private void Alta_titular_alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_alturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_alturaActionPerformed
-
-    private void Alta_titular_calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_calleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_calleActionPerformed
-
-    private void Alta_titular_esdonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_esdonanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_esdonanteActionPerformed
-
-    private void Busqueda_titular_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_titular_nombreActionPerformed
-
-    }//GEN-LAST:event_Busqueda_titular_nombreActionPerformed
-    
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Alta_titular_altura;
@@ -671,6 +579,10 @@ public class newTitulares extends javax.swing.JPanel {
     
     public void setMain (TitularesMain main){
         this.main = main;
+    }
+
+    public TitularesMain getTitularesMain(){
+        return this.main;
     }
     
 }

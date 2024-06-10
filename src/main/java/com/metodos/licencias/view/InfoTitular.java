@@ -38,28 +38,28 @@ public class InfoTitular extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new RoundedPanel(30);
-        Alta_titular_apellido = new javax.swing.JTextField();
-        Alta_titular_nombre = new javax.swing.JTextField();
+        Mod_titular_apellido = new javax.swing.JTextField();
+        Mod_titular_nombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Alta_titular_numerodni = new javax.swing.JTextField();
+        Mod_titular_numdni = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        Alta_titular_gruposanguineo = new javax.swing.JComboBox<>();
+        Mod_titular_gruposanguineo = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        Alta_titular_fechanac = new com.toedter.calendar.JDateChooser();
+        Mod_titular_fechanac = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        Alta_titular_esdonante = new javax.swing.JCheckBox();
+        Mod_titular_donante = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Alta_titular_calle = new javax.swing.JTextField();
+        Mod_titular_calle = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        Alta_titular_altura = new javax.swing.JTextField();
+        Mod_titular_altura = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        Alta_titular_tipodni = new javax.swing.JComboBox<>();
-        Alta_titular_guardarBtn = new javax.swing.JButton();
+        Mod_titular_tipodni = new javax.swing.JComboBox<>();
+        Mod_titular_editar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Mod_titular_volver = new javax.swing.JToggleButton();
         jPanel2 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,30 +74,15 @@ public class InfoTitular extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Alta_titular_apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_apellidoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, 40));
+        jPanel1.add(Mod_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 190, 40));
 
-        Alta_titular_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_nombreActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 170, 40));
+        jPanel1.add(Mod_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 40));
 
         jLabel1.setText("Apellido");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 70, -1));
 
-        Alta_titular_numerodni.setToolTipText("");
-        Alta_titular_numerodni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_numerodniActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_numerodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 170, 40));
+        Mod_titular_numdni.setToolTipText("");
+        jPanel1.add(Mod_titular_numdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
 
         jLabel3.setText("Tipo DNI");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
@@ -105,25 +90,19 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel4.setText("Número DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 90, -1));
 
-        Alta_titular_gruposanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(Alta_titular_gruposanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 170, 40));
+        jPanel1.add(Mod_titular_gruposanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 180, 40));
 
         jLabel5.setText("Fecha Nacimiento");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 120, -1));
 
-        Alta_titular_fechanac.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(Alta_titular_fechanac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 170, 40));
+        Mod_titular_fechanac.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel1.add(Mod_titular_fechanac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 190, 40));
 
         jLabel6.setText("Grupo Sanguíneo");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        Alta_titular_esdonante.setText("Es donante de órganos");
-        Alta_titular_esdonante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_esdonanteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_esdonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 170, -1));
+        Mod_titular_donante.setText("Es donante de órganos");
+        jPanel1.add(Mod_titular_donante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 170, -1));
 
         jLabel7.setText("Nombre");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
@@ -135,45 +114,28 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Dirección");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
-
-        Alta_titular_calle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_calleActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 170, 40));
+        jPanel1.add(Mod_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 180, 40));
 
         jLabel11.setText("Calle");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
-        Alta_titular_altura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_titular_alturaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_titular_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 170, 40));
+        jPanel1.add(Mod_titular_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 190, 40));
 
         jLabel12.setText("Altura");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 60, -1));
 
-        Alta_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(Alta_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 40));
+        jPanel1.add(Mod_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 180, 40));
 
-        Alta_titular_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
-        Alta_titular_guardarBtn.setText("Editar");
-        jPanel1.add(Alta_titular_guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, 120, 40));
+        Mod_titular_editar.setBackground(new java.awt.Color(0, 153, 204));
+        Mod_titular_editar.setText("Editar");
+        jPanel1.add(Mod_titular_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 120, 40));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del titular");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        jToggleButton1.setText("Volver");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
+        Mod_titular_volver.setText("Volver");
+        jPanel1.add(Mod_titular_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 90, 40));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -224,48 +186,21 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 10);
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Alta_titular_apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_apellidoActionPerformed
-
-    private void Alta_titular_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_nombreActionPerformed
-
-    private void Alta_titular_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_numerodniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_numerodniActionPerformed
-
-    private void Alta_titular_esdonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_esdonanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_esdonanteActionPerformed
-
-    private void Alta_titular_calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_calleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_calleActionPerformed
-
-    private void Alta_titular_alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_alturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_titular_alturaActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        main.switchScreen("Titulares");
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
     
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Alta_titular_altura;
-    private javax.swing.JTextField Alta_titular_apellido;
-    private javax.swing.JTextField Alta_titular_calle;
-    private javax.swing.JCheckBox Alta_titular_esdonante;
-    public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
-    private javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
-    private javax.swing.JButton Alta_titular_guardarBtn;
-    private javax.swing.JTextField Alta_titular_nombre;
-    private javax.swing.JTextField Alta_titular_numerodni;
-    private javax.swing.JComboBox<String> Alta_titular_tipodni;
+    private javax.swing.JTextField Mod_titular_altura;
+    private javax.swing.JTextField Mod_titular_apellido;
+    private javax.swing.JTextField Mod_titular_calle;
+    private javax.swing.JCheckBox Mod_titular_donante;
+    public javax.swing.JButton Mod_titular_editar;
+    public com.toedter.calendar.JDateChooser Mod_titular_fechanac;
+    public javax.swing.JComboBox<String> Mod_titular_gruposanguineo;
+    private javax.swing.JTextField Mod_titular_nombre;
+    private javax.swing.JTextField Mod_titular_numdni;
+    public javax.swing.JComboBox<String> Mod_titular_tipodni;
+    public javax.swing.JToggleButton Mod_titular_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -282,23 +217,38 @@ public class InfoTitular extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
     public void setTitular(TitularDTO titularDTO) {
         //este metodo recibe el DTO del titular y llena los campos
-        Alta_titular_nombre.setText(titularDTO.getNombre());
-        Alta_titular_apellido.setText(titularDTO.getApellido());
-        Alta_titular_numerodni.setText(titularDTO.getNumDNI());
-        Alta_titular_tipodni.setSelectedItem(TipoDocumento.valueOf(titularDTO.getTipoDoc()));
-        Alta_titular_altura.setText(titularDTO.getAltura());
-        Alta_titular_calle.setText(titularDTO.getCalle());
-        Alta_titular_esdonante.setSelected(titularDTO.isDonante());
-        Alta_titular_fechanac.setDate(titularDTO.getFechaNacimiento());
+        Mod_titular_nombre.setText(titularDTO.getNombre());
+        Mod_titular_apellido.setText(titularDTO.getApellido());
+        Mod_titular_numdni.setText(titularDTO.getNumDNI());
+        Mod_titular_tipodni.setSelectedItem(TipoDocumento.valueOf(titularDTO.getTipoDoc()));
+        Mod_titular_altura.setText(titularDTO.getAltura());
+        Mod_titular_calle.setText(titularDTO.getCalle());
+        Mod_titular_donante.setSelected(titularDTO.isDonante());
+        Mod_titular_fechanac.setDate(titularDTO.getFechaNacimiento());
     }
     
     public void setMain (TitularesMain main){
         this.main = main;
+    }
+
+    public TitularDTO getTitularDTO(){
+
+            return new TitularDTO(
+                this.Mod_titular_nombre.getText().toString().trim(),
+                this.Mod_titular_apellido.getText().toString().trim(),
+                this.Mod_titular_tipodni.getSelectedItem().toString(),
+                this.Mod_titular_numdni.getText().toString().trim(),
+                this.Mod_titular_gruposanguineo.getSelectedItem().toString(),
+                this.Mod_titular_fechanac.getDate(),
+                this.Mod_titular_donante.isSelected(),
+                this.Mod_titular_calle.getText().toString().trim(),
+                this.Mod_titular_altura.getText().toString().trim()
+            ); 
+
     }
     
 }
