@@ -8,6 +8,10 @@ import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
 import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import org.springframework.stereotype.Component;
 
@@ -313,14 +317,14 @@ public class Usuarios extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Tipo DNI", "Numero DNI"
+                "Usuario", "Tipo DNI", "Numero DNI"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -329,6 +333,11 @@ public class Usuarios extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -416,12 +425,16 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_Busqueda_usuario_usuarioActionPerformed
 
     private void Busqueda_usuario_buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_buscarBtnActionPerformed
-        main.switchScreen("UsuarioSeleccionado");
+       // main.switchScreen("UsuarioSeleccionado");
     }//GEN-LAST:event_Busqueda_usuario_buscarBtnActionPerformed
 
     private void Busqueda_usuario_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_numerodniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Busqueda_usuario_numerodniActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+    }//GEN-LAST:event_jTable1MouseClicked
     
  
 
@@ -462,6 +475,11 @@ public class Usuarios extends javax.swing.JPanel {
     public void addSearchButtonListener(UsuariosController.SearchButtonListener searchButtonListener) {
         Busqueda_usuario_buscarBtn.addActionListener(searchButtonListener);
     }
+    
+    public void addTableMouseListener(MouseAdapter mouseAdapter){
+        jTable1.addMouseListener(mouseAdapter);
+    }
+    
     
     public UsuarioDTO getUsuarioDTO(){
         return new UsuarioDTO(
@@ -545,5 +563,32 @@ public class Usuarios extends javax.swing.JPanel {
     
     public void setMain (UsuariosMain main){
         this.main = main;
+    }
+    
+    public void cargarTabla(UsuarioDTO usuario){
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        Object[] dataRow = {usuario.getUsuario(),usuario.getTipoDocumento(),usuario.getNroDocumento()};
+        tableModel.addRow(dataRow);
+    }
+    
+    public void clearTable(){
+        DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
+        tableModel.setRowCount(0);
+    }
+    
+    public void cargarUsuarioSeleccionado(UsuarioDTO usuarioSeleccionado){
+        main.cargarUsuarioSeleccionado(usuarioSeleccionado);
+    }
+    
+    public int getSelectedRow(){
+        return jTable1.getSelectedRow();
+    }
+    
+    public String getRowData(int row, int column){
+        return (String) jTable1.getValueAt(row, column);
+    }
+
+    public void mostrarUsuarioSeleccionado() {
+            this.main.switchScreen("UsuarioSeleccionado");
     }
 }

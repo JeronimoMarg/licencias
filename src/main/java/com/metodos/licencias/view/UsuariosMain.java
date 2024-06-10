@@ -4,6 +4,7 @@
  */
 package com.metodos.licencias.view;
 
+import com.metodos.licencias.DTO.UsuarioDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -43,6 +44,9 @@ public class UsuariosMain extends JPanel{
        
     }                                        
  
+    public void cargarUsuarioSeleccionado(UsuarioDTO usuario){
+        usuarioSeleccionado.cargarUsuario(usuario);
+    }
     
     
 }
