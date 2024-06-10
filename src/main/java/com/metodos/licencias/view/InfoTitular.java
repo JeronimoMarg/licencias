@@ -21,6 +21,7 @@ public class InfoTitular extends javax.swing.JPanel {
      */
     
     private int cornerRadius;
+    private TitularesMain main;
     
     public InfoTitular() {
         initComponents();
@@ -58,6 +59,7 @@ public class InfoTitular extends javax.swing.JPanel {
         Alta_titular_tipodni = new javax.swing.JComboBox<>();
         Alta_titular_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel2 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -165,6 +167,14 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel18.setText("Información del titular");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
+        jToggleButton1.setText("Volver");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, -1, -1));
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.4;
@@ -238,6 +248,10 @@ public class InfoTitular extends javax.swing.JPanel {
     private void Alta_titular_alturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_titular_alturaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Alta_titular_alturaActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        main.switchScreen("Titulares");
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
     
  
 
@@ -268,6 +282,7 @@ public class InfoTitular extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
     public void setTitular(TitularDTO titularDTO) {
@@ -281,4 +296,9 @@ public class InfoTitular extends javax.swing.JPanel {
         Alta_titular_esdonante.setSelected(titularDTO.isDonante());
         Alta_titular_fechanac.setDate(titularDTO.getFechaNacimiento());
     }
+    
+    public void setMain (TitularesMain main){
+        this.main = main;
+    }
+    
 }

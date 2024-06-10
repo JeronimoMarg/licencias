@@ -44,7 +44,7 @@ public class RoundedComboBoxUI extends BasicComboBoxUI {
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (c instanceof JLabel) {
-                ((JLabel) c).setBorder(BorderFactory.createEmptyBorder(2, leftInset, 2, 0));
+                ((JLabel) c).setBorder(BorderFactory.createEmptyBorder(1, leftInset, 1, 0));
             }
             return c;
         }

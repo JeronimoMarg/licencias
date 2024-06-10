@@ -16,10 +16,6 @@ import com.metodos.licencias.DTO.TitularDTO;
 @Component
 public class Titulares extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Usuarios
-     */
-    
     private int cornerRadius;
 
     

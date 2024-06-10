@@ -13,6 +13,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class RoundedTextField extends JTextField {
     private Shape shape;
@@ -22,6 +25,10 @@ public class RoundedTextField extends JTextField {
         super();
         this.cornerRadius = radius;
         this.borderColor = color;
+        this.setBorder(new CompoundBorder(
+        new EmptyBorder(0, 10, 0, 0), // Adjust left inset here (10 pixels in this example)
+        new LineBorder(Color.BLACK))); // Optional: You can set a line border around the text field
+        
         setOpaque(false); 
     }
     

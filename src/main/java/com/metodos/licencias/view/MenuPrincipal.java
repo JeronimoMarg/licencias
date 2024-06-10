@@ -20,11 +20,11 @@ public class MenuPrincipal extends javax.swing.JFrame{
     JPanel mainPanel = new JPanel(new CardLayout());
     CardLayout cl;
     
-    private final Usuarios panelUsuarios;
-    private final Titulares panelTitulares;
+    private final UsuariosMain panelUsuarios;
+    private final TitularesMain panelTitulares;
     
     @Autowired
-    public MenuPrincipal(Titulares panelTitulares, Usuarios panelUsuarios, InfoTitular infoTitular) {
+    public MenuPrincipal(TitularesMain panelTitulares, UsuariosMain panelUsuarios) {
         this.panelUsuarios = panelUsuarios;
         this.panelTitulares = panelTitulares;
         

@@ -24,6 +24,7 @@ public class Usuarios extends javax.swing.JPanel {
     
     private int cornerRadius = 15;
     private Color grisOscuro = new Color(80,80,80);
+    private UsuariosMain main;
     
     public Usuarios() {
         initComponents();
@@ -49,7 +50,7 @@ public class Usuarios extends javax.swing.JPanel {
         Alta_usuario_contrasenia = new RoundedTextField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
         Alta_usuario_tipodni = new RoundedComboBox(cornerRadius, grisOscuro);
-        Busqueda_usuario_guardarBtn = new javax.swing.JButton();
+        Busqueda_usuario_guardarBtn = new RoundedButton(cornerRadius);
         jLabel18 = new javax.swing.JLabel();
         Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
         jPanel3 = new javax.swing.JPanel();
@@ -59,14 +60,13 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         Busqueda_usuario_tipodni = new RoundedComboBox(cornerRadius,grisOscuro);
         jLabel19 = new javax.swing.JLabel();
-        Busqueda_usuario_buscarBtn = new javax.swing.JButton();
+        Busqueda_usuario_buscarBtn = new RoundedButton(cornerRadius);
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Busqueda_usuario_usuario = new RoundedTextField(15,grisOscuro);
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         Busqueda_usuario_rol = new RoundedComboBox(cornerRadius,grisOscuro);
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -174,12 +174,15 @@ public class Usuarios extends javax.swing.JPanel {
         jPanel1.add(Alta_usuario_tipodni, gridBagConstraints);
 
         Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
+        Busqueda_usuario_guardarBtn.setForeground(new java.awt.Color(252, 252, 252));
         Busqueda_usuario_guardarBtn.setText("Guardar");
+        Busqueda_usuario_guardarBtn.setBorder(null);
+        Busqueda_usuario_guardarBtn.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 10;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
         jPanel1.add(Busqueda_usuario_guardarBtn, gridBagConstraints);
@@ -287,7 +290,9 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
         jPanel2.add(jLabel19, gridBagConstraints);
 
+        Busqueda_usuario_buscarBtn.setBackground(new java.awt.Color(27, 140, 188));
         Busqueda_usuario_buscarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupita_chica.png"))); // NOI18N
+        Busqueda_usuario_buscarBtn.setBorder(null);
         Busqueda_usuario_buscarBtn.setBorderPainted(false);
         Busqueda_usuario_buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,7 +303,9 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 30);
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.insets = new java.awt.Insets(30, 0, 0, 30);
         jPanel2.add(Busqueda_usuario_buscarBtn, gridBagConstraints);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -384,15 +391,6 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 10);
         jPanel2.add(Busqueda_usuario_rol, gridBagConstraints);
 
-        jButton1.setText("magic button");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        jPanel2.add(jButton1, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
@@ -418,7 +416,7 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_Busqueda_usuario_usuarioActionPerformed
 
     private void Busqueda_usuario_buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_buscarBtnActionPerformed
-        // TODO add your handling code here:
+        main.switchScreen("UsuarioSeleccionado");
     }//GEN-LAST:event_Busqueda_usuario_buscarBtnActionPerformed
 
     private void Busqueda_usuario_numerodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_numerodniActionPerformed
@@ -438,7 +436,6 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> Busqueda_usuario_rol;
     private javax.swing.JComboBox<String> Busqueda_usuario_tipodni;
     private javax.swing.JTextField Busqueda_usuario_usuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
@@ -544,5 +541,9 @@ public class Usuarios extends javax.swing.JPanel {
     
     public String getBusquedaNroDocumento(){
         return Busqueda_usuario_numerodni.getText();
+    }
+    
+    public void setMain (UsuariosMain main){
+        this.main = main;
     }
 }
