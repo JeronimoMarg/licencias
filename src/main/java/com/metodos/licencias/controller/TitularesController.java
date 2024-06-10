@@ -110,7 +110,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             titularDTO = infoTitular.getTitularDTO();
             try {
                 validarTitular(titularDTO);
-                titularService.guardarTitular(titularDTO);
+                titularService.editarTitular(titularDTO);
                 JOptionPane.showMessageDialog(null, "Titular editado con exito!");
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());

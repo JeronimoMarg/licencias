@@ -33,7 +33,6 @@ public class Titular {
     private TipoDocumento tipoDocumento; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     private Long numeroDocumento;
     private Boolean donanteDeOrganos;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Domicilio domicilio;
 

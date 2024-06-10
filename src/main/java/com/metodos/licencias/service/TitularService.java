@@ -67,6 +67,28 @@ public class TitularService {
         titularRepository.save(titular);
     }
 
+    public void editarTitular(TitularDTO titularDTO) {
+        Titular aEditar = this.findByDNI_entidad(titularDTO.getNumDNI());
+        aEditar = this.updateDatos(titularDTO, aEditar);
+        titularRepository.save(aEditar);
+    }
+
+    private Titular updateDatos(TitularDTO titularDTO, Titular aEditar){
+
+        //En este caso solamente se podran editar nombre, apellido, donante de organos y clase solicitada
+
+        aEditar.setNombre(titularDTO.getNombre());
+        aEditar.setApellido(titularDTO.getApellido());
+        aEditar.setDonanteDeOrganos(titularDTO.isDonante());
+
+        Domicilio domicilioEditado = aEditar.getDomicilio();
+        domicilioEditado.setNombreCalle(titularDTO.getCalle());
+        domicilioEditado.setNumeroCalle(titularDTO.getAltura());
+
+        return aEditar;
+
+    }
+
     public Titular aEntidad(TitularDTO titularDTO){
 
         Domicilio domicilio = new Domicilio(
@@ -146,6 +168,11 @@ public class TitularService {
     public TitularDTO findByDNI(String dni){
         Titular titular = titularRepository.findByNumeroDocumento(Long.parseLong(dni));
         return aDTO(titular);
+    }
+
+    public Titular findByDNI_entidad(String dni){
+        Titular titular = titularRepository.findByNumeroDocumento(Long.parseLong(dni));
+        return titular;
     }
 
 }
