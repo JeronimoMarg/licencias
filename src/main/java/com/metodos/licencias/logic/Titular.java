@@ -28,7 +28,7 @@ public class Titular {
     private String apellido;
     private LocalDate fechaNacimiento;
     @Enumerated(EnumType.STRING)
-    private FactorSanguíneo factorSanguíneo; //Podriamos hacerlo una clase en vez de una enum, mas manejable
+    private FactorSanguineo factorSanguíneo; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     @Enumerated(EnumType.STRING)
     private TipoDocumento tipoDocumento; //Podriamos hacerlo una clase en vez de una enum, mas manejable
     private Long numeroDocumento;
@@ -41,7 +41,7 @@ public class Titular {
     private Tramite emitidaPor;
     */
     
-    public Titular(String nombre, String apellido, LocalDate nacimiento, FactorSanguíneo factor,
+    public Titular(String nombre, String apellido, LocalDate nacimiento, FactorSanguineo factor,
     TipoDocumento tipoDoc, String numDNI, boolean donante, Domicilio domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;

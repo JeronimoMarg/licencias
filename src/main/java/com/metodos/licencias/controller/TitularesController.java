@@ -4,7 +4,6 @@
  */
 package com.metodos.licencias.controller;
 
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,25 +11,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
 import com.metodos.licencias.DTO.TitularDTO;
-import com.metodos.licencias.logic.FactorSanguíneo;
+import com.metodos.licencias.logic.FactorSanguineo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
-import com.metodos.licencias.view.MenuPrincipal;
-import com.metodos.licencias.view.Titulares;
 import com.metodos.licencias.view.NewTitulares;
 
 import jakarta.annotation.PostConstruct;
@@ -109,7 +100,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         } else if(e.getSource() == infoTitular.Mod_titular_editar){
             titularDTO = infoTitular.getTitularDTO();
             try {
-                validarTitular(titularDTO);
+                validarTitularEdicion(titularDTO);
                 titularService.editarTitular(titularDTO);
                 JOptionPane.showMessageDialog(null, "Titular editado con exito!");
             } catch (Exception e1) {
@@ -157,6 +148,22 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         
     }
 
+    private void validarTitularEdicion(TitularDTO titularDTO2) throws Exception{
+                
+        if(titularService.formatErrorNombre(titularDTO.getNombre())){
+            throw new Exception();
+        } 
+        if(titularService.formatErrorApellido(titularDTO.getApellido())){
+            throw new Exception();
+        }
+        if(titularService.formatErrorCalle(titularDTO.getCalle())){
+            throw new Exception();
+        }
+        if(titularService.formatErrorAltura(titularDTO.getAltura())){
+            throw new Exception();
+        }
+    }
+
     private void validarCamposBusqueda(String nombre, String apellido, String tipoDoc, String numeroDoc) throws Exception{
         //metodo de validacion de los campos de busqueda de titular
     }
@@ -172,8 +179,8 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         }
 
         //combo de tipo de factores
-        FactorSanguíneo[] factores = FactorSanguíneo.values();
-        for(FactorSanguíneo factor:factores){
+        FactorSanguineo[] factores = FactorSanguineo.values();
+        for(FactorSanguineo factor:factores){
             titularesGUI.Alta_titular_gruposanguineo.addItem(factor.toString());
             infoTitular.Mod_titular_gruposanguineo.addItem(factor.toString());
         }

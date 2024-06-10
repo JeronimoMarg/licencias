@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.Domicilio;
-import com.metodos.licencias.logic.FactorSanguíneo;
+import com.metodos.licencias.logic.FactorSanguineo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
@@ -75,11 +75,18 @@ public class TitularService {
 
     private Titular updateDatos(TitularDTO titularDTO, Titular aEditar){
 
-        //En este caso solamente se podran editar nombre, apellido, donante de organos y clase solicitada
+        //En este caso solamente se podran editar todo menos tipo y num de doc
+
+        //Pasaje de DATE a LOCALDATE
+        Instant instant = titularDTO.getFechaNacimiento().toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDate localdate = instant.atZone(zoneId).toLocalDate();
 
         aEditar.setNombre(titularDTO.getNombre());
         aEditar.setApellido(titularDTO.getApellido());
         aEditar.setDonanteDeOrganos(titularDTO.isDonante());
+        aEditar.setFactorSanguíneo(FactorSanguineo.valueOf(titularDTO.getGrupoSanguineo()));
+        aEditar.setFechaNacimiento(localdate);
 
         Domicilio domicilioEditado = aEditar.getDomicilio();
         domicilioEditado.setNombreCalle(titularDTO.getCalle());
@@ -105,7 +112,7 @@ public class TitularService {
             titularDTO.getNombre(),
             titularDTO.getApellido(),
             localdate,
-            FactorSanguíneo.valueOf(titularDTO.getGrupoSanguineo()),
+            FactorSanguineo.valueOf(titularDTO.getGrupoSanguineo()),
             TipoDocumento.valueOf(titularDTO.getTipoDoc()),
             titularDTO.getNumDNI(),
             titularDTO.isDonante(),

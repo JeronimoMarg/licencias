@@ -81,6 +81,7 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel1.setText("Apellido");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 70, -1));
 
+        Mod_titular_numdni.setEditable(false);
         Mod_titular_numdni.setToolTipText("");
         jPanel1.add(Mod_titular_numdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
 
@@ -114,6 +115,7 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Dirección");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+
         jPanel1.add(Mod_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 180, 40));
 
         jLabel11.setText("Calle");
