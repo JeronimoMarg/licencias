@@ -68,7 +68,7 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         Busqueda_usuario_rol = new RoundedComboBox(cornerRadius,grisOscuro);
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(194, 194, 194));
         setForeground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(1200, 620));
         setLayout(new java.awt.GridBagLayout());

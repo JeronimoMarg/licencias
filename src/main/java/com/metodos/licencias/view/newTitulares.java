@@ -62,6 +62,7 @@ public class newTitulares extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Alta_titular_esdonante = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new RoundedPanel(30);
         jLabel17 = new javax.swing.JLabel();
         Busqueda_titular_numerodni = new RoundedTextField(15,grisOscuro);
@@ -76,7 +77,7 @@ public class newTitulares extends javax.swing.JPanel {
         jLabel20 = new javax.swing.JLabel();
         Busqueda_titular_nombre = new RoundedTextField(15,grisOscuro);
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(194, 194, 194));
         setForeground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(1200, 620));
         setLayout(new java.awt.GridBagLayout());
@@ -164,7 +165,7 @@ public class newTitulares extends javax.swing.JPanel {
         Alta_titular_guardarBtn.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.ipady = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -363,6 +364,16 @@ public class newTitulares extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 15);
         jPanel1.add(Alta_titular_esdonante, gridBagConstraints);
+
+        jPanel3.setBackground(new java.awt.Color(252, 252, 252));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -622,6 +633,7 @@ public class newTitulares extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

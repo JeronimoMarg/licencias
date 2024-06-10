@@ -137,12 +137,12 @@ public class MenuPrincipal extends javax.swing.JFrame{
     }  
     
     private void mainPanelInit(JPanel mainPanel){
-        mainPanel.setBackground(new Color(0,150,150));
+        mainPanel.setBackground(new Color(150,150,150));
 
         // Create the cards
         JPanel card1 = new JPanel();
         card1.add(new JLabel("PANTALLA LICENCIAS"));
-        card1.setBackground(Color.GRAY);
+        card1.setBackground(new Color(194,194,194));
         
         JPanel card2 = panelTitulares;
         JPanel card3 = panelUsuarios;
