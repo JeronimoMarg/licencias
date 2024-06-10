@@ -13,7 +13,10 @@ import com.metodos.licencias.logic.Usuario;
 import jakarta.annotation.PostConstruct;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.lang.String;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -33,8 +36,6 @@ public class UsuariosController{
     public UsuariosController(UsuarioService userService, Usuarios usuarioView) {
         this.usuarioService = userService;
         this.usuarioView = usuarioView;
-
-        
     }
 
     @PostConstruct
@@ -42,6 +43,7 @@ public class UsuariosController{
 
         this.usuarioView.addSaveButtonListener(new SaveButtonListener());
         this.usuarioView.addSearchButtonListener(new SearchButtonListener());
+        this.setupTableDoubleClick();
         
         //combo de tipo de documentos
         TipoDocumento[] documentos = TipoDocumento.values();
@@ -76,7 +78,6 @@ public class UsuariosController{
         };
     }
     
-
     public class SaveButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -105,9 +106,27 @@ public class UsuariosController{
         public void actionPerformed(ActionEvent e){
             //validacion
             //validarUsuario(usuario);
-            usuarioService.busquedaFiltrosUsuario(usuarioView.getBusquedaNombreUsuario(),usuarioView.getBusquedaRol(),usuarioView.getBusquedaTipoDocumento(),usuarioView.getBusquedaNroDocumento());
-            
+            List<UsuarioDTO> listaUsuarios;
+            listaUsuarios = usuarioService.busquedaFiltrosUsuario(usuarioView.getBusquedaNombreUsuario(),usuarioView.getBusquedaRol(),usuarioView.getBusquedaTipoDocumento(),usuarioView.getBusquedaNroDocumento());
+            usuarioView.clearTable();
+            llenarTabla(listaUsuarios);
         }
+    }
+    
+    private void setupTableDoubleClick() {
+        usuarioView.addTableMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int row = usuarioView.getSelectedRow();
+                    // Perform actions on double-clicked row
+                    String usuario = usuarioView.getRowData(row, 0);
+                    UsuarioDTO usuarioObtenido = usuarioService.buscarUsuario(usuario);
+                    usuarioView.cargarUsuarioSeleccionado(usuarioObtenido);
+                    usuarioView.mostrarUsuarioSeleccionado();
+                }
+            }
+        });
     }
     
     public class UsuarioDNIExistenteException extends Exception {
@@ -125,6 +144,12 @@ public class UsuariosController{
     public class DNIExistenteException extends Exception {
         public DNIExistenteException(String message) {
             super(message);
+        }
+    }
+    
+    private void llenarTabla(List<UsuarioDTO> listaUsuarios){
+        for(UsuarioDTO usuario : listaUsuarios){
+            usuarioView.cargarTabla(usuario);
         }
     }
 

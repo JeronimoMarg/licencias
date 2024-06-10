@@ -76,7 +76,6 @@ public class UsuarioService {
         List<UsuarioDTO> usuarioDTOs = new ArrayList();
         for (Usuario usuario : usuariosEncontrados) {
             usuarioDTOs.add(crearUsuarioDto(usuario));
-            System.out.println(crearUsuarioDto(usuario).getUsuario());
         }
 
         return usuarioDTOs;
@@ -111,5 +110,10 @@ public class UsuarioService {
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
+    }
+    
+    public UsuarioDTO buscarUsuario(String nombreUsuario){
+        Usuario user = uRepository.findFirstByNombreUsuario(nombreUsuario);
+        return crearUsuarioDto(user);
     }
 }

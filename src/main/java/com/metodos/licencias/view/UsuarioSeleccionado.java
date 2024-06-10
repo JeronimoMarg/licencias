@@ -47,7 +47,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         Alta_usuario_usuario = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
-        Alta_usuario_contrasenia = new RoundedTextField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
         Alta_usuario_tipodni = new javax.swing.JComboBox<>();
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
@@ -57,6 +56,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
         volver_btn = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -92,13 +92,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
 
         jLabel11.setText("Rol");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-
-        Alta_usuario_contrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_usuario_contraseniaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Alta_usuario_contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 170, 40));
 
         jLabel12.setText("Contraseña");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
@@ -151,6 +144,9 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         });
         jPanel1.add(volver_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
+        jPasswordField1.setText("jPasswordField1");
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 170, 40));
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.6;
@@ -162,10 +158,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private void Alta_usuario_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_usuario_usuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Alta_usuario_usuarioActionPerformed
-
-    private void Alta_usuario_contraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_usuario_contraseniaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_usuario_contraseniaActionPerformed
 
     private void Alta_usuario_numerodni1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_usuario_numerodni1ActionPerformed
         // TODO add your handling code here:
@@ -186,7 +178,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Alta_usuario_contrasenia;
     private javax.swing.JTextField Alta_usuario_numerodni1;
     private javax.swing.JComboBox<String> Alta_usuario_tipodni;
     private javax.swing.JComboBox<String> Alta_usuario_tipodni1;
@@ -202,6 +193,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton volver_btn;
     // End of variables declaration//GEN-END:variables
 
@@ -267,6 +259,15 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     
     public void setMain(UsuariosMain main){
         this.main = main;
+    }
+    
+    public void cargarUsuario(UsuarioDTO usuario){
+        
+        Alta_usuario_numerodni1.setText(usuario.getNroDocumento());
+        Alta_usuario_usuario.setText(usuario.getUsuario());
+        jPasswordField1.setText(usuario.getContrasenia());
+        
+        
     }
     
 }
