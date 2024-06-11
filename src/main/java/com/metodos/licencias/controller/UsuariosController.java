@@ -61,7 +61,7 @@ public class UsuariosController{
     private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException, Exception{
         //falta manejor exceptions
 
-        if(usuario.getContrasenia().isEmpty() || usuario.getNroDocumento().isEmpty()|| usuario.getUsuario().isEmpty()){
+        if(usuario.getContrasenia() == "" || usuario.getNroDocumento() == "" || usuario.getUsuario() == ""){
             throw new Exception("No se permiten entradas vacías");
         }
         

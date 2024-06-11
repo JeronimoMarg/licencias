@@ -198,7 +198,7 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
         jPanel1.add(jLabel18, gridBagConstraints);
 
         Alta_usuario_numerodni1.setToolTipText("");
@@ -270,7 +270,7 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
         jPanel2.add(jLabel2, gridBagConstraints);
 
         Busqueda_usuario_tipodni.setBackground(new java.awt.Color(252, 252, 252));

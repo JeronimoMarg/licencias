@@ -22,7 +22,7 @@ import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
-import com.metodos.licencias.view.Titulares;
+import com.metodos.licencias.view.NewTitulares;
 
 import jakarta.annotation.PostConstruct;
 
@@ -34,7 +34,7 @@ import jakarta.annotation.PostConstruct;
  @Controller
 public class TitularesController implements ActionListener, KeyListener, MouseListener{
 
-    private Titulares titularesGUI;
+    private NewTitulares titularesGUI;
     private InfoTitular infoTitular;
 
     private TitularDTO titularDTO;
@@ -46,7 +46,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     private TipoLicenciaService tipoLicenciaService;
 
     @Autowired
-    public TitularesController(Titulares titulares, InfoTitular infoTitular){
+    public TitularesController(NewTitulares titulares, InfoTitular infoTitular){
         this.titularesGUI = titulares;
         this.infoTitular = infoTitular;
     }
@@ -245,7 +245,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     public void keyTyped(KeyEvent e) {
     }
 
-    public void setTitularesGUI(Titulares titulares) {
+    public void setTitularesGUI(NewTitulares titulares) {
         this.titularesGUI=titulares;
     }
     
