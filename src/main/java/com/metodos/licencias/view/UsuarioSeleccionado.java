@@ -57,6 +57,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
         volver_btn = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -67,37 +68,85 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jPanel1.setAutoscrolls(true);
         jPanel1.setMaximumSize(new java.awt.Dimension(430, 320));
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setText("Tipo DNI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("Número DNI");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 90, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Datos Personales");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel1.add(jLabel8, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Datos usuario");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel1.add(jLabel9, gridBagConstraints);
 
         Alta_usuario_usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Alta_usuario_usuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(Alta_usuario_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_usuario_usuario, gridBagConstraints);
 
         jLabel11.setText("Rol");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel11, gridBagConstraints);
 
         jLabel12.setText("Contraseña");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, 60, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel12, gridBagConstraints);
 
         Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
-        jPanel1.add(Alta_usuario_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_usuario_tipodni, gridBagConstraints);
 
         Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(252, 252, 252));
         Busqueda_usuario_guardarBtn.setText("Editar");
@@ -107,11 +156,20 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
                 Busqueda_usuario_guardarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(Busqueda_usuario_guardarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 70, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Busqueda_usuario_guardarBtn, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del usuario");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        jPanel1.add(jLabel18, gridBagConstraints);
 
         Alta_usuario_numerodni1.setToolTipText("");
         Alta_usuario_numerodni1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,13 +177,34 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
                 Alta_usuario_numerodni1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Alta_usuario_numerodni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_usuario_numerodni1, gridBagConstraints);
 
         Alta_usuario_tipodni1.setModel(new javax.swing.DefaultComboBoxModel<>());
-        jPanel1.add(Alta_usuario_tipodni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_usuario_tipodni1, gridBagConstraints);
 
         jLabel13.setText("Usuario");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel13, gridBagConstraints);
 
         Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(0, 153, 204));
         Busqueda_usuario_guardarBtn1.setText("Eliminar usuario");
@@ -134,7 +213,13 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
                 Busqueda_usuario_guardarBtn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Busqueda_usuario_guardarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.ipadx = 55;
+        gridBagConstraints.ipady = 17;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
+        jPanel1.add(Busqueda_usuario_guardarBtn1, gridBagConstraints);
 
         volver_btn.setText("Volver");
         volver_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,14 +227,39 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
                 volver_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(volver_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 20);
+        jPanel1.add(volver_btn, gridBagConstraints);
 
         jPasswordField1.setText("jPasswordField1");
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 170, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(jPasswordField1, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(252, 252, 252));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 0.3;
+        jPanel1.add(jPanel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 500;
+        gridBagConstraints.ipady = 100;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jPanel1, gridBagConstraints);
@@ -193,6 +303,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton volver_btn;
     // End of variables declaration//GEN-END:variables
@@ -200,7 +311,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     public void addSaveButtonListener(UsuariosController.SaveButtonListener saveButtonListener) {
         Busqueda_usuario_guardarBtn.addActionListener(saveButtonListener);
     }
-    
+    /*
     public UsuarioDTO getUsuarioDTO(){
         return new UsuarioDTO(
         Alta_usuario_tipodni.getSelectedItem().toString(),
@@ -220,7 +331,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_contrasenia.setText("");
         Alta_usuario_usuario.setText("");
     }
-    
+    */
     public void nombreUsuarioExistente(String mensajeError){
         //ventana emergente error
         VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);

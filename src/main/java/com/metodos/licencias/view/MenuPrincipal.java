@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,6 +34,10 @@ public class MenuPrincipal extends javax.swing.JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1280, 720);
         
+        ImageIcon customIcon = new ImageIcon("logo.png");
+        frame.setIconImage(customIcon.getImage());
+        
+        
         //creacion paneles principales
         JPanel panelContenedor = new JPanel(new BorderLayout());
         JPanel barraSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -53,6 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
 
     }
 
@@ -114,7 +120,6 @@ public class MenuPrincipal extends javax.swing.JFrame{
         barraSuperior.add(botonUsuarios);
     }
          
-    
     private void botonLicenciasActionPerformed(java.awt.event.ActionEvent evt) {                                         
        botonLicencias.setSeleccionado(true);
        botonTitulares.setSeleccionado(false);

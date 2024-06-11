@@ -499,6 +499,9 @@ public class Usuarios extends javax.swing.JPanel {
         Alta_usuario_numerodni1.setText("");
         Alta_usuario_contrasenia.setText("");
         Alta_usuario_usuario.setText("");
+        ((RoundedTextField)Alta_usuario_numerodni1).setBorderColor(grisOscuro);
+        ((RoundedTextField)Alta_usuario_usuario).setBorderColor(grisOscuro);
+        ((RoundedTextField)Alta_usuario_contrasenia).setBorderColor(grisOscuro);
     }
     
     public void nombreUsuarioExistente(String mensajeError){
