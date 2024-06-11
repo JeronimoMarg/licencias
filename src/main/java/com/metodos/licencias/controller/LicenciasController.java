@@ -8,11 +8,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import com.metodos.licencias.exceptions.*;
 import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.TipoLicencia;
@@ -97,12 +98,16 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == this.infoTitular.Licencias_emitirCopia_btn){
+        if(e.getSource() == this.infoTitular.Licencias_emitir_btn){
             licenciaDTO = infoTitular.getLicenciaDTO();
             titularDTO = infoTitular.getTitularDTO();
              try{
                 validarLicencia(licenciaDTO, titularDTO);
+                JOptionPane.showMessageDialog(null, "Paso validacion");
                 licenciaService.guardarLicencia(licenciaDTO, titularDTO);
+                JOptionPane.showMessageDialog(null, "Licencia creada con exito");
+            }catch (Exception e1){
+                JOptionPane.showMessageDialog(null, e1.getMessage());
             }
         }
 
@@ -111,12 +116,12 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
     private void validarLicencia(LicenciaDTO licenciaDTO2, TitularDTO titularDTO2) throws Exception{
         //Valida edad de acuerdo a la clase
         //si licencia Para clases C, D, y E la edad mínima es 21 años, para el resto de licencias es 17. El máximo para de edad para clases C, D y E.
-        if(licenciaService.edadTitularError(titularDTO2.getFechaNacimiento(),licenciaDTO2.getTipoLicencia())){
-            throw new Exception();
+        if(licenciaService.edadTitularError(titularDTO2.getFechaNacimiento(),licenciaDTO2.getTipoLicencia().getAtributo1())){
+            throw new FechaNacException("La edad del titular no es válida para el tipo de licencia solicitada");
         }
         //Para licencias C, D y E se necesita una licencia clase B al menos un año antes y no se pueden entregar a mayores de 65 años
-        if(licenciaService.claseBError(titularDTO2.getNumDNI())){
-            throw new Exception();
+        if(licenciaService.claseBError(titularDTO2.getNumDNI(),licenciaDTO2.getTipoLicencia().getAtributo1())){
+            throw new ClaseBErrorException("El titular no cumple con los requisitos de vigencia de clase B asociada.");
         } 
     }
     

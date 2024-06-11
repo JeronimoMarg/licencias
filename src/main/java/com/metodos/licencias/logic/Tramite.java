@@ -1,8 +1,7 @@
 package com.metodos.licencias.logic;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,10 +19,15 @@ public class Tramite {
     @Id
     @GeneratedValue
     private Long id;
-    private Date fechaRealizacion;
+    private LocalDate fechaRealizacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_usuario")
     private Usuario usuarioAdministrativo;
+
+    public Tramite (){
+        this.fechaRealizacion = LocalDate.now();
+        //this.usuarioAdministrativo = obtenerUsuario();
+    }
     
 }

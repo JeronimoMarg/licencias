@@ -45,8 +45,6 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     @Autowired
     private TitularService titularService;
-    @Autowired
-    private TipoLicenciaService tipoLicenciaService;
 
     @Autowired
     public TitularesController(NewTitulares titulares, InfoTitular infoTitular){
@@ -190,13 +188,6 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             titularesGUI.Alta_titular_gruposanguineo.addItem(factor.toString());
             infoTitular.Mod_titular_gruposanguineo.addItem(factor.toString());
         }
-
-        //combo de tipo de licencias
-        List<TipoLicencia> tipos = tipoLicenciaService.getAllTipoLicencia();
-        for(TipoLicencia tipo: tipos){
-            titularesGUI.Alta_titular_clase.addItem(tipo.getLetraClase());
-        }
-
 
     }
 

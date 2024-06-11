@@ -19,9 +19,5 @@ public class TipoLicenciaService {
     public List<TipoLicencia> getAllTipoLicencia() {
         return TipoLicenciaRepository.findAll();
     }
-
-    public TipoLicencia getTipoLicencia(){
-        //
-    }
     
 }

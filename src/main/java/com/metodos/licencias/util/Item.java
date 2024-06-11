@@ -1,7 +1,10 @@
 package com.metodos.licencias.util;
 
 public class Item {
+    
+    //nombre de la clase
     private String atributo1;
+    //id de la clase
     private String atributo2;
 
     public Item(String atributo1, String atributo2) {

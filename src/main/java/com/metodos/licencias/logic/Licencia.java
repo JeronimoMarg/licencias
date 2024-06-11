@@ -22,7 +22,7 @@ public class Licencia {
     private LocalDate inicioVigencia;
     private LocalDate finVigencia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private TipoLicencia tipoLicencia;
     
     @OneToOne(cascade = CascadeType.ALL)
