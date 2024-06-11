@@ -53,6 +53,10 @@ public class UsuarioService {
 
     private TipoDocumento stringToTipoDocumento(String string){
         return TipoDocumento.valueOf(string);
+    }
+
+    private Rol stringToRol(String string){
+        return Rol.valueOf(string);
     }  
       
     public boolean dniExistente (String nroDocumento, String tipoDocumento) throws Exception {
@@ -115,5 +119,20 @@ public class UsuarioService {
     public UsuarioDTO buscarUsuario(String nombreUsuario){
         Usuario user = uRepository.findFirstByNombreUsuario(nombreUsuario);
         return crearUsuarioDto(user);
+    }
+
+    public void actualizarUsuario(UsuarioDTO usuario) throws Exception {
+
+        try{
+            Usuario usuarioEncontrado = uRepository.findByNombreUsuario(usuario.getUsuario());
+            usuarioEncontrado.setContrasenia(usuario.getContrasenia());
+            usuarioEncontrado.setNroDocumento(usuario.getNroDocumento());
+            usuarioEncontrado.setRol(stringToRol(usuario.getRol()));
+            usuarioEncontrado.setTipoDocumento(stringToTipoDocumento(usuario.getTipoDocumento()));
+            uRepository.save(usuarioEncontrado);
+        }catch(Exception e){
+            throw new Exception("Problemas al intentar guardar el usuario");
+        }
+        
     }
 }

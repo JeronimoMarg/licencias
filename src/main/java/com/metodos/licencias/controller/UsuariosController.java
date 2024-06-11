@@ -156,5 +156,9 @@ public class UsuariosController{
         }
     }
 
+    public void actualizarUsuario(UsuarioDTO usuario) throws Exception{
+        usuarioService.actualizarUsuario(usuario);
+    }
+
 
 }
