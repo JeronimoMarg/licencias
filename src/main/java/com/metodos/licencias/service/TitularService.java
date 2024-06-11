@@ -58,7 +58,7 @@ public class TitularService {
     public boolean invalidFechaNac(Date fechaNac){
         LocalDate fechaNacimiento = fechaNac.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
-        LocalDate fechaActual = LocalDate.now().minusYears(18);
+        LocalDate fechaActual = LocalDate.now().minusYears(17);
 
         return fechaNacimiento.isAfter(fechaActual);
     }

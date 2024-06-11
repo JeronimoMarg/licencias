@@ -28,6 +28,8 @@ public class Licencia {
     @OneToOne(cascade = CascadeType.ALL)
     private Tramite emitidaPor;
 
+    private String observaciones;
+
     @ManyToOne
     private Titular titular;
     

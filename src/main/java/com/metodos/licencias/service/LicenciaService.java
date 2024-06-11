@@ -1,14 +1,18 @@
 package com.metodos.licencias.service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.metodos.licencias.DTO.LicenciaDTO;
+import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.Licencia;
+import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.LicenciaRepository;
 
@@ -71,5 +75,36 @@ public class LicenciaService {
 
     public Double calcularCosto(Licencia licencia){
         return calcularCosto(licencia, ChronoUnit.YEARS.between(licencia.getInicioVigencia(), licencia.getFinVigencia()));
+    }
+
+    public void guardarLicencia(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
+        //guarda la licencia en la bd
+
+        Licencia licencia = aEntidad(licenciaDTO, titularDTO);
+
+    }
+
+    private Licencia aEntidad(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
+        
+        Licencia licencia = new Licencia();
+        this.calcularVigencia(licencia);
+        licencia.setTipoLicencia(buscarTipoLicencia(licenciaDTO.getTipoLicencia()));
+
+        return licencia;
+
+    }
+
+    private TipoLicencia buscarTipoLicencia(String tipoLicencia) {
+        return TipoLicenciaService.getTipoLicencia(tipoLicencia);
+    }
+    
+    
+    public boolean edadTitularError(Date fechaNacTitular,String claseLicencia){
+        LocalDate fechaNacimiento = fechaNacTitular.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if(claseLicencia)
+        LocalDate fechaActual = LocalDate.now().minusYears(17);
+
+
+        return fechaNacimiento.isAfter(fechaActual);
     }
 }

@@ -69,7 +69,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         this.titularesGUI.Busqueda_titular_tabla.addMouseListener(this);
 
         //listener para el boton editar
-        this.infoTitular.Mod_titular_editar.addActionListener(this);
+        this.infoTitular.Mod_titular_editar1.addActionListener(this);
 
         //listener para el boton volver
         this.infoTitular.Mod_titular_volver.addActionListener(this);
@@ -100,7 +100,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
-        } else if(e.getSource() == infoTitular.Mod_titular_editar){
+        } else if(e.getSource() == infoTitular.Mod_titular_editar1){
             titularDTO = infoTitular.getTitularDTO();
             try {
                 validarTitularEdicion(titularDTO);
