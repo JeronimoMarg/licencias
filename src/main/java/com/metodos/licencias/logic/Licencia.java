@@ -21,7 +21,6 @@ public class Licencia {
 
     private LocalDate inicioVigencia;
     private LocalDate finVigencia;
-    private Integer aniosVigencia;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private TipoLicencia tipoLicencia;

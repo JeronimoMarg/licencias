@@ -21,40 +21,41 @@ public class LicenciaService {
     private LicenciaRepository repository;
 
     // Agrega los atributos de fechas de inicio y fin de vigencia
-    public Licencia calcularVigencia(Licencia licencia){
+    public Long calcularVigencia(Licencia licencia){
         LocalDate fechaActual = LocalDate.now();
         LocalDate fechaNacimiento = licencia.getTitular().getFechaNacimiento();
         Long edadTitular = ChronoUnit.YEARS.between(fechaNacimiento, fechaActual);
-        Integer aniosVigencia = 0;
+        Long aniosVigencia = 0L;
         
         if (edadTitular < 21){
             if (existenLicenciasDe(licencia.getTitular())){
-                aniosVigencia = 1;
+                aniosVigencia = 1L;
             }else{
-                aniosVigencia = 3;
+                aniosVigencia = 3L;
             }
         }
         if (edadTitular < 46){
-            aniosVigencia = 5;
+            aniosVigencia = 5L;
         }
         if (edadTitular < 60){
-            aniosVigencia = 4;   
+            aniosVigencia = 4L;   
         }
         if (edadTitular < 70){
-            aniosVigencia = 3;
+            aniosVigencia = 3L;
         }
         if (edadTitular >= 70){
-            aniosVigencia = 1;
-        }
-
-        if (Math.abs(fechaActual.getMonthValue() - fechaNacimiento.getMonthValue()) > 4){
-            aniosVigencia += 1;
+            aniosVigencia = 1L;
         }
 
         licencia.setInicioVigencia(fechaActual);
-        licencia.setFinVigencia(fechaNacimiento.plusYears(edadTitular + aniosVigencia));
 
-        return licencia;
+        if (fechaActual.getMonthValue() - fechaNacimiento.getMonthValue() > 4){
+            licencia.setFinVigencia(fechaNacimiento.plusYears(edadTitular + aniosVigencia + 1));
+        } else {
+            licencia.setFinVigencia(fechaNacimiento.plusYears(edadTitular + aniosVigencia ));
+        }
+
+        return aniosVigencia;
 
     }
 
@@ -62,43 +63,13 @@ public class LicenciaService {
         return repository.existsByTitular_Id(titular.getId());
     }
 
-    public Licencia calcularCosto(Licencia licencia){
-        LocalDate fechaActual = LocalDate.now();
-        LocalDate fechaNacimiento = licencia.getTitular().getFechaNacimiento();
-        Long edadTitular = ChronoUnit.YEARS.between(fechaNacimiento, fechaActual);
-        Integer aniosVigencia = 0;
-        
-        if (edadTitular < 21){
-            if (existenLicenciasDe(licencia.getTitular())){
-                aniosVigencia = 1;
-            }else{
-                aniosVigencia = 3;
-            }
-        }
-        if (edadTitular < 46){
-            aniosVigencia = 5;
-        }
-        if (edadTitular < 60){
-            aniosVigencia = 4;   
-        }
-        if (edadTitular < 70){
-            aniosVigencia = 3;
-        }
-        if (edadTitular >= 70){
-            aniosVigencia = 1;
-        }
-
-        licencia.setAniosVigencia(aniosVigencia);
-        if (Math.abs(fechaActual.getMonthValue() - fechaNacimiento.getMonthValue()) > 4){
-            aniosVigencia += 1;
-        }
-
-        licencia.setInicioVigencia(fechaActual);
-        licencia.setFinVigencia(fechaNacimiento.plusYears(edadTitular + aniosVigencia));
-
-        return licencia;
-
+    public Double calcularCosto(Licencia licencia, Long aniosVigencia){
+        return 8 + licencia.getTipoLicencia().getCostos().stream()
+            .filter(costo -> costo.getVigencia().equals(aniosVigencia))
+            .findFirst().orElseThrow().getCosto();
     }
 
-   
+    public Double calcularCosto(Licencia licencia){
+        return calcularCosto(licencia, ChronoUnit.YEARS.between(licencia.getInicioVigencia(), licencia.getFinVigencia()));
+    }
 }
