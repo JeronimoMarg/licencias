@@ -16,6 +16,9 @@ import javax.swing.table.DefaultTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.exceptions.DniExistsException;
+import com.metodos.licencias.exceptions.FechaNacException;
+import com.metodos.licencias.exceptions.FormatErrorException;
 import com.metodos.licencias.logic.FactorSanguineo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
@@ -127,23 +130,26 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     private void validarTitular(TitularDTO titularDTO) throws Exception{
         
-        if(titularService.dniExistente(titularDTO.getNumDNI()) || titularService.formatErrorDni(titularDTO.getNumDNI())){
-            throw new Exception(); 
+        if(titularService.dniExistente(titularDTO.getNumDNI())){
+            throw new DniExistsException("El DNI ingresado corresponde a un titular ya existente."); 
+        }
+        if(titularService.formatErrorDni(titularDTO.getNumDNI())){
+            throw new FormatErrorException("El DNI ingresado no es válido.");
         }
         if(titularService.formatErrorNombre(titularDTO.getNombre())){
-            throw new Exception();
+            throw new FormatErrorException("El nombre ingresado no es válido.");  
         } 
         if(titularService.formatErrorApellido(titularDTO.getApellido())){
-            throw new Exception();
+            throw new FormatErrorException("El apellido ingresado no es válido.");
         }
         if(titularService.formatErrorCalle(titularDTO.getCalle())){
-            throw new Exception();
+            throw new FormatErrorException("La calle ingresada no es válida.");
         }
         if(titularService.formatErrorAltura(titularDTO.getAltura())){
-            throw new Exception();
+            throw new FormatErrorException("La altura ingresada no es válida.");
         }
         if(titularService.invalidFechaNac(titularDTO.getFechaNacimiento())){
-            throw new Exception();
+            throw new FechaNacException("El titular ingresado no cumple con la edad necesaria.");
         }
         
     }
@@ -151,16 +157,16 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
     private void validarTitularEdicion(TitularDTO titularDTO2) throws Exception{
                 
         if(titularService.formatErrorNombre(titularDTO.getNombre())){
-            throw new Exception();
+            throw new FormatErrorException("El nombre ingresado no es válido."); 
         } 
         if(titularService.formatErrorApellido(titularDTO.getApellido())){
-            throw new Exception();
+            throw new FormatErrorException("El apellido ingresado no es válido.");
         }
         if(titularService.formatErrorCalle(titularDTO.getCalle())){
-            throw new Exception();
+            throw new FormatErrorException("La calle ingresada no es válida.");
         }
         if(titularService.formatErrorAltura(titularDTO.getAltura())){
-            throw new Exception();
+            throw new FormatErrorException("La altura ingresada no es válida.");
         }
     }
 
