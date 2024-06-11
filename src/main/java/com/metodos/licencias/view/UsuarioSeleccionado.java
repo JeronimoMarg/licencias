@@ -206,7 +206,8 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_tipodni.getSelectedItem().toString(),
         Alta_usuario_numerodni1.getText(),
         Alta_usuario_usuario.getText(),
-        Alta_usuario_contrasenia.getText(),
+        //Alta_usuario_contrasenia.getText(),
+        "",
         Rol.ADMINISTRATIVO.toString()
         );
     }
@@ -217,7 +218,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         ventanaEmergente.setVisible(true);
         //limpiar inputs
         Alta_usuario_numerodni1.setText("");
-        Alta_usuario_contrasenia.setText("");
+        //Alta_usuario_contrasenia.setText("");
         Alta_usuario_usuario.setText("");
     }
     

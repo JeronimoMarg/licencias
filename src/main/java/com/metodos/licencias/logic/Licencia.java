@@ -13,7 +13,6 @@ import lombok.Data;
 @Entity(name="licencias")
 
 @Data
-
 public class Licencia {
 
     @Id
@@ -22,8 +21,9 @@ public class Licencia {
 
     private LocalDate inicioVigencia;
     private LocalDate finVigencia;
+    private Integer aniosVigencia;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private TipoLicencia tipoLicencia;
     
     @OneToOne(cascade = CascadeType.ALL)
