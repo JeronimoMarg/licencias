@@ -61,6 +61,10 @@ public class UsuariosController{
     private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException, Exception{
         //falta manejor exceptions
 
+        if(usuario.getContrasenia() == "" || usuario.getNroDocumento() == "" || usuario.getUsuario() == ""){
+            throw new Exception("No se permiten entradas vacías");
+        }
+        
         try{
             if(usuarioService.usuarioExistente(usuario.getUsuario()) && usuarioService.dniExistente(usuario.getNroDocumento(),usuario.getTipoDocumento())){
                 throw new UsuarioDNIExistenteException("El usuario y el documento ya estan registrados en el sistema."); 
@@ -73,7 +77,6 @@ public class UsuariosController{
                  throw new DNIExistenteException("El documento ya esta registrado en el sistema.");
              }
         } catch(Exception e){
-
             throw e;
         };
     }
@@ -151,6 +154,10 @@ public class UsuariosController{
         for(UsuarioDTO usuario : listaUsuarios){
             usuarioView.cargarTabla(usuario);
         }
+    }
+
+    public void actualizarUsuario(UsuarioDTO usuario) throws Exception{
+        usuarioService.actualizarUsuario(usuario);
     }
 
 
