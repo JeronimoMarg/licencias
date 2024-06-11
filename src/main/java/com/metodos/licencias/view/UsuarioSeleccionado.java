@@ -22,7 +22,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
      * Creates new form Usuarios
      */
     
-    private int cornerRadius;
+    private int cornerRadius = 15;
     private Color grisOscuro = new Color(80,80,80);
     private UsuariosMain main;
     
@@ -45,19 +45,19 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Alta_usuario_usuario = new RoundedTextField(15, grisOscuro);
+        seleccionado_nombreUsuario = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        Alta_usuario_tipodni = new javax.swing.JComboBox<>();
-        Busqueda_usuario_guardarBtn = new javax.swing.JButton();
+        seleccionado_rol = new RoundedComboBox(cornerRadius, grisOscuro);
         jLabel18 = new javax.swing.JLabel();
-        Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
-        Alta_usuario_tipodni1 = new javax.swing.JComboBox<>();
+        seleccionado_nroDNI = new RoundedTextField(15,grisOscuro);
+        seleccionado_tipoDNI = new RoundedComboBox(cornerRadius, grisOscuro);
         jLabel13 = new javax.swing.JLabel();
-        Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
-        volver_btn = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        botonEliminar = new RoundedButton(cornerRadius);
+        botonVolver = new RoundedButton(cornerRadius);
+        seleccionado_contrasenia = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -73,7 +73,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel3.setText("Tipo DNI");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
@@ -81,7 +81,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel4.setText("Número DNI");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 23;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
@@ -92,7 +92,6 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel1.add(jLabel8, gridBagConstraints);
@@ -101,66 +100,55 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel9.setText("Datos usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
-        Alta_usuario_usuario.addActionListener(new java.awt.event.ActionListener() {
+        seleccionado_nombreUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        seleccionado_nombreUsuario.setEnabled(false);
+        seleccionado_nombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_usuario_usuarioActionPerformed(evt);
+                seleccionado_nombreUsuarioActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_usuario_usuario, gridBagConstraints);
+        jPanel1.add(seleccionado_nombreUsuario, gridBagConstraints);
 
         jLabel11.setText("Rol");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel11, gridBagConstraints);
 
         jLabel12.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel12, gridBagConstraints);
 
-        Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
+        seleccionado_rol.setBackground(new java.awt.Color(252, 252, 252));
+        seleccionado_rol.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_usuario_tipodni, gridBagConstraints);
-
-        Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(252, 252, 252));
-        Busqueda_usuario_guardarBtn.setText("Editar");
-        Busqueda_usuario_guardarBtn.setBorder(null);
-        Busqueda_usuario_guardarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_usuario_guardarBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(Busqueda_usuario_guardarBtn, gridBagConstraints);
+        jPanel1.add(seleccionado_rol, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del usuario");
@@ -168,82 +156,99 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel1.add(jLabel18, gridBagConstraints);
 
-        Alta_usuario_numerodni1.setToolTipText("");
-        Alta_usuario_numerodni1.addActionListener(new java.awt.event.ActionListener() {
+        seleccionado_nroDNI.setToolTipText("");
+        seleccionado_nroDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Alta_usuario_numerodni1ActionPerformed(evt);
+                seleccionado_nroDNIActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(Alta_usuario_numerodni1, gridBagConstraints);
+        jPanel1.add(seleccionado_nroDNI, gridBagConstraints);
 
-        Alta_usuario_tipodni1.setModel(new javax.swing.DefaultComboBoxModel<>());
+        seleccionado_tipoDNI.setBackground(new java.awt.Color(252, 252, 252));
+        seleccionado_tipoDNI.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_usuario_tipodni1, gridBagConstraints);
+        jPanel1.add(seleccionado_tipoDNI, gridBagConstraints);
 
         jLabel13.setText("Usuario");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel13, gridBagConstraints);
 
-        Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(0, 153, 204));
-        Busqueda_usuario_guardarBtn1.setText("Eliminar usuario");
-        Busqueda_usuario_guardarBtn1.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminar.setBackground(new java.awt.Color(27, 140, 188));
+        botonEliminar.setForeground(new java.awt.Color(252, 252, 252));
+        botonEliminar.setText("Guardar Cambios");
+        botonEliminar.setBorder(null);
+        botonEliminar.setFocusable(false);
+        botonEliminar.addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
+            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
+                botonEliminarAncestorMoved(evt);
+            }
+            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
+            }
+        });
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_usuario_guardarBtn1ActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.ipadx = 55;
-        gridBagConstraints.ipady = 17;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
-        jPanel1.add(Busqueda_usuario_guardarBtn1, gridBagConstraints);
+        jPanel1.add(botonEliminar, gridBagConstraints);
 
-        volver_btn.setText("Volver");
-        volver_btn.addActionListener(new java.awt.event.ActionListener() {
+        botonVolver.setBackground(new java.awt.Color(152, 152, 152));
+        botonVolver.setForeground(new java.awt.Color(252, 252, 252));
+        botonVolver.setText("Volver");
+        botonVolver.setBorder(null);
+        botonVolver.setFocusable(false);
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volver_btnActionPerformed(evt);
+                botonVolverActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 20);
-        jPanel1.add(volver_btn, gridBagConstraints);
+        jPanel1.add(botonVolver, gridBagConstraints);
 
-        jPasswordField1.setText("jPasswordField1");
+        seleccionado_contrasenia.setText("jPasswordField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(jPasswordField1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(seleccionado_contrasenia, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(252, 252, 252));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -252,6 +257,15 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 0.3;
         jPanel1.add(jPanel2, gridBagConstraints);
+
+        jCheckBox1.setBackground(new java.awt.Color(252, 252, 252));
+        jCheckBox1.setText("Mostrar Contraseña");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        jPanel1.add(jCheckBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -265,35 +279,32 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Alta_usuario_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_usuario_usuarioActionPerformed
+    private void seleccionado_nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionado_nombreUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_usuario_usuarioActionPerformed
+    }//GEN-LAST:event_seleccionado_nombreUsuarioActionPerformed
 
-    private void Alta_usuario_numerodni1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alta_usuario_numerodni1ActionPerformed
+    private void seleccionado_nroDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionado_nroDNIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Alta_usuario_numerodni1ActionPerformed
+    }//GEN-LAST:event_seleccionado_nroDNIActionPerformed
 
-    private void Busqueda_usuario_guardarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_guardarBtnActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_usuario_guardarBtnActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
-    private void Busqueda_usuario_guardarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_guardarBtn1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_usuario_guardarBtn1ActionPerformed
-
-    private void volver_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver_btnActionPerformed
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
        main.switchScreen("Usuarios");
-    }//GEN-LAST:event_volver_btnActionPerformed
+    }//GEN-LAST:event_botonVolverActionPerformed
+
+    private void botonEliminarAncestorMoved(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_botonEliminarAncestorMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarAncestorMoved
     
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Alta_usuario_numerodni1;
-    private javax.swing.JComboBox<String> Alta_usuario_tipodni;
-    private javax.swing.JComboBox<String> Alta_usuario_tipodni1;
-    private javax.swing.JTextField Alta_usuario_usuario;
-    private javax.swing.JButton Busqueda_usuario_guardarBtn;
-    private javax.swing.JButton Busqueda_usuario_guardarBtn1;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonVolver;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -304,13 +315,14 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JButton volver_btn;
+    private javax.swing.JPasswordField seleccionado_contrasenia;
+    private javax.swing.JTextField seleccionado_nombreUsuario;
+    private javax.swing.JTextField seleccionado_nroDNI;
+    private javax.swing.JComboBox<String> seleccionado_rol;
+    private javax.swing.JComboBox<String> seleccionado_tipoDNI;
     // End of variables declaration//GEN-END:variables
 
-    public void addSaveButtonListener(UsuariosController.SaveButtonListener saveButtonListener) {
-        Busqueda_usuario_guardarBtn.addActionListener(saveButtonListener);
-    }
+
     /*
     public UsuarioDTO getUsuarioDTO(){
         return new UsuarioDTO(
@@ -331,7 +343,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_contrasenia.setText("");
         Alta_usuario_usuario.setText("");
     }
-    */
+    
     public void nombreUsuarioExistente(String mensajeError){
         //ventana emergente error
         VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
@@ -357,7 +369,8 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
 
     }
-
+    */
+    
     public void ventanaError(String message) {
         //ventana emergente con confirmacion
         VentanaEmergente ventanaEmergente = new VentanaEmergente(message);
@@ -365,7 +378,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     }
     
     public void setAltaTipoDNI(String tipo){
-        Alta_usuario_tipodni.addItem(tipo);
+        seleccionado_rol.addItem(tipo);
     }
     
     public void setMain(UsuariosMain main){
@@ -374,9 +387,9 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     
     public void cargarUsuario(UsuarioDTO usuario){
         
-        Alta_usuario_numerodni1.setText(usuario.getNroDocumento());
-        Alta_usuario_usuario.setText(usuario.getUsuario());
-        jPasswordField1.setText(usuario.getContrasenia());
+        seleccionado_nroDNI.setText(usuario.getNroDocumento());
+        seleccionado_nombreUsuario.setText(usuario.getUsuario());
+        seleccionado_contrasenia.setText(usuario.getContrasenia());
         
         
     }
