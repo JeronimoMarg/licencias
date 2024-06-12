@@ -4,24 +4,27 @@
  */
 package com.metodos.licencias.view;
 
-/**
- *
- * @author valec
- */
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JLabel;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class RoundedTextField extends JTextField {
+/**
+ *
+ * @author valec
+ */
+public class RoundedLabel extends JLabel{
+    
     private Shape shape;
     private int cornerRadius;
     Color borderColor;
-    public RoundedTextField(int radius, Color color) {
+    public RoundedLabel(int radius, Color color) {
         super();
         this.cornerRadius = radius;
         this.borderColor = color;
@@ -38,9 +41,17 @@ public class RoundedTextField extends JTextField {
     }
     
     protected void paintComponent(Graphics g) {
-         g.setColor(getBackground());
-         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, cornerRadius, cornerRadius);
-         super.paintComponent(g);
+        Insets insets = getInsets();
+        int x = insets.left; // Adding 10 pixels inset on the left
+        int y = insets.top;
+        int width = getWidth() - insets.left - insets.right; // Adjusting width for inset
+        int height = getHeight() - insets.top - insets.bottom;
+
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setColor(getBackground());
+        g2.fillRoundRect(x, y, width - 1, height - 1, cornerRadius, cornerRadius);
+        super.paintComponent(g2);
+        g2.dispose();
     }
     protected void paintBorder(Graphics g) {
          g.setColor(borderColor);
@@ -52,4 +63,7 @@ public class RoundedTextField extends JTextField {
          }
          return shape.contains(x, y);
     }
+
+    
+    
 }

@@ -105,6 +105,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                 validarLicencia(licenciaDTO, titularDTO);
                 JOptionPane.showMessageDialog(null, "Paso validacion");
                 licenciaService.guardarLicencia(licenciaDTO, titularDTO);
+                infoTitular.mostrarLicencia(licenciaDTO);
                 JOptionPane.showMessageDialog(null, "Licencia creada con exito");
             }catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());

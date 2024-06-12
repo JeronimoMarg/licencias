@@ -311,5 +311,9 @@ public class InfoTitular extends javax.swing.JPanel {
             this.Licencias_emitir_observaciones.getText().toString()
         );
 	}
+
+    public void mostrarLicencia(LicenciaDTO licenciaDTO) {
+        new LicenciaEmitidaFrame(licenciaDTO);
+    }
     
 }

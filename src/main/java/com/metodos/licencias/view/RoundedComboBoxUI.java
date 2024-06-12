@@ -26,10 +26,6 @@ public class RoundedComboBoxUI extends BasicComboBoxUI {
         return button;
     }
 
-    // Optionally, you can override paintCurrentValueBackground() and paintCurrentValue() to customize
-    // the appearance of the currently selected item.
-   
-    
     //esto agrega un inset a la izquierda del texto que muestra el comboBox
     @Override
     protected ListCellRenderer<Object> createRenderer() {
