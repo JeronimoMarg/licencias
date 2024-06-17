@@ -22,7 +22,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
      * Creates new form Usuarios
      */
     
-    private int cornerRadius;
+    private int cornerRadius = 15;
     private Color grisOscuro = new Color(80,80,80);
     private UsuariosMain main;
     
@@ -48,18 +48,18 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_usuario = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        Alta_usuario_tipodni = new javax.swing.JComboBox<>();
+        Alta_usuario_tipodni = new RoundedComboBox(cornerRadius,grisOscuro);
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
-        Alta_usuario_tipodni1 = new javax.swing.JComboBox<>();
+        Alta_usuario_tipodni1 = new RoundedComboBox(cornerRadius,grisOscuro);
         jLabel13 = new javax.swing.JLabel();
         Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
-        volver_btn = new javax.swing.JButton();
+        volver_btn = new RoundedButton(cornerRadius);
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(194, 194, 194));
         setForeground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(1200, 620));
         setLayout(new java.awt.GridBagLayout());
@@ -137,6 +137,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
         jPanel1.add(jLabel12, gridBagConstraints);
 
+        Alta_usuario_tipodni.setBackground(new java.awt.Color(252, 252, 252));
         Alta_usuario_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -187,6 +188,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Alta_usuario_numerodni1, gridBagConstraints);
 
+        Alta_usuario_tipodni1.setBackground(new java.awt.Color(252, 252, 252));
         Alta_usuario_tipodni1.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -208,6 +210,8 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
 
         Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(0, 153, 204));
         Busqueda_usuario_guardarBtn1.setText("Eliminar usuario");
+        Busqueda_usuario_guardarBtn1.setBorder(null);
+        Busqueda_usuario_guardarBtn1.setFocusable(false);
         Busqueda_usuario_guardarBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Busqueda_usuario_guardarBtn1ActionPerformed(evt);
@@ -216,12 +220,16 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.ipadx = 55;
-        gridBagConstraints.ipady = 17;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
         jPanel1.add(Busqueda_usuario_guardarBtn1, gridBagConstraints);
 
+        volver_btn.setBackground(new java.awt.Color(204, 204, 204));
+        volver_btn.setForeground(new java.awt.Color(51, 51, 51));
         volver_btn.setText("Volver");
+        volver_btn.setBorder(null);
+        volver_btn.setFocusable(false);
         volver_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volver_btnActionPerformed(evt);
@@ -231,6 +239,8 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 12;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 20);
         jPanel1.add(volver_btn, gridBagConstraints);
 

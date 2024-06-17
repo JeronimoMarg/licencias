@@ -70,7 +70,7 @@ public class Titulares extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         Busqueda_titular_buscarBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Busqueda_titular_tabla = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(51, 51, 51));
@@ -240,7 +240,7 @@ public class Titulares extends javax.swing.JPanel {
         });
         jPanel2.add(Busqueda_titular_buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 40, 40));
 
-        Busqueda_titular_tabla.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -263,7 +263,7 @@ public class Titulares extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(Busqueda_titular_tabla);
+        jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 630, -1));
 
@@ -321,19 +321,19 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_altura;
     private javax.swing.JTextField Alta_titular_apellido;
     private javax.swing.JTextField Alta_titular_calle;
-    public javax.swing.JComboBox<String> Alta_titular_clase;
+    private javax.swing.JComboBox<String> Alta_titular_clase;
     private javax.swing.JCheckBox Alta_titular_esdonante;
     public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
-    public javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
-    public javax.swing.JButton Alta_titular_guardarBtn;
+    private javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
+    private javax.swing.JButton Alta_titular_guardarBtn;
     private javax.swing.JTextField Alta_titular_nombre;
     private javax.swing.JTextField Alta_titular_numerodni;
-    public javax.swing.JComboBox<String> Alta_titular_tipodni;
-    public javax.swing.JTextField Busqueda_titular_apellido;
-    public javax.swing.JButton Busqueda_titular_buscarBtn;
-    public javax.swing.JTextField Busqueda_titular_nombre;
-    public javax.swing.JTextField Busqueda_titular_numerodni;
-    public javax.swing.JComboBox<String> Busqueda_titular_tipodni;
+    private javax.swing.JComboBox<String> Alta_titular_tipodni;
+    private javax.swing.JTextField Busqueda_titular_apellido;
+    private javax.swing.JButton Busqueda_titular_buscarBtn;
+    private javax.swing.JTextField Busqueda_titular_nombre;
+    private javax.swing.JTextField Busqueda_titular_numerodni;
+    private javax.swing.JComboBox<String> Busqueda_titular_tipodni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -355,7 +355,7 @@ public class Titulares extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable Busqueda_titular_tabla;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
     public TitularDTO getTitularDTO(){

@@ -59,7 +59,9 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         //combo de tipo de licencias (clase)
         List<TipoLicencia> tipos = tipoLicenciaService.getAllTipoLicencia();
         for(TipoLicencia tipo: tipos){
+           // codigo previo: 
             infoTitular.Licencias_emitir_clase.addItem(new Item(tipo.getLetraClase(), Long.toString(tipo.getId())));
+           //infoTitular.Licencias_emitir_clase.addItem(tipo.getLetraClase());
         }
     }
 

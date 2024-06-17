@@ -70,7 +70,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         this.infoTitular.Mod_titular_editar1.addActionListener(this);
 
         //listener para el boton volver
-        this.infoTitular.Mod_titular_volver.addActionListener(this);
+        this.infoTitular.mod_titular_volverBtn.addActionListener(this);
 
         inicializar_cmbx();
     }
@@ -107,7 +107,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
-        } else if(e.getSource() == infoTitular.Mod_titular_volver){
+        } else if(e.getSource() == infoTitular.mod_titular_volverBtn){
             this.titularesGUI.getTitularesMain().switchScreen("Titulares");
         }
     }

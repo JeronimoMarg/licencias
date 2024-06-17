@@ -39,15 +39,10 @@ public class NewTitulares extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Alta_titular_numerodni = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         Alta_titular_guardarBtn = new RoundedButton(cornerRadius);
         jLabel18 = new javax.swing.JLabel();
-        Alta_titular_nombre = new RoundedTextField(15,grisOscuro);
-        Alta_titular_apellido = new RoundedTextField(15,grisOscuro);
-        Alta_titular_altura = new RoundedTextField(15,grisOscuro);
-        Alta_titular_calle = new RoundedTextField(15,grisOscuro);
         Alta_titular_clase = new RoundedComboBox(cornerRadius, grisOscuro);
         Alta_titular_gruposanguineo = new RoundedComboBox(cornerRadius, grisOscuro);
         Alta_titular_tipodni = new RoundedComboBox(cornerRadius, grisOscuro);
@@ -60,6 +55,11 @@ public class NewTitulares extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         Alta_titular_esdonante = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
+        Alta_titular_nombre = new RoundedTextField(cornerRadius,grisOscuro);
+        Alta_titular_apellido = new RoundedTextField(cornerRadius,grisOscuro);
+        Alta_titular_dni = new RoundedTextField(cornerRadius,grisOscuro);
+        Alta_titular_altura = new RoundedTextField(cornerRadius,grisOscuro);
+        Alta_titular_calle = new RoundedTextField(cornerRadius,grisOscuro);
         jPanel2 = new RoundedPanel(30);
         jLabel17 = new javax.swing.JLabel();
         Busqueda_titular_numerodni = new RoundedTextField(15,grisOscuro);
@@ -121,17 +121,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel1.add(jLabel9, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(Alta_titular_numerodni, gridBagConstraints);
-
         jLabel11.setText("Calle");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -175,53 +164,7 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
         jPanel1.add(jLabel18, gridBagConstraints);
 
-        Alta_titular_nombre.setToolTipText("");
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_titular_nombre, gridBagConstraints);
-
-        Alta_titular_apellido.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(Alta_titular_apellido, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
-        jPanel1.add(Alta_titular_altura, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_titular_calle, gridBagConstraints);
-
+        Alta_titular_clase.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_clase.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -234,6 +177,7 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Alta_titular_clase, gridBagConstraints);
 
+        Alta_titular_gruposanguineo.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_gruposanguineo.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -246,6 +190,7 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Alta_titular_gruposanguineo, gridBagConstraints);
 
+        Alta_titular_tipodni.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_tipodni.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -266,7 +211,7 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Alta_titular_fechanac, gridBagConstraints);
 
         jLabel1.setText("Clase solicitada");
@@ -325,7 +270,6 @@ public class NewTitulares extends javax.swing.JPanel {
 
         Alta_titular_esdonante.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_esdonante.setText("Es donante de órganos");
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -343,6 +287,46 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(jPanel3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_titular_nombre, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_titular_apellido, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_titular_dni, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Alta_titular_altura, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Alta_titular_calle, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -362,7 +346,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
         jPanel2.add(jLabel17, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -409,7 +392,6 @@ public class NewTitulares extends javax.swing.JPanel {
         Busqueda_titular_buscarBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lupita_chica.png"))); // NOI18N
         Busqueda_titular_buscarBtn.setBorder(null);
         Busqueda_titular_buscarBtn.setBorderPainted(false);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
@@ -456,7 +438,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 30, 30);
         jPanel2.add(jScrollPane1, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -483,7 +464,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 5, 10);
         jPanel2.add(jLabel20, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -508,12 +488,12 @@ public class NewTitulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_apellido;
     private javax.swing.JTextField Alta_titular_calle;
     public javax.swing.JComboBox<String> Alta_titular_clase;
+    private javax.swing.JTextField Alta_titular_dni;
     private javax.swing.JCheckBox Alta_titular_esdonante;
     public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
     public javax.swing.JComboBox<String> Alta_titular_gruposanguineo;
     public javax.swing.JButton Alta_titular_guardarBtn;
     private javax.swing.JTextField Alta_titular_nombre;
-    private javax.swing.JTextField Alta_titular_numerodni;
     public javax.swing.JComboBox<String> Alta_titular_tipodni;
     public javax.swing.JTextField Busqueda_titular_apellido;
     public javax.swing.JButton Busqueda_titular_buscarBtn;
@@ -553,7 +533,7 @@ public class NewTitulares extends javax.swing.JPanel {
                 this.Alta_titular_nombre.getText().toString().trim(),
                 this.Alta_titular_apellido.getText().toString().trim(),
                 this.Alta_titular_tipodni.getSelectedItem().toString(),
-                this.Alta_titular_numerodni.getText().toString().trim(),
+                this.Alta_titular_dni.getText().toString().trim(),
                 this.Alta_titular_gruposanguineo.getSelectedItem().toString(),
                 this.Alta_titular_fechanac.getDate(),
                 this.Alta_titular_esdonante.isSelected(),
@@ -566,7 +546,7 @@ public class NewTitulares extends javax.swing.JPanel {
             this.Alta_titular_nombre.getText().toString().trim(),
             this.Alta_titular_apellido.getText().toString().trim(),
             this.Alta_titular_tipodni.getSelectedItem().toString(),
-            this.Alta_titular_numerodni.getText().toString().trim(),
+            this.Alta_titular_dni.getText().toString().trim(),
             this.Alta_titular_gruposanguineo.getSelectedItem().toString(),
             this.Alta_titular_fechanac.getDate(),
             this.Alta_titular_esdonante.isSelected(),

@@ -258,7 +258,9 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         pdfPanel.add(volverBtn, gridBagConstraints);
 
@@ -279,7 +281,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(20, 30, 0, 30);
         pdfPanel.add(PDFPanel, gridBagConstraints);
 
@@ -295,7 +297,9 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
         pdfPanel.add(jButton3, gridBagConstraints);
 

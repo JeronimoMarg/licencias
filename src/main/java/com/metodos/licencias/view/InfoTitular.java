@@ -10,6 +10,7 @@ import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.util.Item;
+import java.awt.Color;
 
 /**
  *
@@ -22,8 +23,9 @@ public class InfoTitular extends javax.swing.JPanel {
      * Creates new form Usuarios
      */
     
-    private int cornerRadius;
+    private int cornerRadius = 15;
     private TitularesMain main;
+    private Color grisOscuro = new Color(80,80,80);
     
     public InfoTitular() {
         initComponents();
@@ -40,43 +42,44 @@ public class InfoTitular extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new RoundedPanel(30);
-        Mod_titular_apellido = new javax.swing.JTextField();
-        Mod_titular_nombre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Mod_titular_numdni = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        Mod_titular_gruposanguineo = new javax.swing.JComboBox<>();
+        Mod_titular_gruposanguineo = new RoundedComboBox(cornerRadius, grisOscuro);
         jLabel5 = new javax.swing.JLabel();
         Mod_titular_fechanac = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
-        Mod_titular_donante = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Mod_titular_calle = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        Mod_titular_altura = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        Mod_titular_tipodni = new javax.swing.JComboBox<>();
+        Mod_titular_tipodni = new RoundedComboBox(cornerRadius, grisOscuro);
         jLabel18 = new javax.swing.JLabel();
-        Mod_titular_volver = new javax.swing.JToggleButton();
-        Mod_titular_editar1 = new javax.swing.JButton();
+        Mod_titular_editar1 = new RoundedButton(cornerRadius);
         jLabel10 = new javax.swing.JLabel();
+        mod_titular_apellido = new RoundedTextField(cornerRadius,grisOscuro);
+        mod_titular_nombre = new RoundedTextField(cornerRadius,grisOscuro);
+        mod_titular_nroDNI = new RoundedTextField(cornerRadius,grisOscuro);
+        mod_titular_calle = new RoundedTextField(cornerRadius,grisOscuro);
+        mod_titular_altura = new RoundedTextField(cornerRadius,grisOscuro);
+        mod_titular_esDonante = new javax.swing.JCheckBox();
+        mod_titular_volverBtn = new RoundedButton(cornerRadius);
         jPanel2 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Licencias_tabla = new javax.swing.JTable();
-        Licencias_emitirCopia_btn = new javax.swing.JButton();
-        Licencias_emitir_btn = new javax.swing.JButton();
-        Licencias_renovar_btn = new javax.swing.JButton();
+        Licencias_emitirCopia_btn = new RoundedButton(cornerRadius);
+        Licencias_emitir_btn = new RoundedButton(cornerRadius);
+        Licencias_renovar_btn = new RoundedButton(cornerRadius);
         jLabel8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        Licencias_emitir_observaciones = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        Licencias_emitir_clase = new javax.swing.JComboBox<>();
+        Licencias_emitir_clase = new RoundedComboBox(cornerRadius, grisOscuro);
+        jScrollPane2 = new javax.swing.JScrollPane();
+        mod_titular_observaciones = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(153, 153, 153));
+        setBackground(new java.awt.Color(194, 194, 194));
         setForeground(new java.awt.Color(51, 51, 51));
         setPreferredSize(new java.awt.Dimension(1200, 620));
         setLayout(new java.awt.GridBagLayout());
@@ -85,17 +88,8 @@ public class InfoTitular extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.add(Mod_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 190, 40));
-
-        jPanel1.add(Mod_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 40));
-
         jLabel1.setText("Apellido");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 70, -1));
-
-        Mod_titular_numdni.setEditable(false);
-        Mod_titular_numdni.setToolTipText("");
-
-        jPanel1.add(Mod_titular_numdni, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
 
         jLabel3.setText("Tipo DNI");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
@@ -103,6 +97,7 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel4.setText("Número DNI");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 90, -1));
 
+        Mod_titular_gruposanguineo.setBackground(new java.awt.Color(252, 252, 252));
         jPanel1.add(Mod_titular_gruposanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 180, 40));
 
         jLabel5.setText("Fecha Nacimiento");
@@ -114,10 +109,6 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel6.setText("Grupo Sanguíneo");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        Mod_titular_donante.setText("Es donante de órganos");
-
-        jPanel1.add(Mod_titular_donante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 170, -1));
-
         jLabel7.setText("Nombre");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
@@ -125,34 +116,58 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel9.setText("Dirección");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
-        jPanel1.add(Mod_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 180, 40));
-
         jLabel11.setText("Calle");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
-
-
-        jPanel1.add(Mod_titular_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 190, 40));
 
         jLabel12.setText("Altura");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 60, -1));
 
+        Mod_titular_tipodni.setBackground(new java.awt.Color(252, 252, 252));
         jPanel1.add(Mod_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 180, 40));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del titular");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        Mod_titular_volver.setText("Volver");
-
-        jPanel1.add(Mod_titular_volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 90, 40));
-
         Mod_titular_editar1.setBackground(new java.awt.Color(0, 153, 204));
         Mod_titular_editar1.setText("Editar");
+        Mod_titular_editar1.setFocusable(false);
         jPanel1.add(Mod_titular_editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 120, 40));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Datos Personales");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        mod_titular_apellido.setText("jTextField1");
+        jPanel1.add(mod_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 190, 40));
+
+        mod_titular_nombre.setText("jTextField2");
+        jPanel1.add(mod_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 40));
+
+        mod_titular_nroDNI.setText("jTextField3");
+        jPanel1.add(mod_titular_nroDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
+
+        mod_titular_calle.setText("jTextField1");
+        jPanel1.add(mod_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 180, 40));
+
+        mod_titular_altura.setText("jTextField2");
+        jPanel1.add(mod_titular_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 190, 40));
+
+        mod_titular_esDonante.setBackground(new java.awt.Color(252, 252, 252));
+        mod_titular_esDonante.setText("Es donante de órganos");
+        mod_titular_esDonante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mod_titular_esDonanteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mod_titular_esDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 190, 20));
+
+        mod_titular_volverBtn.setBackground(new java.awt.Color(204, 204, 204));
+        mod_titular_volverBtn.setForeground(new java.awt.Color(51, 51, 51));
+        mod_titular_volverBtn.setText("Volver");
+        mod_titular_volverBtn.setBorder(null);
+        mod_titular_volverBtn.setFocusable(false);
+        jPanel1.add(mod_titular_volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 543, 100, 40));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -198,14 +213,17 @@ public class InfoTitular extends javax.swing.JPanel {
 
         Licencias_emitirCopia_btn.setBackground(new java.awt.Color(0, 153, 204));
         Licencias_emitirCopia_btn.setText("Emitir copia");
+        Licencias_emitirCopia_btn.setFocusable(false);
         jPanel2.add(Licencias_emitirCopia_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 120, 40));
 
         Licencias_emitir_btn.setBackground(new java.awt.Color(0, 153, 204));
         Licencias_emitir_btn.setText("Emitir");
+        Licencias_emitir_btn.setFocusable(false);
         jPanel2.add(Licencias_emitir_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 120, 40));
 
         Licencias_renovar_btn.setBackground(new java.awt.Color(0, 153, 204));
         Licencias_renovar_btn.setText("Renovar");
+        Licencias_renovar_btn.setFocusable(false);
         jPanel2.add(Licencias_renovar_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 120, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -216,15 +234,21 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel13.setText("Emitir licencia");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
 
-        jPanel2.add(Licencias_emitir_observaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 240, 110));
-
         jLabel14.setText("Observaciones");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         jLabel15.setText("Clase");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, -1, -1));
 
-        jPanel2.add(Licencias_emitir_clase, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 180, 40));
+        Licencias_emitir_clase.setBackground(new java.awt.Color(252, 252, 252));
+        jPanel2.add(Licencias_emitir_clase, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 180, 40));
+
+        mod_titular_observaciones.setColumns(20);
+        mod_titular_observaciones.setLineWrap(true);
+        mod_titular_observaciones.setRows(5);
+        jScrollPane2.setViewportView(mod_titular_observaciones);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 410, 110));
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -234,24 +258,20 @@ public class InfoTitular extends javax.swing.JPanel {
         add(jPanel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mod_titular_esDonanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod_titular_esDonanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mod_titular_esDonanteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Licencias_emitirCopia_btn;
     public javax.swing.JButton Licencias_emitir_btn;
     public javax.swing.JComboBox<Item> Licencias_emitir_clase;
-    public javax.swing.JTextField Licencias_emitir_observaciones;
     public javax.swing.JButton Licencias_renovar_btn;
-    public javax.swing.JTable Licencias_tabla;
-    public javax.swing.JTextField Mod_titular_altura;
-    public javax.swing.JTextField Mod_titular_apellido;
-    public javax.swing.JTextField Mod_titular_calle;
-    public javax.swing.JCheckBox Mod_titular_donante;
+    private javax.swing.JTable Licencias_tabla;
     public javax.swing.JButton Mod_titular_editar1;
     public com.toedter.calendar.JDateChooser Mod_titular_fechanac;
     public javax.swing.JComboBox<String> Mod_titular_gruposanguineo;
-    public javax.swing.JTextField Mod_titular_nombre;
-    public javax.swing.JTextField Mod_titular_numdni;
     public javax.swing.JComboBox<String> Mod_titular_tipodni;
-    public javax.swing.JToggleButton Mod_titular_volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -271,17 +291,26 @@ public class InfoTitular extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField mod_titular_altura;
+    private javax.swing.JTextField mod_titular_apellido;
+    private javax.swing.JTextField mod_titular_calle;
+    private javax.swing.JCheckBox mod_titular_esDonante;
+    private javax.swing.JTextField mod_titular_nombre;
+    private javax.swing.JTextField mod_titular_nroDNI;
+    private javax.swing.JTextArea mod_titular_observaciones;
+    public javax.swing.JButton mod_titular_volverBtn;
     // End of variables declaration//GEN-END:variables
 
     public void setTitular(TitularDTO titularDTO) {
         //este metodo recibe el DTO del titular y llena los campos
-        Mod_titular_nombre.setText(titularDTO.getNombre());
-        Mod_titular_apellido.setText(titularDTO.getApellido());
-        Mod_titular_numdni.setText(titularDTO.getNumDNI());
+        mod_titular_nombre.setText(titularDTO.getNombre());
+        mod_titular_apellido.setText(titularDTO.getApellido());
+        mod_titular_nroDNI.setText(titularDTO.getNumDNI());
         Mod_titular_tipodni.setSelectedItem(TipoDocumento.valueOf(titularDTO.getTipoDoc()));
-        Mod_titular_altura.setText(titularDTO.getAltura());
-        Mod_titular_calle.setText(titularDTO.getCalle());
-        Mod_titular_donante.setSelected(titularDTO.isDonante());
+        mod_titular_altura.setText(titularDTO.getAltura());
+        mod_titular_calle.setText(titularDTO.getCalle());
+        mod_titular_esDonante.setSelected(titularDTO.isDonante());
         Mod_titular_fechanac.setDate(titularDTO.getFechaNacimiento());
     }
     
@@ -292,15 +321,15 @@ public class InfoTitular extends javax.swing.JPanel {
     public TitularDTO getTitularDTO(){
 
             return new TitularDTO(
-                this.Mod_titular_nombre.getText().toString().trim(),
-                this.Mod_titular_apellido.getText().toString().trim(),
+                this.mod_titular_nombre.getText().toString().trim(),
+                this.mod_titular_apellido.getText().toString().trim(),
                 this.Mod_titular_tipodni.getSelectedItem().toString(),
-                this.Mod_titular_numdni.getText().toString().trim(),
+                this.mod_titular_nroDNI.getText().toString().trim(),
                 this.Mod_titular_gruposanguineo.getSelectedItem().toString(),
                 this.Mod_titular_fechanac.getDate(),
-                this.Mod_titular_donante.isSelected(),
-                this.Mod_titular_calle.getText().toString().trim(),
-                this.Mod_titular_altura.getText().toString().trim()
+                this.mod_titular_esDonante.isSelected(),
+                this.mod_titular_calle.getText().toString().trim(),
+                this.mod_titular_altura.getText().toString().trim()
             ); 
 
     }
@@ -308,8 +337,7 @@ public class InfoTitular extends javax.swing.JPanel {
 	public LicenciaDTO getLicenciaDTO() {
 		return new LicenciaDTO(
             (Item) this.Licencias_emitir_clase.getSelectedItem(),
-            this.Licencias_emitir_observaciones.getText().toString()
-        );
+            this.mod_titular_observaciones.getText());
 	}
 
     public void mostrarLicencia(LicenciaDTO licenciaDTO) {
