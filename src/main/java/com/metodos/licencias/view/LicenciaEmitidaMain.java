@@ -66,7 +66,6 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
                     VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
                 }
 
-                // Finally, dispose of the frame
                 frame.dispose();
             }
         });
@@ -348,9 +347,9 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         cl = (CardLayout) (cardPanel.getLayout());
         
         tipoLicencia.setText(" " + licencia.getTipoLicencia().getAtributo1());
-        //nroLicencia.setText(licencia.getNumeroLicencia().toString());
-        //inicioLicencia.setText(licencia.getInicioVigencia().toString());
-        //finLicencia.setText(licencia.getFinVigencia().toString());
+        nroLicencia.setText(licencia.getNumeroLicencia().toString());
+        inicioLicencia.setText(licencia.getInicioVigencia().toString());
+        finLicencia.setText(licencia.getFinVigencia().toString());
         observaciones.setText(" " + licencia.getObservaciones());
         
     }

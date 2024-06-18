@@ -15,8 +15,6 @@ public class LicenciaDTO {
     private Date inicioVigencia;
     private Date finVigencia;
     private Item tipoLicencia;
-    //private String emitidaPor; 
-    //private String titular;
     private String observaciones;
 
     public LicenciaDTO(Item tipoLicencia, String observaciones){

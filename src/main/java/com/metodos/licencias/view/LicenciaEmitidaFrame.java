@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class LicenciaEmitidaFrame extends  JFrame {
     
-    public LicenciaEmitidaFrame(LicenciaDTO licencia){
+    public LicenciaEmitidaFrame(LicenciaDTO licenciaDTO){
         
         //creacion Frame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,7 +25,7 @@ public class LicenciaEmitidaFrame extends  JFrame {
         setIconImage(customIcon.getImage());
     
         //inicializo container
-        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licencia, this);
+        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licenciaDTO, this);
         setContentPane(licenciaEmitidaContainer);
         
         pack();

@@ -18,6 +18,7 @@ import com.metodos.licencias.logic.FactorSanguineo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.TitularRepository;
+import com.metodos.licencias.util.Item;
 
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.Predicate;

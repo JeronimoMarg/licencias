@@ -81,11 +81,21 @@ public class LicenciaService {
         return calcularCosto(licencia, ChronoUnit.YEARS.between(licencia.getInicioVigencia(), licencia.getFinVigencia()));
     }
 
-    public void guardarLicencia(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
+    public LicenciaDTO guardarLicencia(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
         //guarda la licencia en la bd
         Licencia licencia = aEntidad(licenciaDTO, titularDTO);
         repository.save(licencia);
+        return (aDTO(licencia));    //se retorna el DTO para poder actualizarlo y que muestre los datos correctamente.
+    }
 
+    private LicenciaDTO aDTO(Licencia licencia) {
+        return new LicenciaDTO(
+            licencia.getNumeroLicencia(),
+            Date.from(licencia.getInicioVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+            Date.from(licencia.getFinVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+            new Item(licencia.getTipoLicencia().getLetraClase(), Long.toString(licencia.getTipoLicencia().getId())),
+            licencia.getObservaciones()
+        );
     }
 
     private Licencia aEntidad(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
@@ -148,5 +158,15 @@ public class LicenciaService {
         
         return !pasa;
         
+    }
+
+    public boolean tieneLicenciaActiva(Item tipoLicencia, String numDNI) {
+        List<Licencia> licenciasTipo = repository.findByTipoLicencia_Id(Long.parseLong(tipoLicencia.getAtributo2()));
+        boolean retorno = 
+        licenciasTipo.stream()
+        .map(l -> l.getTitular().getNumeroDocumento())
+        .filter(n -> n == Long.parseLong(numDNI))
+        .anyMatch(p -> true);
+        return retorno;
     }
 }

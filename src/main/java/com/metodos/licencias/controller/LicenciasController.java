@@ -19,6 +19,7 @@ import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.LicenciaService;
 import com.metodos.licencias.service.TipoLicenciaService;
+import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.util.Item;
 
@@ -105,15 +106,26 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             titularDTO = infoTitular.getTitularDTO();
              try{
                 validarLicencia(licenciaDTO, titularDTO);
+                validarTitular(licenciaDTO, titularDTO);
                 JOptionPane.showMessageDialog(null, "Paso validacion");
-                licenciaService.guardarLicencia(licenciaDTO, titularDTO);
-                infoTitular.mostrarLicencia(licenciaDTO);
-                JOptionPane.showMessageDialog(null, "Licencia creada con exito");
+                licenciaDTO = licenciaService.guardarLicencia(licenciaDTO, titularDTO);
+                int respuesta = JOptionPane.showConfirmDialog(null, "Licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                if(respuesta == JOptionPane.YES_OPTION){
+                    infoTitular.mostrarLicencia(licenciaDTO);
+                }
             }catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
         }
 
+    }
+
+    private void validarTitular(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
+        //Este metodo valida si se tiene una licencia activa de la clase seleccionada
+        //para el titular. lanza excepcion si es afirmativo.
+        if(licenciaService.tieneLicenciaActiva(licenciaDTO.getTipoLicencia(), titularDTO.getNumDNI())){
+            throw new LicenciaExistenteException("El titular ya tiene una licencia vigente para la clase seleccionada");
+        }
     }
 
     private void validarLicencia(LicenciaDTO licenciaDTO2, TitularDTO titularDTO2) throws Exception{
