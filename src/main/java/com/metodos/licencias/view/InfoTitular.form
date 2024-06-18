@@ -213,7 +213,10 @@
         <Component class="javax.swing.JButton" name="Mod_titular_editar1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="99" red="0" type="rgb"/>
+              <Color blue="bc" green="8c" red="1b" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Editar"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -270,6 +273,7 @@
         <Component class="javax.swing.JTextField" name="mod_titular_nroDNI">
           <Properties>
             <Property name="text" type="java.lang.String" value="jTextField3"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedTextField(cornerRadius,grisOscuro)"/>
@@ -415,7 +419,10 @@
         <Component class="javax.swing.JButton" name="Licencias_emitirCopia_btn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="99" red="0" type="rgb"/>
+              <Color blue="bc" green="8c" red="1b" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Emitir copia"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -433,7 +440,10 @@
         <Component class="javax.swing.JButton" name="Licencias_emitir_btn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="99" red="0" type="rgb"/>
+              <Color blue="bc" green="8c" red="1b" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Emitir"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -451,7 +461,10 @@
         <Component class="javax.swing.JButton" name="Licencias_renovar_btn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="99" red="0" type="rgb"/>
+              <Color blue="bc" green="8c" red="1b" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Renovar"/>
             <Property name="focusable" type="boolean" value="false"/>

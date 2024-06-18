@@ -8,8 +8,34 @@ import com.metodos.licencias.DTO.LicenciaDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.apache.pdfbox.rendering.PDFRenderer;
 
 /**
  *
@@ -24,10 +50,36 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
     CardLayout cl;
     int cornerRadius = 15;
     Color grisOscuro = new Color(80,80,80);
+    private double zoomFactor = 1;
+    PDDocument document = null;
+    JFrame frame;
     
-    public LicenciaEmitidaMain(LicenciaDTO licencia) {
+    public LicenciaEmitidaMain(LicenciaDTO licencia, JFrame main) {
+        this.frame = main;
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+
+                try {
+                    document.close();
+                } catch (IOException ex) {
+                    VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+                }
+
+                // Finally, dispose of the frame
+                frame.dispose();
+            }
+        });
+        
+        
+        
         initComponents();
         armarCardLayout(licencia);
+        pdfConfig();
+        pdf.revalidate();
+        pdf.repaint();
+        revalidate();
+        repaint();
     }
 
     /**
@@ -54,13 +106,9 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         finLicencia = new RoundedLabel(cornerRadius,grisOscuro);
         observaciones = new RoundedLabel(cornerRadius,grisOscuro);
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new RoundedButton(15);
-        jButton2 = new RoundedButton(15);
-        pdfPanel = new RoundedPanel(15);
-        volverBtn = new RoundedButton(15);
-        PDFPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new RoundedButton(15);
+        cerrarBtn = new RoundedButton(15);
+        pdfButton = new RoundedButton(15);
+        pdf = new RoundedPanel(15);
 
         setBackground(new java.awt.Color(194, 194, 194));
         setLayout(new java.awt.GridBagLayout());
@@ -203,13 +251,13 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
         licenciaPanel.add(jPanel2, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(27, 140, 188));
-        jButton1.setForeground(new java.awt.Color(252, 252, 252));
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cerrarBtn.setBackground(new java.awt.Color(27, 140, 188));
+        cerrarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        cerrarBtn.setText("Cerrar");
+        cerrarBtn.setFocusable(false);
+        cerrarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1JButton1ActionPerformed(evt);
+                cerrarBtnJButton1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -220,15 +268,15 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 10, 10);
-        licenciaPanel.add(jButton1, gridBagConstraints);
+        licenciaPanel.add(cerrarBtn, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(27, 140, 188));
-        jButton2.setForeground(new java.awt.Color(252, 252, 252));
-        jButton2.setText("to pdf land");
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        pdfButton.setBackground(new java.awt.Color(27, 140, 188));
+        pdfButton.setForeground(new java.awt.Color(255, 255, 255));
+        pdfButton.setText("Imprimir PDF");
+        pdfButton.setFocusable(false);
+        pdfButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2JButton2ActionPerformed(evt);
+                pdfButtonJButton2ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -239,71 +287,13 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 30);
-        licenciaPanel.add(jButton2, gridBagConstraints);
+        licenciaPanel.add(pdfButton, gridBagConstraints);
 
         cardPanel.add(licenciaPanel, "Panel");
 
-        pdfPanel.setBackground(new java.awt.Color(252, 252, 252));
-        pdfPanel.setLayout(new java.awt.GridBagLayout());
-
-        volverBtn.setBackground(new java.awt.Color(27, 140, 188));
-        volverBtn.setForeground(new java.awt.Color(252, 252, 252));
-        volverBtn.setText("go back pls");
-        volverBtn.setFocusable(false);
-        volverBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverBtnActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        pdfPanel.add(volverBtn, gridBagConstraints);
-
-        PDFPanel.setLayout(new java.awt.GridBagLayout());
-
-        jLabel7.setText("pdf a imprimir");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        PDFPanel.add(jLabel7, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(20, 30, 0, 30);
-        pdfPanel.add(PDFPanel, gridBagConstraints);
-
-        jButton3.setBackground(new java.awt.Color(27, 140, 188));
-        jButton3.setForeground(new java.awt.Color(252, 252, 252));
-        jButton3.setText("print (kills a tree)");
-        jButton3.setFocusable(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        pdfPanel.add(jButton3, gridBagConstraints);
-
-        cardPanel.add(pdfPanel, "PDF");
+        pdf.setBackground(new java.awt.Color(252, 252, 252));
+        pdf.setLayout(new java.awt.GridBagLayout());
+        cardPanel.add(pdf, "PDF");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
@@ -313,45 +303,44 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         add(cardPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1JButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1JButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1JButton1ActionPerformed
+    private void cerrarBtnJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarBtnJButton1ActionPerformed
+        try {
+            document.close();
+        } catch (IOException ex) {
+            VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+        }
+        frame.dispose();
+    }//GEN-LAST:event_cerrarBtnJButton1ActionPerformed
 
-    private void jButton2JButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2JButton2ActionPerformed
+    private void pdfButtonJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfButtonJButton2ActionPerformed
         switchScreen("PDF");
-    }//GEN-LAST:event_jButton2JButton2ActionPerformed
-
-    private void volverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBtnActionPerformed
-        switchScreen("Panel");
-    }//GEN-LAST:event_volverBtnActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        /*
+        pdf.revalidate();
+        pdf.repaint();
+        revalidate();
+        repaint();
+        */
+    }//GEN-LAST:event_pdfButtonJButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PDFPanel;
     private javax.swing.JPanel cardPanel;
+    private javax.swing.JButton cerrarBtn;
     private javax.swing.JLabel finLicencia;
     private javax.swing.JLabel inicioLicencia;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel licenciaPanel;
     private javax.swing.JLabel nroLicencia;
     private javax.swing.JLabel observaciones;
-    private javax.swing.JPanel pdfPanel;
+    private javax.swing.JPanel pdf;
+    private javax.swing.JButton pdfButton;
     private javax.swing.JLabel tipoLicencia;
-    private javax.swing.JButton volverBtn;
     // End of variables declaration//GEN-END:variables
 
     private void armarCardLayout(LicenciaDTO licencia){
@@ -370,5 +359,220 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
       cl.show(cardPanel, pantalla);
       revalidate();
     } 
+    
+    private PDDocument displayPDF(String pdfFilePath, double zoomFactor, JPanel panelPDF) {
+       
+        document = new PDDocument();
+        
+        try {
+            document = PDDocument.load(new File(pdfFilePath));
+            PDFRenderer renderer = new PDFRenderer(document);
+            
+            try{
+            llenarPDF(document);
+            }
+            catch(Exception e){
+                VentanaEmergente errorCargarDoc = new VentanaEmergente("No se puede completar el cargado del PDF");
+            }
+            
+            int pageCount = document.getNumberOfPages();
+            for (int pageIndex = 0; pageIndex < pageCount; pageIndex++) {
+                BufferedImage image = renderer.renderImageWithDPI(pageIndex, (float) (100 * zoomFactor));
+
+                ImageIcon imageIcon = new ImageIcon(image);
+                JLabel label = new JLabel(imageIcon);
+                panelPDF.add(label);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  
+        
+        return document;
+    }
+
+    private void llenarPDF(PDDocument document) throws IOException {
+       PDAcroForm pDAcroForm = document.getDocumentCatalog().getAcroForm();
+            PDField field = pDAcroForm.getField("field_tipo");
+            field.setValue("tipo");
+            field = pDAcroForm.getField("field_nro");
+            field.setValue("numero");
+            field = pDAcroForm.getField("field_inicio");
+            field.setValue("inicio");
+            field = pDAcroForm.getField("field_fin");
+            field.setValue("fin");
+            field = pDAcroForm.getField("field_observaciones");
+            field.setValue("observaciones");
+    }
+    
+    private void pdfConfig() {
+        
+        pdf.setLayout(new GridBagLayout());
+        JPanel pdfPanel  = new JPanel();
+        
+        JPanel relleno = new JPanel();
+        relleno.setBackground(new Color(252,252,252));
+        RoundedButton zoomInButton = new RoundedButton(cornerRadius);
+        zoomInButton.setText("+");
+        zoomInButton.setBackground(new Color(194,194,194));
+        zoomInButton.setForeground(new Color(51,51,51));
+        zoomInButton.setFocusable(false);
+        RoundedButton zoomOutButton = new RoundedButton(cornerRadius);
+        zoomOutButton.setText("-");
+        zoomOutButton.setBackground(new Color(194,194,194));
+        zoomOutButton.setForeground(new Color(51,51,51));
+        zoomOutButton.setFocusable(false);
+        RoundedButton volver = new RoundedButton(cornerRadius);
+        volver.setBackground(new Color(27, 140, 188));
+        volver.setForeground(new Color(252,252,252));
+        volver.setFocusable(false);
+        volver.setText("Volver");
+        RoundedButton descargar = new RoundedButton(cornerRadius);
+        descargar.setBackground(new Color(27, 140, 188));
+        descargar.setForeground(new Color(252,252,252));
+        descargar.setFocusable(false);
+        descargar.setText("Imprimir");
+        
+        PDDocument document = displayPDF("Licencia.pdf", zoomFactor, pdfPanel);
+        
+        zoomInButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if(zoomFactor < 2.5){
+                    zoomFactor *= 1.2;
+                    updateZoom(pdfPanel, (float) (zoomFactor));
+                }
+            }
+        });
+
+        zoomOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if(zoomFactor > 0.4){
+                    zoomFactor /= 1.2;
+                    updateZoom(pdfPanel, (float) (zoomFactor));
+                }
+            }
+        });
+        
+        volver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchScreen("Panel");
+            }
+        });
+        
+        descargar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    descargarPDF(document);
+                } catch (IOException ex) {
+                    Logger.getLogger(LicenciaEmitidaMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        pdfPanel.setLayout(new BoxLayout(pdfPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(pdfPanel);
+           
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1;
+        gbc.weightx = 0.98;
+        gbc.gridheight = 5;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(10,20,20,10);
+        pdf.add(scrollPane,gbc);
+        
+        gbc.gridheight = 1;
+        gbc.weightx = 0.02;
+        gbc.weighty = 0.01;
+        gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(10,0,0,30);
+        pdf.add(zoomInButton, gbc);
+        
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10,0,0,30);
+        pdf.add(zoomOutButton, gbc);
+        
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0,0,0,30);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weighty = 1;
+        pdf.add(relleno,gbc);
+        
+        gbc.gridy = 3;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        //gbc.anchor = GridBagConstraints.WEST;
+        gbc.weighty = 0.01;
+        gbc.insets = new Insets(0,0,10,30);
+        pdf.add(volver,gbc);
+        
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        //gbc.anchor = GridBagConstraints.EAST;
+        gbc.weighty = 0.01;
+        gbc.insets = new Insets(0,0,20,30);
+        pdf.add(descargar,gbc);
+
+    }
+    
+    private void updateZoom(JPanel pdfPanel,  double zoomFactor) {
+        pdfPanel.removeAll();
+        displayPDF("Licencia.pdf", zoomFactor, pdfPanel);
+        revalidate();
+        repaint();
+    }
+    
+    void descargarPDF(PDDocument document) throws IOException{
+        
+        // Use JFileChooser to choose the location and filename for saving the PDF
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Save PDF");
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                // Get the selected file
+                File selectedFile = fileChooser.getSelectedFile();
+
+                // Ensure the file has a .pdf extension
+                String pdfFilePath = selectedFile.getAbsolutePath();
+                if (!pdfFilePath.toLowerCase().endsWith(".pdf")) {
+                    pdfFilePath += ".pdf";
+                }
+
+                // Set the form fields as read-only
+                setFormFieldsReadOnly(document);
+                
+                // Save the document to the specified file
+                document.save(pdfFilePath);
+                document.close();
+            }
+    }
+    
+    private void setFormFieldsReadOnly(PDDocument document) {
+        PDDocumentCatalog catalog = document.getDocumentCatalog();
+        PDAcroForm acroForm = catalog.getAcroForm();
+
+        if (acroForm != null) {
+            // Iterate through all pages
+            for (PDPage page : document.getPages()) {
+                // Iterate through all fields on the page
+                acroForm.getFields().forEach(field -> {
+                    // Set the read-only flag for each field
+                    field.setReadOnly(true);
+                });
+            }
+        }
+    }
+    
+    
 
 }

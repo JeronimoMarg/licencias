@@ -129,7 +129,8 @@ public class InfoTitular extends javax.swing.JPanel {
         jLabel18.setText("Información del titular");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
-        Mod_titular_editar1.setBackground(new java.awt.Color(0, 153, 204));
+        Mod_titular_editar1.setBackground(new java.awt.Color(27, 140, 188));
+        Mod_titular_editar1.setForeground(new java.awt.Color(255, 255, 255));
         Mod_titular_editar1.setText("Editar");
         Mod_titular_editar1.setFocusable(false);
         jPanel1.add(Mod_titular_editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 120, 40));
@@ -145,6 +146,7 @@ public class InfoTitular extends javax.swing.JPanel {
         jPanel1.add(mod_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 40));
 
         mod_titular_nroDNI.setText("jTextField3");
+        mod_titular_nroDNI.setEnabled(false);
         jPanel1.add(mod_titular_nroDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
 
         mod_titular_calle.setText("jTextField1");
@@ -211,17 +213,20 @@ public class InfoTitular extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 87, 630, 230));
 
-        Licencias_emitirCopia_btn.setBackground(new java.awt.Color(0, 153, 204));
+        Licencias_emitirCopia_btn.setBackground(new java.awt.Color(27, 140, 188));
+        Licencias_emitirCopia_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_emitirCopia_btn.setText("Emitir copia");
         Licencias_emitirCopia_btn.setFocusable(false);
         jPanel2.add(Licencias_emitirCopia_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 120, 40));
 
-        Licencias_emitir_btn.setBackground(new java.awt.Color(0, 153, 204));
+        Licencias_emitir_btn.setBackground(new java.awt.Color(27, 140, 188));
+        Licencias_emitir_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_emitir_btn.setText("Emitir");
         Licencias_emitir_btn.setFocusable(false);
         jPanel2.add(Licencias_emitir_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 120, 40));
 
-        Licencias_renovar_btn.setBackground(new java.awt.Color(0, 153, 204));
+        Licencias_renovar_btn.setBackground(new java.awt.Color(27, 140, 188));
+        Licencias_renovar_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_renovar_btn.setText("Renovar");
         Licencias_renovar_btn.setFocusable(false);
         jPanel2.add(Licencias_renovar_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 120, 40));

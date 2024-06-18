@@ -45,16 +45,16 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        Alta_usuario_usuario = new RoundedTextField(15, grisOscuro);
+        Alta_usuario_usuario = new RoundedTextField(cornerRadius, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         Alta_usuario_tipodni = new RoundedComboBox(cornerRadius,grisOscuro);
         Busqueda_usuario_guardarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
-        Alta_usuario_numerodni1 = new RoundedTextField(15,grisOscuro);
+        Alta_usuario_numerodni1 = new RoundedTextField(cornerRadius,grisOscuro);
         Alta_usuario_tipodni1 = new RoundedComboBox(cornerRadius,grisOscuro);
         jLabel13 = new javax.swing.JLabel();
-        Busqueda_usuario_guardarBtn1 = new javax.swing.JButton();
+        Busqueda_usuario_guardarBtn1 = new RoundedButton(cornerRadius);
         volver_btn = new RoundedButton(cornerRadius);
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
@@ -208,7 +208,8 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel13, gridBagConstraints);
 
-        Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(0, 153, 204));
+        Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(27, 140, 188));
+        Busqueda_usuario_guardarBtn1.setForeground(new java.awt.Color(255, 255, 255));
         Busqueda_usuario_guardarBtn1.setText("Eliminar usuario");
         Busqueda_usuario_guardarBtn1.setBorder(null);
         Busqueda_usuario_guardarBtn1.setFocusable(false);

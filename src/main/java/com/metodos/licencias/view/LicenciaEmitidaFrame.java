@@ -25,9 +25,8 @@ public class LicenciaEmitidaFrame extends  JFrame {
         setIconImage(customIcon.getImage());
     
         //inicializo container
-        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licencia);
+        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licencia, this);
         setContentPane(licenciaEmitidaContainer);
-        
         
         pack();
         setSize(600, 690);

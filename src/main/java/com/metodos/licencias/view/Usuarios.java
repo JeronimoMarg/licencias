@@ -177,8 +177,8 @@ public class Usuarios extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Alta_usuario_tipodni, gridBagConstraints);
 
-        Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
-        Busqueda_usuario_guardarBtn.setForeground(new java.awt.Color(252, 252, 252));
+        Busqueda_usuario_guardarBtn.setBackground(new java.awt.Color(27, 140, 188));
+        Busqueda_usuario_guardarBtn.setForeground(new java.awt.Color(255, 255, 255));
         Busqueda_usuario_guardarBtn.setText("Guardar");
         Busqueda_usuario_guardarBtn.setBorder(null);
         Busqueda_usuario_guardarBtn.setFocusable(false);
