@@ -164,9 +164,10 @@ public class LicenciaService {
         List<Licencia> licenciasTipo = repository.findByTipoLicencia_Id(Long.parseLong(tipoLicencia.getAtributo2()));
         boolean retorno = 
         licenciasTipo.stream()
-        .map(l -> l.getTitular().getNumeroDocumento())
-        .filter(n -> n == Long.parseLong(numDNI))
-        .anyMatch(p -> true);
+        .filter(l -> l.getFinVigencia().isAfter(LocalDate.now()))   //me quedo con las licencias activas
+        .map(l -> l.getTitular().getNumeroDocumento())              //mapeo a num de documento de titulares
+        .filter(n -> n == Long.parseLong(numDNI))                   //filtro con el titular pasado como parametro
+        .anyMatch(p -> true);                                       //si tiene elementos retorna true (hay licencia activa para ese tipo y para ese titular)
         return retorno;
     }
 }
