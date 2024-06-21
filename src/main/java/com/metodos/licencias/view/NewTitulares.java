@@ -172,7 +172,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Alta_titular_clase, gridBagConstraints);
@@ -185,7 +184,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Alta_titular_gruposanguineo, gridBagConstraints);

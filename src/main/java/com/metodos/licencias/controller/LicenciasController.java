@@ -42,6 +42,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
     @Autowired
     public LicenciasController(InfoTitular infoTitular){
         this.infoTitular = infoTitular;
+        
     }
 
     @PostConstruct

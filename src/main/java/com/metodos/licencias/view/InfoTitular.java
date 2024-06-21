@@ -11,6 +11,8 @@ import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.util.Item;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,6 +66,7 @@ public class InfoTitular extends javax.swing.JPanel {
         mod_titular_altura = new RoundedTextField(cornerRadius,grisOscuro);
         mod_titular_esDonante = new javax.swing.JCheckBox();
         mod_titular_volverBtn = new RoundedButton(cornerRadius);
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -86,74 +89,195 @@ public class InfoTitular extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(252, 252, 252));
         jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Apellido");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 70, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 26;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel1, gridBagConstraints);
 
         jLabel3.setText("Tipo DNI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel3, gridBagConstraints);
 
         jLabel4.setText("Número DNI");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 90, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 23;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel4, gridBagConstraints);
 
         Mod_titular_gruposanguineo.setBackground(new java.awt.Color(252, 252, 252));
-        jPanel1.add(Mod_titular_gruposanguineo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 180, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Mod_titular_gruposanguineo, gridBagConstraints);
 
         jLabel5.setText("Fecha Nacimiento");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 120, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel5, gridBagConstraints);
 
         Mod_titular_fechanac.setBackground(new java.awt.Color(220, 220, 220));
-        jPanel1.add(Mod_titular_fechanac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 190, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(Mod_titular_fechanac, gridBagConstraints);
 
         jLabel6.setText("Grupo Sanguíneo");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         jLabel7.setText("Nombre");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel7, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Dirección");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel9, gridBagConstraints);
 
         jLabel11.setText("Calle");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
+        jPanel1.add(jLabel11, gridBagConstraints);
 
         jLabel12.setText("Altura");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 60, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 28;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
+        jPanel1.add(jLabel12, gridBagConstraints);
 
         Mod_titular_tipodni.setBackground(new java.awt.Color(252, 252, 252));
-        jPanel1.add(Mod_titular_tipodni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 180, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(Mod_titular_tipodni, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Información del titular");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        jPanel1.add(jLabel18, gridBagConstraints);
 
         Mod_titular_editar1.setBackground(new java.awt.Color(27, 140, 188));
         Mod_titular_editar1.setForeground(new java.awt.Color(255, 255, 255));
         Mod_titular_editar1.setText("Editar");
         Mod_titular_editar1.setFocusable(false);
-        jPanel1.add(Mod_titular_editar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 540, 120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
+        jPanel1.add(Mod_titular_editar1, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setText("Datos Personales");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        jPanel1.add(jLabel10, gridBagConstraints);
 
         mod_titular_apellido.setText("jTextField1");
-        jPanel1.add(mod_titular_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 190, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(mod_titular_apellido, gridBagConstraints);
 
         mod_titular_nombre.setText("jTextField2");
-        jPanel1.add(mod_titular_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 180, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(mod_titular_nombre, gridBagConstraints);
 
         mod_titular_nroDNI.setText("jTextField3");
         mod_titular_nroDNI.setEnabled(false);
-        jPanel1.add(mod_titular_nroDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 190, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(mod_titular_nroDNI, gridBagConstraints);
 
         mod_titular_calle.setText("jTextField1");
-        jPanel1.add(mod_titular_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 180, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
+        jPanel1.add(mod_titular_calle, gridBagConstraints);
 
         mod_titular_altura.setText("jTextField2");
-        jPanel1.add(mod_titular_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 190, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(mod_titular_altura, gridBagConstraints);
 
         mod_titular_esDonante.setBackground(new java.awt.Color(252, 252, 252));
         mod_titular_esDonante.setText("Es donante de órganos");
@@ -162,14 +286,37 @@ public class InfoTitular extends javax.swing.JPanel {
                 mod_titular_esDonanteActionPerformed(evt);
             }
         });
-        jPanel1.add(mod_titular_esDonante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 190, 20));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.ipadx = 47;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 15);
+        jPanel1.add(mod_titular_esDonante, gridBagConstraints);
 
         mod_titular_volverBtn.setBackground(new java.awt.Color(204, 204, 204));
         mod_titular_volverBtn.setForeground(new java.awt.Color(51, 51, 51));
         mod_titular_volverBtn.setText("Volver");
         mod_titular_volverBtn.setBorder(null);
         mod_titular_volverBtn.setFocusable(false);
-        jPanel1.add(mod_titular_volverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 543, 100, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
+        jPanel1.add(mod_titular_volverBtn, gridBagConstraints);
+
+        jPanel3.setBackground(new java.awt.Color(252, 252, 252));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
+        jPanel1.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -180,18 +327,23 @@ public class InfoTitular extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(252, 252, 252));
         jPanel2.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Licencias solicitadas");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 0, 0);
+        jPanel2.add(jLabel2, gridBagConstraints);
 
         Licencias_tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Num. licencia", "Inicio vig.", "Fin vig.", "Activa", "Clase"
+                "Nombre", "Apellido", "Tipo DNI", "Numero DNI", "Clase", "Grupo Sanguineo", "Donante"
             }
         ) {
             Class[] types = new Class [] {
@@ -211,49 +363,123 @@ public class InfoTitular extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Licencias_tabla);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 87, 630, 230));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 15;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 614;
+        gridBagConstraints.ipady = 210;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(17, 30, 0, 42);
+        jPanel2.add(jScrollPane1, gridBagConstraints);
 
         Licencias_emitirCopia_btn.setBackground(new java.awt.Color(27, 140, 188));
         Licencias_emitirCopia_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_emitirCopia_btn.setText("Emitir copia");
         Licencias_emitirCopia_btn.setFocusable(false);
-        jPanel2.add(Licencias_emitirCopia_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 340, 120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 30, 0, 0);
+        jPanel2.add(Licencias_emitirCopia_btn, gridBagConstraints);
 
         Licencias_emitir_btn.setBackground(new java.awt.Color(27, 140, 188));
         Licencias_emitir_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_emitir_btn.setText("Emitir");
         Licencias_emitir_btn.setFocusable(false);
-        jPanel2.add(Licencias_emitir_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 10, 20, 42);
+        jPanel2.add(Licencias_emitir_btn, gridBagConstraints);
 
         Licencias_renovar_btn.setBackground(new java.awt.Color(27, 140, 188));
         Licencias_renovar_btn.setForeground(new java.awt.Color(255, 255, 255));
         Licencias_renovar_btn.setText("Renovar");
         Licencias_renovar_btn.setFocusable(false);
-        jPanel2.add(Licencias_renovar_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, 120, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 60;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(23, 10, 0, 42);
+        jPanel2.add(Licencias_renovar_btn, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Seleccione una o más licencias");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 30, 0, 0);
+        jPanel2.add(jLabel8, gridBagConstraints);
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setText("Emitir licencia");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(30, 40, 0, 0);
+        jPanel2.add(jLabel13, gridBagConstraints);
 
         jLabel14.setText("Observaciones");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 40, 0, 0);
+        jPanel2.add(jLabel14, gridBagConstraints);
 
         jLabel15.setText("Clase");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 450, -1, -1));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 30, 0, 0);
+        jPanel2.add(jLabel15, gridBagConstraints);
 
         Licencias_emitir_clase.setBackground(new java.awt.Color(252, 252, 252));
-        jPanel2.add(Licencias_emitir_clase, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 180, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.ipadx = 108;
+        gridBagConstraints.ipady = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 30, 0, 42);
+        jPanel2.add(Licencias_emitir_clase, gridBagConstraints);
 
         mod_titular_observaciones.setColumns(20);
         mod_titular_observaciones.setLineWrap(true);
         mod_titular_observaciones.setRows(5);
         jScrollPane2.setViewportView(mod_titular_observaciones);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 410, 110));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 394;
+        gridBagConstraints.ipady = 94;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 40, 20, 0);
+        jPanel2.add(jScrollPane2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -295,6 +521,7 @@ public class InfoTitular extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField mod_titular_altura;

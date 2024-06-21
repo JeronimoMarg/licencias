@@ -203,7 +203,6 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
                         TitularDTO seleccionado = titularService.findByDNI(numDNI);
                         //inicializar interfaz siguiente
                         infoTitular.setTitular(seleccionado);
-                        JOptionPane.showMessageDialog(null, "Usuario seleccionado");
                         //MOSTRAR INTERFAZ
                         titularesGUI.getTitularesMain().switchScreen("InfoTitular");
                     }
