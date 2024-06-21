@@ -9,4 +9,5 @@ public interface LicenciaRepository extends JpaRepository<Licencia, Long> {
     boolean existsByTitular_Id(Long titularId);
     List<Licencia> findByTitular_Id(Long titularId);
     List<Licencia> findByTipoLicencia_Id(Long id);
+    List<Licencia> findByTitular_NumeroDocumento(long long1);
 }

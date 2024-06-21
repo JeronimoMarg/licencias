@@ -170,4 +170,14 @@ public class LicenciaService {
         .anyMatch(p -> true);                                       //si tiene elementos retorna true (hay licencia activa para ese tipo y para ese titular)
         return retorno;
     }
+
+    public List<LicenciaDTO> buscarLicenciasAsociadas(TitularDTO titularSeleccionado) {
+        //busca las licencias asociadas segun el numero de documento de un titular.
+        List<Licencia> licencias = repository.findByTitular_NumeroDocumento(Long.parseLong(titularSeleccionado.getNumDNI()));
+        return licencias.stream().map(l -> aDTO(l)).toList();
+    }
+
+    public Object esActiva(LicenciaDTO lic) {
+        return lic.getFinVigencia().after(lic.getInicioVigencia());
+    }
 }

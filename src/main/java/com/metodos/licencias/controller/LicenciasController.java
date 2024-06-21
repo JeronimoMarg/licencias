@@ -51,9 +51,30 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
 
         //listener del boton de emitir
         this.infoTitular.Licencias_emitir_btn.addActionListener(this);
+        this.infoTitular.Licencias_emitirCopia_btn.addActionListener(this);
 
         inicializar_cmbx();
+        inicializar_tabla();
 
+    }
+
+    private void inicializar_tabla() {
+        
+        TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
+        List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
+
+        tabla.setRowCount(0);
+        tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
+        Object[] row = new Object[5];
+        for(LicenciaDTO lic: licenciasAsociadas){
+            row[0] = lic.getNumeroLicencia();
+            row[1] = lic.getInicioVigencia();
+            row[2] = lic.getFinVigencia();
+            row[3] = licenciaService.esActiva(lic);
+            row[4] = lic.getTipoLicencia().getAtributo1();
+            tabla.addRow(row);
+        }
+        
     }
 
     private void inicializar_cmbx() {
@@ -62,7 +83,6 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         for(TipoLicencia tipo: tipos){
            // codigo previo: 
             infoTitular.Licencias_emitir_clase.addItem(new Item(tipo.getLetraClase(), Long.toString(tipo.getId())));
-           //infoTitular.Licencias_emitir_clase.addItem(tipo.getLetraClase());
         }
     }
 
@@ -114,6 +134,17 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     infoTitular.mostrarLicencia(licenciaDTO);
                 }
             }catch (Exception e1){
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        }else if(e.getSource() == this.infoTitular.Licencias_emitirCopia_btn){
+            try{
+                if(this.infoTitular.Licencias_tabla.getSelectedRow() >=0 ){
+                    //OBTENER EL ID DE LA LICENCIA.
+                    //EMITIR COPIA.
+                }else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
+                }
+            } catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
         }

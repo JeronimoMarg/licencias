@@ -191,7 +191,7 @@ public class InfoTitular extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Tipo DNI", "Numero DNI", "Clase", "Grupo Sanguineo", "Donante"
+                "Num. licencia", "Inicio vig.", "Fin vig.", "Activa", "Clase"
             }
         ) {
             Class[] types = new Class [] {
@@ -272,7 +272,7 @@ public class InfoTitular extends javax.swing.JPanel {
     public javax.swing.JButton Licencias_emitir_btn;
     public javax.swing.JComboBox<Item> Licencias_emitir_clase;
     public javax.swing.JButton Licencias_renovar_btn;
-    private javax.swing.JTable Licencias_tabla;
+    public javax.swing.JTable Licencias_tabla;
     public javax.swing.JButton Mod_titular_editar1;
     public com.toedter.calendar.JDateChooser Mod_titular_fechanac;
     public javax.swing.JComboBox<String> Mod_titular_gruposanguineo;
