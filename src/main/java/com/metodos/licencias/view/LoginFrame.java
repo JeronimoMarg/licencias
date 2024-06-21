@@ -22,14 +22,16 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame(MenuPrincipal menuPrincipal) {
-        initComponents();
-        mainMenu = menuPrincipal;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1280, 720);
         setTitle("Inicio de sesión");
         ImageIcon customIcon = new ImageIcon("logo.png");
         setIconImage(customIcon.getImage());
+        initComponents();
+        mainMenu = menuPrincipal;
+        setSize(1000, 720);
+        revalidate();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -144,7 +146,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 135, Short.MAX_VALUE)
+            .addGap(0, 146, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +167,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 135, Short.MAX_VALUE)
+            .addGap(0, 146, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,11 +199,11 @@ public class LoginFrame extends javax.swing.JFrame {
         panelFoto.setLayout(panelFotoLayout);
         panelFotoLayout.setHorizontalGroup(
             panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 328, Short.MAX_VALUE)
+            .addGap(0, 345, Short.MAX_VALUE)
         );
         panelFotoLayout.setVerticalGroup(
             panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 893, Short.MAX_VALUE)
+            .addGap(0, 693, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
