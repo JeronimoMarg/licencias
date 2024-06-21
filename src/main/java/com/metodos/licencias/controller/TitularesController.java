@@ -4,6 +4,7 @@
  */
 package com.metodos.licencias.controller;
 
+import com.metodos.licencias.DTO.LicenciaDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,7 @@ import com.metodos.licencias.exceptions.FormatErrorException;
 import com.metodos.licencias.logic.FactorSanguineo;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
+import com.metodos.licencias.service.LicenciaService;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
@@ -45,6 +47,8 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     @Autowired
     private TitularService titularService;
+    @Autowired
+    private LicenciaService licenciaService;
 
     @Autowired
     public TitularesController(NewTitulares titulares, InfoTitular infoTitular){
@@ -203,6 +207,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
                         TitularDTO seleccionado = titularService.findByDNI(numDNI);
                         //inicializar interfaz siguiente
                         infoTitular.setTitular(seleccionado);
+                        inicializar_tabla();
                         //MOSTRAR INTERFAZ
                         titularesGUI.getTitularesMain().switchScreen("InfoTitular");
                     }
@@ -243,6 +248,25 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
     public void setTitularesGUI(NewTitulares titulares) {
         this.titularesGUI=titulares;
+    }
+    
+    private void inicializar_tabla() {
+        
+        TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
+        List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
+
+        tabla.setRowCount(0);
+        tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
+        Object[] row = new Object[5];
+        for(LicenciaDTO lic: licenciasAsociadas){
+            row[0] = lic.getNumeroLicencia();
+            row[1] = lic.getInicioVigencia();
+            row[2] = lic.getFinVigencia();
+            row[3] = licenciaService.esActiva(lic);
+            row[4] = lic.getTipoLicencia();
+            tabla.addRow(row);
+        }
+        
     }
     
 }

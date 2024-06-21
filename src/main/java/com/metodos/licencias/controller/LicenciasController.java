@@ -55,28 +55,9 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         this.infoTitular.Licencias_emitirCopia_btn.addActionListener(this);
 
         inicializar_cmbx();
-        inicializar_tabla();
-
     }
 
-    private void inicializar_tabla() {
-        
-        TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
-        List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
-
-        tabla.setRowCount(0);
-        tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
-        Object[] row = new Object[5];
-        for(LicenciaDTO lic: licenciasAsociadas){
-            row[0] = lic.getNumeroLicencia();
-            row[1] = lic.getInicioVigencia();
-            row[2] = lic.getFinVigencia();
-            row[3] = licenciaService.esActiva(lic);
-            row[4] = lic.getTipoLicencia();
-            tabla.addRow(row);
-        }
-        
-    }
+    
 
     private void inicializar_cmbx() {
         //combo de tipo de licencias (clase)
