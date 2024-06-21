@@ -30,12 +30,13 @@ public class MenuPrincipal extends javax.swing.JFrame{
         this.panelTitulares = panelTitulares;
         
         //creacion Frame
-        JFrame frame = new JFrame("Licencias");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
+        //JFrame frame = new JFrame("Licencias");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1280, 720);
+        setTitle("Licencias");
         
         ImageIcon customIcon = new ImageIcon("logo.png");
-        frame.setIconImage(customIcon.getImage());
+        setIconImage(customIcon.getImage());
         
         
         //creacion paneles principales
@@ -54,12 +55,9 @@ public class MenuPrincipal extends javax.swing.JFrame{
       
         panelContenedor.add(mainPanel,BorderLayout.CENTER);
         
-        frame.setContentPane(panelContenedor);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        
-
+        setContentPane(panelContenedor);
+        pack();
+        setLocationRelativeTo(null);
     }
 
     private void barraSuperiorInit(JPanel barraSuperior) {
@@ -159,5 +157,8 @@ public class MenuPrincipal extends javax.swing.JFrame{
                 
     }
     
+    public void setVisible(){
+        setVisible(true);
+    }
     
 }

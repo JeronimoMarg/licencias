@@ -1,6 +1,7 @@
 package com.metodos.licencias;
 
 import com.metodos.licencias.controller.TitularesController;
+import com.metodos.licencias.view.LoginFrame;
 import com.metodos.licencias.view.MenuPrincipal;
 import com.metodos.licencias.view.Titulares;
 
@@ -26,7 +27,8 @@ public class LicenciasApplication {
         //SpringApplication.run(LicenciasApplication.class, args);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(LicenciasApplication.class).headless(false).run(args);
         MenuPrincipal menu = context.getBean(MenuPrincipal.class);
-        //menu.setVisible(true);
+        LoginFrame login = new LoginFrame(menu);
+        login.setVisible(true);
 
 	}
 

@@ -37,7 +37,6 @@ public class TitularesMain extends JPanel{
     public void switchScreen (String pantalla) {    
        cl.show(this, pantalla);
        revalidate();
-       
     }                                        
  
     
