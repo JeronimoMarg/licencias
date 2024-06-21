@@ -138,9 +138,14 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             }
         }else if(e.getSource() == this.infoTitular.Licencias_emitirCopia_btn){
             try{
-                if(this.infoTitular.Licencias_tabla.getSelectedRow() >=0 ){
+                int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
+                if( fila >=0 ){
                     //OBTENER EL ID DE LA LICENCIA.
+                    String numLicencia = (String) infoTitular.Licencias_tabla.getValueAt(fila, 0);
                     //EMITIR COPIA.
+                    validarEmisionCopia((boolean) infoTitular.Licencias_tabla.getValueAt(fila, 3));   //el 3 es para obtener el boolean de activa/inactiva
+                    licenciaService.emitirCopia(numLicencia);
+                    JOptionPane.showMessageDialog(null, "Copia emitida con exito");
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
                 }
@@ -149,6 +154,12 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             }
         }
 
+    }
+
+    private void validarEmisionCopia(boolean esActiva) {
+        if(!esActiva){
+            throw new LicenciaInactivaException("No es posible emitir una copia para una licencia no vigente.");
+        }
     }
 
     private void validarTitular(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {

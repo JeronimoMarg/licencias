@@ -33,4 +33,9 @@ public class Licencia {
     @ManyToOne
     private Titular titular;
     
+    private int numeroCopia;
+
+    public void aumentarNumCopia(){
+        numeroCopia++;
+    }
 }
