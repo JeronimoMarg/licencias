@@ -71,7 +71,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             row[1] = lic.getInicioVigencia();
             row[2] = lic.getFinVigencia();
             row[3] = licenciaService.esActiva(lic);
-            row[4] = lic.getTipoLicencia().getAtributo1();
+            row[4] = lic.getTipoLicencia();
             tabla.addRow(row);
         }
         
@@ -139,13 +139,17 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         }else if(e.getSource() == this.infoTitular.Licencias_emitirCopia_btn){
             try{
                 int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
-                if( fila >=0 ){
+                if(fila >=0 ){
                     //OBTENER EL ID DE LA LICENCIA.
                     String numLicencia = (String) infoTitular.Licencias_tabla.getValueAt(fila, 0);
                     //EMITIR COPIA.
                     validarEmisionCopia((boolean) infoTitular.Licencias_tabla.getValueAt(fila, 3));   //el 3 es para obtener el boolean de activa/inactiva
-                    licenciaService.emitirCopia(numLicencia);
-                    JOptionPane.showMessageDialog(null, "Copia emitida con exito");
+                    LicenciaDTO licenciaCopiada = licenciaService.emitirCopia(numLicencia);
+                    //PREGUNTAR SI SE QUIERE MOSTRAR INFO (lleva a imprimir)
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Emision de copia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                    if(respuesta == JOptionPane.YES_OPTION){
+                        infoTitular.mostrarLicencia(licenciaCopiada);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
                 }

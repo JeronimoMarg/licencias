@@ -182,12 +182,14 @@ public class LicenciaService {
         return lic.getFinVigencia().after(lic.getInicioVigencia());
     }
 
-    public void emitirCopia(String numLicencia) {
+    public LicenciaDTO emitirCopia(String numLicencia) {
         //PRIMERO BUSCA LA LICENCIA A EMITIR COPIA
         Licencia licenciaACopiar = repository.findByNumeroLicencia(Long.parseLong(numLicencia));
         //AUMENTA EL NUMERO DE LA COPIA
         licenciaACopiar.aumentarNumCopia();
         //LO GUARDA
         repository.save(licenciaACopiar);
+        //DEVUELVE EL DTO (para que se puedan mostrar los datos)
+        return aDTO(licenciaACopiar);
     }
 }
