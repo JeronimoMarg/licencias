@@ -94,7 +94,8 @@ public class LicenciaService {
             Date.from(licencia.getInicioVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
             Date.from(licencia.getFinVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
             new Item(licencia.getTipoLicencia().getLetraClase(), Long.toString(licencia.getTipoLicencia().getId())),
-            licencia.getObservaciones()
+            licencia.getObservaciones(),
+            licencia.getNumeroCopia()
         );
     }
 
@@ -105,7 +106,7 @@ public class LicenciaService {
         licencia.setTipoLicencia(buscarTipoLicencia(licenciaDTO.getTipoLicencia()));
         licencia.setEmitidaPor(new Tramite());
         licencia.setObservaciones(licenciaDTO.getObservaciones());
-        licencia.setNumeroCopia(0); //original
+        licencia.setNumeroCopia(0);     //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
         this.calcularVigencia(licencia);
         return licencia;
     }
@@ -182,9 +183,9 @@ public class LicenciaService {
         return lic.getFinVigencia().after(lic.getInicioVigencia());
     }
 
-    public LicenciaDTO emitirCopia(String numLicencia) {
+    public LicenciaDTO emitirCopia(Long numLicencia) {
         //PRIMERO BUSCA LA LICENCIA A EMITIR COPIA
-        Licencia licenciaACopiar = repository.findByNumeroLicencia(Long.parseLong(numLicencia));
+        Licencia licenciaACopiar = repository.findByNumeroLicencia(numLicencia);
         //AUMENTA EL NUMERO DE LA COPIA
         licenciaACopiar.aumentarNumCopia();
         //LO GUARDA

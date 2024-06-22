@@ -16,9 +16,18 @@ public class LicenciaDTO {
     private Date finVigencia;
     private Item tipoLicencia;
     private String observaciones;
+    private Integer numCopia;
 
     public LicenciaDTO(Item tipoLicencia, String observaciones){
         this.tipoLicencia = tipoLicencia;
         this.observaciones = observaciones;
+    }
+
+    public LicenciaDTO(Long numeroLicencia2, Date from, Date from2, Item item, String observaciones2) {
+        this.numeroLicencia = numeroLicencia2;
+        this.inicioVigencia = from;
+        this.finVigencia = from2;
+        this.tipoLicencia = item;
+        this.observaciones = observaciones2;
     }
 }

@@ -123,7 +123,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                 int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
                 if(fila >=0 ){
                     //OBTENER EL ID DE LA LICENCIA.
-                    String numLicencia = (String) infoTitular.Licencias_tabla.getValueAt(fila, 0);
+                    Long numLicencia = (Long) infoTitular.Licencias_tabla.getValueAt(fila, 0);
                     //EMITIR COPIA.
                     validarEmisionCopia((boolean) infoTitular.Licencias_tabla.getValueAt(fila, 3));   //el 3 es para obtener el boolean de activa/inactiva
                     LicenciaDTO licenciaCopiada = licenciaService.emitirCopia(numLicencia);

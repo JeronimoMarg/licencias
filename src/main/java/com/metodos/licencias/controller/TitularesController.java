@@ -257,13 +257,14 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
 
         tabla.setRowCount(0);
         tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
-        Object[] row = new Object[5];
+        Object[] row = new Object[6];
         for(LicenciaDTO lic: licenciasAsociadas){
             row[0] = lic.getNumeroLicencia();
             row[1] = lic.getInicioVigencia();
             row[2] = lic.getFinVigencia();
             row[3] = licenciaService.esActiva(lic);
             row[4] = lic.getTipoLicencia();
+            row[5] = lic.getNumCopia();
             tabla.addRow(row);
         }
         

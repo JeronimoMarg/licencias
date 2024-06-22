@@ -343,7 +343,7 @@ public class InfoTitular extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Num. Licencia", "Inicio vigencia", "Fin vigencia", "Activa", "Clase"
+                "Num. Licencia", "Inicio vigencia", "Fin vigencia", "Activa", "Clase", "Num Copia"
             }
         ) {
             Class[] types = new Class [] {
