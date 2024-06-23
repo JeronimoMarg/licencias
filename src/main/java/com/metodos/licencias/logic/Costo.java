@@ -11,8 +11,6 @@ import lombok.Data;
 @Entity(name="costos")
 
 @Data
-
-
 public class Costo {
     
     @Id

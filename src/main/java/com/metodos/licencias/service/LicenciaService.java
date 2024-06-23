@@ -93,6 +93,7 @@ public class LicenciaService {
             licencia.getNumeroLicencia(),
             Date.from(licencia.getInicioVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
             Date.from(licencia.getFinVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
+            licencia.getVigente(),
             new Item(licencia.getTipoLicencia().getLetraClase(), Long.toString(licencia.getTipoLicencia().getId())),
             licencia.getObservaciones(),
             licencia.getNumeroCopia()
@@ -108,6 +109,7 @@ public class LicenciaService {
         licencia.setObservaciones(licenciaDTO.getObservaciones());
         licencia.setNumeroCopia(0);     //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
         this.calcularVigencia(licencia);
+        licencia.setVigente(licenciaDTO.getVigente());
         return licencia;
     }
 
@@ -166,7 +168,7 @@ public class LicenciaService {
         List<Licencia> licenciasTipo = repository.findByTipoLicencia_Id(Long.parseLong(tipoLicencia.getAtributo2()));
         boolean retorno = 
         licenciasTipo.stream()
-        .filter(l -> l.getFinVigencia().isAfter(LocalDate.now()))   //me quedo con las licencias activas
+        .filter(l -> l.getFinVigencia().isAfter(LocalDate.now()) && l.getVigente())   //me quedo con las licencias activas
         .map(l -> l.getTitular().getNumeroDocumento())              //mapeo a num de documento de titulares
         .filter(n -> n == Long.parseLong(numDNI))                   //filtro con el titular pasado como parametro
         .anyMatch(p -> true);                                       //si tiene elementos retorna true (hay licencia activa para ese tipo y para ese titular)
@@ -180,7 +182,7 @@ public class LicenciaService {
     }
 
     public boolean esActiva(LicenciaDTO lic) {
-        return lic.getFinVigencia().after(lic.getInicioVigencia());
+        return lic.getFinVigencia().after(lic.getInicioVigencia()) && lic.getVigente();
     }
 
     public LicenciaDTO emitirCopia(Long numLicencia) {
@@ -192,5 +194,24 @@ public class LicenciaService {
         repository.save(licenciaACopiar);
         //DEVUELVE EL DTO (para que se puedan mostrar los datos)
         return aDTO(licenciaACopiar);
+    }
+
+    public Licencia renovarLicencia(Licencia licencia){
+        Licencia nuevaLicencia = new Licencia();
+        // copiar datos
+        nuevaLicencia.setEmitidaPor(licencia.getEmitidaPor());
+        nuevaLicencia.setNumeroCopia(1);
+        nuevaLicencia.setObservaciones(licencia.getObservaciones());
+        nuevaLicencia.setTipoLicencia(licencia.getTipoLicencia());
+        nuevaLicencia.setTitular(licencia.getTitular());
+        nuevaLicencia.setVigente(true);
+        calcularVigencia(nuevaLicencia);
+
+        repository.save(nuevaLicencia);
+        return nuevaLicencia;
+    }
+
+    public List<Licencia> findByTitular_IdAndNoVigente(Long titularId){
+        return repository.findByTitular_IdAndVigente(titularId, false);
     }
 }
