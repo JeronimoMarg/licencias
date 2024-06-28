@@ -116,7 +116,7 @@
         <Component class="javax.swing.JButton" name="Alta_titular_guardarBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="99" red="0" type="rgb"/>
+              <Color blue="bc" green="8c" red="1b" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fc" green="fc" red="fc" type="rgb"/>
@@ -291,6 +291,7 @@
               <Color blue="fc" green="fc" red="fc" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Es donante de &#xf3;rganos"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

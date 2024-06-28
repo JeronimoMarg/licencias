@@ -27,6 +27,7 @@ public class LoginFrame extends javax.swing.JFrame {
         ImageIcon customIcon = new ImageIcon("logo.png");
         setIconImage(customIcon.getImage());
         initComponents();
+        contrasenia.setEchoChar('●');
         mainMenu = menuPrincipal;
         setSize(1000, 720);
         revalidate();
@@ -51,10 +52,11 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new RoundedTextField(cornerRadius,grisOscuro);
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        contrasenia = new RoundedPasswordField(cornerRadius,grisOscuro);
         jButton1 = new RoundedButton(cornerRadius);
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        mostrarContrasenia = new javax.swing.JCheckBox();
         panelFoto = new PanelFoto();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +77,6 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.ipadx = 34;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -119,7 +120,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
-        jPanel3.add(jPasswordField1, gridBagConstraints);
+        jPanel3.add(contrasenia, gridBagConstraints);
 
         jButton1.setBackground(new java.awt.Color(27, 140, 188));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,7 +133,7 @@ public class LoginFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 15;
@@ -146,11 +147,11 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 146, Short.MAX_VALUE)
+            .addGap(0, 151, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -167,11 +168,11 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 146, Short.MAX_VALUE)
+            .addGap(0, 151, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -181,6 +182,21 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         jPanel3.add(jPanel5, gridBagConstraints);
+
+        mostrarContrasenia.setBackground(new java.awt.Color(252, 252, 252));
+        mostrarContrasenia.setText("Mostrar contraseña");
+        mostrarContrasenia.setFocusable(false);
+        mostrarContrasenia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                mostrarContrsenia(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
+        jPanel3.add(mostrarContrasenia, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -241,7 +257,16 @@ public class LoginFrame extends javax.swing.JFrame {
        dispose();
     }//GEN-LAST:event_loginButton
 
+    private void mostrarContrsenia(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mostrarContrsenia
+        if(mostrarContrasenia.isSelected()){
+           contrasenia.setEchoChar((char) 0);
+        }else{
+           contrasenia.setEchoChar('●');
+        }
+    }//GEN-LAST:event_mostrarContrsenia
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField contrasenia;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -251,8 +276,8 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JCheckBox mostrarContrasenia;
     private javax.swing.JPanel panelFoto;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,7 @@ package com.metodos.licencias.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -34,6 +35,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
         setTitle("Licencias");
+        setMinimumSize(new Dimension(800, 700));
         
         ImageIcon customIcon = new ImageIcon("logo.png");
         setIconImage(customIcon.getImage());

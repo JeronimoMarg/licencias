@@ -42,7 +42,7 @@ public class PantallaLogin extends javax.swing.JPanel {
         jPanel1 = new RoundedPanel(30);
         login_usuario = new RoundedTextField(15, grisOscuro);
         jLabel11 = new javax.swing.JLabel();
-        login_contrasenia = new RoundedTextField(15,grisOscuro);
+        login_contrasenia = new RoundedPasswordField(15,grisOscuro);
         jLabel12 = new javax.swing.JLabel();
         login_ingresarBtn = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();

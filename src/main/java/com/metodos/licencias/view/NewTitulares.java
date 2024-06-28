@@ -139,7 +139,7 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 30);
         jPanel1.add(jLabel12, gridBagConstraints);
 
-        Alta_titular_guardarBtn.setBackground(new java.awt.Color(0, 153, 204));
+        Alta_titular_guardarBtn.setBackground(new java.awt.Color(27, 140, 188));
         Alta_titular_guardarBtn.setForeground(new java.awt.Color(252, 252, 252));
         Alta_titular_guardarBtn.setText("Guardar");
         Alta_titular_guardarBtn.setBorder(null);
@@ -268,6 +268,7 @@ public class NewTitulares extends javax.swing.JPanel {
 
         Alta_titular_esdonante.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_esdonante.setText("Es donante de órganos");
+        Alta_titular_esdonante.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;

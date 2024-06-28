@@ -4,31 +4,37 @@
  */
 package com.metodos.licencias.view;
 
-/**
- *
- * @author valec
- */
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
-public class RoundedTextField extends JTextField {
+/**
+ *
+ * @author valec
+ */
+public class RoundedPasswordField extends JPasswordField {
+
+    
     private Shape shape;
     private int cornerRadius;
     Color borderColor;
-    public RoundedTextField(int radius, Color color) {
+    public RoundedPasswordField(int radius, Color color) {
         super();
         this.cornerRadius = radius;
         this.borderColor = color;
         this.setBorder(new CompoundBorder(
         new EmptyBorder(0, 10, 0, 0), // Adjust left inset here (10 pixels in this example)
         new LineBorder(borderColor))); // Optional: You can set a line border around the text field
-        
+        setEchoChar('●');
         setOpaque(false); 
     }
     
@@ -52,4 +58,6 @@ public class RoundedTextField extends JTextField {
          }
          return shape.contains(x, y);
     }
+
+
 }

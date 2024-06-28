@@ -180,6 +180,7 @@
         <Component class="javax.swing.JCheckBox" name="Alta_titular_esdonante">
           <Properties>
             <Property name="text" type="java.lang.String" value="Es donante de &#xf3;rganos"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Alta_titular_esdonanteActionPerformed"/>

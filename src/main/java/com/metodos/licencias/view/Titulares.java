@@ -126,6 +126,7 @@ public class Titulares extends javax.swing.JPanel {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         Alta_titular_esdonante.setText("Es donante de órganos");
+        Alta_titular_esdonante.setFocusable(false);
         Alta_titular_esdonante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Alta_titular_esdonanteActionPerformed(evt);

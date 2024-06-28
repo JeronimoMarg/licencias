@@ -124,6 +124,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Mod_titular_gruposanguineo, gridBagConstraints);
 
@@ -143,6 +144,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Mod_titular_fechanac, gridBagConstraints);
 
@@ -195,6 +197,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(Mod_titular_tipodni, gridBagConstraints);
 
@@ -210,6 +213,7 @@ public class InfoTitular extends javax.swing.JPanel {
         Mod_titular_editar1.setBackground(new java.awt.Color(27, 140, 188));
         Mod_titular_editar1.setForeground(new java.awt.Color(255, 255, 255));
         Mod_titular_editar1.setText("Editar");
+        Mod_titular_editar1.setBorder(null);
         Mod_titular_editar1.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -235,6 +239,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(mod_titular_apellido, gridBagConstraints);
 
@@ -245,6 +250,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(mod_titular_nombre, gridBagConstraints);
 
@@ -256,6 +262,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(mod_titular_nroDNI, gridBagConstraints);
 
@@ -266,6 +273,7 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel1.add(mod_titular_calle, gridBagConstraints);
 
@@ -276,11 +284,13 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 16;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(mod_titular_altura, gridBagConstraints);
 
         mod_titular_esDonante.setBackground(new java.awt.Color(252, 252, 252));
         mod_titular_esDonante.setText("Es donante de órganos");
+        mod_titular_esDonante.setFocusable(false);
         mod_titular_esDonante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mod_titular_esDonanteActionPerformed(evt);
@@ -395,12 +405,13 @@ public class InfoTitular extends javax.swing.JPanel {
         Licencias_emitir_btn.setText("Emitir");
         Licencias_emitir_btn.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.ipady = 25;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 10, 20, 42);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(4, 30, 20, 42);
         jPanel2.add(Licencias_emitir_btn, gridBagConstraints);
 
         Licencias_renovar_btn.setBackground(new java.awt.Color(27, 140, 188));
@@ -463,6 +474,7 @@ public class InfoTitular extends javax.swing.JPanel {
         jPanel2.add(Licencias_emitir_clase, gridBagConstraints);
 
         mod_titular_observaciones.setColumns(20);
+        mod_titular_observaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mod_titular_observaciones.setLineWrap(true);
         mod_titular_observaciones.setRows(5);
         jScrollPane2.setViewportView(mod_titular_observaciones);
