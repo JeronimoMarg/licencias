@@ -12,6 +12,7 @@ import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.Licencia;
 import com.metodos.licencias.logic.TipoLicencia;
+import com.metodos.licencias.logic.TipoTramite;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
 import com.metodos.licencias.repository.LicenciaRepository;
@@ -104,7 +105,7 @@ public class LicenciaService {
         Licencia licencia = new Licencia();
         licencia.setTitular(titularService.findByDNI_entidad(titularDTO.getNumDNI()));
         licencia.setTipoLicencia(buscarTipoLicencia(licenciaDTO.getTipoLicencia()));
-        licencia.setEmitidaPor(new Tramite());
+        licencia.setEmitidaPor(new Tramite(TipoTramite.EMISION));
         licencia.setObservaciones(licenciaDTO.getObservaciones());
         licencia.setNumeroCopia(0);                              //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
         licencia.setHabilitadaRenovacion(false);        //habilitadaRenovacion sera solamente true cuando se modifique el titular
@@ -215,7 +216,7 @@ public class LicenciaService {
     public LicenciaDTO renovarLicencia(Long numLicencia) {
         Licencia licencia = repository.findByNumeroLicencia(numLicencia);
         Licencia nuevaLicencia = new Licencia();
-        nuevaLicencia.setEmitidaPor(new Tramite());
+        nuevaLicencia.setEmitidaPor(new Tramite(TipoTramite.RENOVACION));
         nuevaLicencia.setNumeroCopia(0);
         nuevaLicencia.setObservaciones(licencia.getObservaciones());
         nuevaLicencia.setTipoLicencia(licencia.getTipoLicencia());

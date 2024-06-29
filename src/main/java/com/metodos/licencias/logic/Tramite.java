@@ -20,12 +20,14 @@ public class Tramite {
     @GeneratedValue
     private Long id;
     private LocalDate fechaRealizacion;
+    private TipoTramite tipoTramite;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_usuario")
     private Usuario usuarioAdministrativo;
 
-    public Tramite (){
+    public Tramite (TipoTramite tipo){
+        this.tipoTramite = tipo;
         this.fechaRealizacion = LocalDate.now();
         //this.usuarioAdministrativo = obtenerUsuario();
     }
