@@ -3,6 +3,8 @@ package com.metodos.licencias.logic;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,6 +24,7 @@ public class Tramite {
     @GeneratedValue
     private Long id;
     private LocalDate fechaRealizacion;
+    @Enumerated(EnumType.STRING)
     private TipoTramite tipoTramite;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -31,7 +34,7 @@ public class Tramite {
     public Tramite (TipoTramite tipo){
         this.tipoTramite = tipo;
         this.fechaRealizacion = LocalDate.now();
-        //this.usuarioAdministrativo = obtenerUsuario();
+        this.usuarioAdministrativo = UsuarioLogeado.getUsuarioLogeado();
     }
     
 }

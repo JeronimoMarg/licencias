@@ -84,6 +84,7 @@ public class LicenciaService {
     public LicenciaDTO guardarLicencia(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
         //guarda la licencia en la bd
         Licencia licencia = aEntidad(licenciaDTO, titularDTO);
+        licencia.setEmitidaPor(new Tramite(TipoTramite.EMISION));
         repository.save(licencia);
         return (aDTO(licencia));    //se retorna el DTO para poder actualizarlo y que muestre los datos correctamente.
     }

@@ -25,6 +25,7 @@ public class VentanaEmergente extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**

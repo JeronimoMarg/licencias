@@ -134,6 +134,7 @@ public class LoginFrame extends javax.swing.JFrame {
         loginBtn.setForeground(new java.awt.Color(255, 255, 255));
         loginBtn.setText("Aceptar");
         loginBtn.setBorder(null);
+        loginBtn.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
