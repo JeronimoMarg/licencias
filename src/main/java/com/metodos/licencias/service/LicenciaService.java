@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Date;
 import org.springframework.stereotype.Service;
 import com.metodos.licencias.util.Item;
@@ -91,7 +92,6 @@ public class LicenciaService {
             licencia.getNumeroLicencia(),
             Date.from(licencia.getInicioVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
             Date.from(licencia.getFinVigencia().atStartOfDay(ZoneId.systemDefault()).toInstant()),
-            //licencia.getVigente(),
             new Item(licencia.getTipoLicencia().getLetraClase(), Long.toString(licencia.getTipoLicencia().getId())),
             licencia.getObservaciones(),
             licencia.getNumeroCopia()
@@ -99,15 +99,17 @@ public class LicenciaService {
     }
 
     private Licencia aEntidad(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
+        //ESTE METODO SOLO SE USA CUANDO SE QUIERE CREAR UNA LICENCIA POR PRIMERA VEZ
         
         Licencia licencia = new Licencia();
         licencia.setTitular(titularService.findByDNI_entidad(titularDTO.getNumDNI()));
         licencia.setTipoLicencia(buscarTipoLicencia(licenciaDTO.getTipoLicencia()));
         licencia.setEmitidaPor(new Tramite());
         licencia.setObservaciones(licenciaDTO.getObservaciones());
-        licencia.setNumeroCopia(0);     //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
+        licencia.setNumeroCopia(0);                              //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
+        licencia.setHabilitadaRenovacion(false);        //habilitadaRenovacion sera solamente true cuando se modifique el titular
+        licencia.setObsoleta(false);                                //sera solamente true cuando se haya renovado
         this.calcularVigencia(licencia);
-        //licencia.setVigente(licenciaDTO.getVigente());
         return licencia;
     }
 
@@ -166,7 +168,7 @@ public class LicenciaService {
         List<Licencia> licenciasTipo = repository.findByTipoLicencia_Id(Long.parseLong(tipoLicencia.getAtributo2()));
         boolean retorno = 
         licenciasTipo.stream()
-        .filter(l -> l.getFinVigencia().isAfter(LocalDate.now()) /*&& l.getVigente()*/)   //me quedo con las licencias activas
+        .filter(l -> l.getFinVigencia().isAfter(LocalDate.now()))   //me quedo con las licencias activas
         .map(l -> l.getTitular().getNumeroDocumento())              //mapeo a num de documento de titulares
         .filter(n -> n == Long.parseLong(numDNI))                   //filtro con el titular pasado como parametro
         .anyMatch(p -> true);                                       //si tiene elementos retorna true (hay licencia activa para ese tipo y para ese titular)
@@ -176,11 +178,11 @@ public class LicenciaService {
     public List<LicenciaDTO> buscarLicenciasAsociadas(TitularDTO titularSeleccionado) {
         //busca las licencias asociadas segun el numero de documento de un titular.
         List<Licencia> licencias = repository.findByTitular_NumeroDocumento(Long.parseLong(titularSeleccionado.getNumDNI()));
-        return licencias.stream().map(l -> aDTO(l)).toList();
+        return licencias.stream().filter(l -> !l.getObsoleta()).map(l -> aDTO(l)).toList();
     }
 
     public boolean esActiva(LicenciaDTO lic) {
-        return lic.getFinVigencia().after(lic.getInicioVigencia()) /* && lic.getVigente() */;
+        return lic.getFinVigencia().after(lic.getInicioVigencia());
     }
 
     public LicenciaDTO emitirCopia(Long numLicencia) {
@@ -194,24 +196,37 @@ public class LicenciaService {
         return aDTO(licenciaACopiar);
     }
 
-    /*
-    public Licencia renovarLicencia(Licencia licencia){
+    public void habilitarRenovacionLicencias(TitularDTO titularSeleccionado) {
+        //busca todas las licencias asociadas al titular y las habilita para renovacion
+        List<Licencia> licencias = repository.findByTitular_NumeroDocumento(Long.parseLong(titularSeleccionado.getNumDNI()));
+        licencias.stream().forEach(l -> l.setHabilitadaRenovacion(true));
+        repository.saveAll(licencias);
+    }
+
+    public boolean puedeRenovarse(Long numLicencia) {
+        //sera true (podra renovarse) si:
+        //  1. la licencia esta vencida
+        //  2. la licencia esta habilitada para la renovacion
+        Licencia licencia = repository.findByNumeroLicencia(numLicencia);
+        boolean retorno = licencia.getHabilitadaRenovacion() || LocalDate.now().isAfter(licencia.getFinVigencia());
+        return retorno;
+    }
+
+    public LicenciaDTO renovarLicencia(Long numLicencia) {
+        Licencia licencia = repository.findByNumeroLicencia(numLicencia);
         Licencia nuevaLicencia = new Licencia();
-        // copiar datos
-        nuevaLicencia.setEmitidaPor(licencia.getEmitidaPor());
-        nuevaLicencia.setNumeroCopia(1);
+        nuevaLicencia.setEmitidaPor(new Tramite());
+        nuevaLicencia.setNumeroCopia(0);
         nuevaLicencia.setObservaciones(licencia.getObservaciones());
         nuevaLicencia.setTipoLicencia(licencia.getTipoLicencia());
         nuevaLicencia.setTitular(licencia.getTitular());
-        nuevaLicencia.setVigente(true);
+        nuevaLicencia.setHabilitadaRenovacion(false);
         calcularVigencia(nuevaLicencia);
-
         repository.save(nuevaLicencia);
-        return nuevaLicencia;
-    }
 
-    public List<Licencia> findByTitular_IdAndNoVigente(Long titularId){
-        return repository.findByTitular_IdAndVigente(titularId, false);
+        licencia.setObsoleta(true);
+        repository.save(licencia);
+        
+        return aDTO(nuevaLicencia);
     }
-    */
 }

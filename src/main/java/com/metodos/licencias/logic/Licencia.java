@@ -21,7 +21,8 @@ public class Licencia {
 
     private LocalDate inicioVigencia;
     private LocalDate finVigencia;
-    //private Boolean vigente;
+    private Boolean habilitadaRenovacion;           //INDICA SI PUEDE RENOVARSE LA LICENCIA O NO.
+    private Boolean obsoleta;                       //INDICA QUE LA LICENCIA YA HA SIDO RENOVADA. ES OBSOLETA. NO SE USARA MAS. SOLAMENTE PARA EL HISTORIAL.
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private TipoLicencia tipoLicencia;

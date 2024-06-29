@@ -147,6 +147,12 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     //OBTENER EL ID DE LA LICENCIA.
                     Long numLicencia = (Long) infoTitular.Licencias_tabla.getValueAt(fila, 0);
                     //RENOVAR LICENCIA
+                    validarRenovacionLicencia(numLicencia);
+                    LicenciaDTO licenciaRenovada = licenciaService.renovarLicencia(numLicencia);
+                    int respuesta = JOptionPane.showConfirmDialog(null, "Renovacion de licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                    if(respuesta == JOptionPane.YES_OPTION){
+                        infoTitular.mostrarLicencia(licenciaRenovada);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para renovarla.");
                 }
@@ -157,9 +163,15 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
 
     }
 
+    private void validarRenovacionLicencia(Long numLicencia) {
+        if(licenciaService.puedeRenovarse(numLicencia)){
+            throw new RenovacionException("La licencia seleccionada para renovar tiene que estar no vigente o asociada a un titular con datos modificados");
+        }
+    }
+
     private void validarEmisionCopia(boolean esActiva) {
         if(!esActiva){
-            throw new LicenciaInactivaException("No es posible emitir una copia para una licencia no vigente.");
+            throw new LicenciaInactivaException("La licencia seleccionada para emitir copia tiene que estar vigente.");
         }
     }
 
