@@ -21,7 +21,7 @@ public class Licencia {
 
     private LocalDate inicioVigencia;
     private LocalDate finVigencia;
-    private Boolean vigente;
+    //private Boolean vigente;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private TipoLicencia tipoLicencia;

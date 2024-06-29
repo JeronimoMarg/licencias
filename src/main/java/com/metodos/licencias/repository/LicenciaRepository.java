@@ -8,7 +8,7 @@ import com.metodos.licencias.logic.Licencia;
 public interface LicenciaRepository extends JpaRepository<Licencia, Long> {
     boolean existsByTitular_Id(Long titularId);
     List<Licencia> findByTitular_Id(Long titularId);
-    List<Licencia> findByTitular_IdAndVigente(Long titularId, Boolean vigente);
+    //List<Licencia> findByTitular_IdAndVigente(Long titularId, Boolean vigente);
     List<Licencia> findByTipoLicencia_Id(Long id);
     List<Licencia> findByTitular_NumeroDocumento(Long long1);
     Licencia findByNumeroLicencia(Long long1);

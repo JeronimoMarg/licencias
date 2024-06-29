@@ -14,7 +14,7 @@ public class LicenciaDTO {
     private Long numeroLicencia;
     private Date inicioVigencia;
     private Date finVigencia;
-    private Boolean vigente;
+    //private Boolean vigente;
     private Item tipoLicencia;
     private String observaciones;
     private Integer numCopia;
