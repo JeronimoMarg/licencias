@@ -10,6 +10,9 @@ import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.view.Usuarios;
 import com.metodos.licencias.service.UsuarioService;
 import com.metodos.licencias.logic.Usuario;
+import com.metodos.licencias.logic.UsuarioLogeado;
+import com.metodos.licencias.view.LoginFrame;
+import com.metodos.licencias.view.VentanaEmergente;
 import jakarta.annotation.PostConstruct;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +20,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.String;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -31,11 +36,13 @@ public class UsuariosController{
     
     private UsuarioService usuarioService;
     private Usuarios usuarioView;
+    private LoginFrame loginView;
 
     @Autowired
-    public UsuariosController(UsuarioService userService, Usuarios usuarioView) {
+    public UsuariosController(UsuarioService userService, Usuarios usuarioView, LoginFrame login) {
         this.usuarioService = userService;
         this.usuarioView = usuarioView;
+        this.loginView = login;
     }
 
     @PostConstruct
@@ -44,6 +51,7 @@ public class UsuariosController{
         this.usuarioView.addSaveButtonListener(new SaveButtonListener());
         this.usuarioView.addSearchButtonListener(new SearchButtonListener());
         this.setupTableDoubleClick();
+        this.loginView.addLoginButtonListener(new LoginButtonListener());
         
         //combo de tipo de documentos
         TipoDocumento[] documentos = TipoDocumento.values();
@@ -113,6 +121,32 @@ public class UsuariosController{
             listaUsuarios = usuarioService.busquedaFiltrosUsuario(usuarioView.getBusquedaNombreUsuario(),usuarioView.getBusquedaRol(),usuarioView.getBusquedaTipoDocumento(),usuarioView.getBusquedaNroDocumento());
             usuarioView.clearTable();
             llenarTabla(listaUsuarios);
+        }
+    }
+    
+    public class LoginButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            
+            UsuarioDTO usuarioIngresado = loginView.getUsuarioDTO();
+            System.out.println(usuarioIngresado.getUsuario());
+            System.out.println(usuarioIngresado.getContrasenia());
+            try {
+                if(usuarioService.usuarioExistente(usuarioIngresado.getUsuario())){
+                    Usuario usuarioLogeado = usuarioService.validarContrasenia(usuarioIngresado.getUsuario(), usuarioIngresado.getContrasenia());
+                    if(usuarioLogeado != null){
+                        UsuarioLogeado.setUsuarioLogeado(usuarioLogeado);
+                        loginView.mostrarMenuPrincipal();
+                    }else{
+                        new VentanaEmergente("La contraseña ingresada es incorrecta");
+                    }
+                }
+                else{
+                    new VentanaEmergente("El usuario ingresado no existe");
+                }
+            } catch (Exception ex) {
+                new VentanaEmergente("No se permiten valores nulos");
+            }
         }
     }
     

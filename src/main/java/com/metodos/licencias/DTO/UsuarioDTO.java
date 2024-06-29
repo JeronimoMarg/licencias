@@ -4,6 +4,7 @@
  */
 package com.metodos.licencias.DTO;
 
+import com.metodos.licencias.logic.Rol;
 import lombok.Data;
 
 /**
@@ -32,5 +33,11 @@ public class UsuarioDTO {
         
     }
     
+     public UsuarioDTO(String usuario, String contrasenia) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+    }
+    
+     
     
 }

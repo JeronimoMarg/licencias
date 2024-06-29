@@ -16,5 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>, JpaSpeci
     Usuario findFirstByNombreUsuario(String nombreUsuario);
 
     Usuario findFirstByTipoDocumentoAndNroDocumento(TipoDocumento tipoDocumento, String nroDocumento);
+
+    Usuario findFirstByNombreUsuarioAndContrasenia(String nombreUsuario, String contrasenia);
     
 }

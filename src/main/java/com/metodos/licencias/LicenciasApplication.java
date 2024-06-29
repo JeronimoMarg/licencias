@@ -26,9 +26,7 @@ public class LicenciasApplication {
                 
         //SpringApplication.run(LicenciasApplication.class, args);
         ConfigurableApplicationContext context = new SpringApplicationBuilder(LicenciasApplication.class).headless(false).run(args);
-        MenuPrincipal menu = context.getBean(MenuPrincipal.class);
-        LoginFrame login = new LoginFrame(menu);
-        login.setVisible(true);
+        LoginFrame login = context.getBean(LoginFrame.class);
 
 	}
 

@@ -4,14 +4,20 @@
  */
 package com.metodos.licencias.view;
 
+import com.metodos.licencias.DTO.UsuarioDTO;
+import com.metodos.licencias.controller.UsuariosController;
+import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author valec
  */
+@Component
 public class LoginFrame extends javax.swing.JFrame {
 
     private int cornerRadius = 15;
@@ -21,6 +27,7 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * Creates new form LoginFrame
      */
+    @Autowired
     public LoginFrame(MenuPrincipal menuPrincipal) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Inicio de sesión");
@@ -32,6 +39,7 @@ public class LoginFrame extends javax.swing.JFrame {
         setSize(1000, 720);
         revalidate();
         setLocationRelativeTo(null);
+        setVisible(true);
         
     }
 
@@ -50,10 +58,10 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new RoundedTextField(cornerRadius,grisOscuro);
+        nombreUsuario = new RoundedTextField(cornerRadius,grisOscuro);
         jLabel3 = new javax.swing.JLabel();
         contrasenia = new RoundedPasswordField(cornerRadius,grisOscuro);
-        jButton1 = new RoundedButton(cornerRadius);
+        loginBtn = new RoundedButton(cornerRadius);
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         mostrarContrasenia = new javax.swing.JCheckBox();
@@ -91,8 +99,8 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 5, 10);
         jPanel3.add(jLabel2, gridBagConstraints);
 
-        jTextField1.setBackground(new java.awt.Color(252, 252, 252));
-        jTextField1.setBorder(null);
+        nombreUsuario.setBackground(new java.awt.Color(252, 252, 252));
+        nombreUsuario.setBorder(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -102,7 +110,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
-        jPanel3.add(jTextField1, gridBagConstraints);
+        jPanel3.add(nombreUsuario, gridBagConstraints);
 
         jLabel3.setText("Contraseña");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -122,15 +130,10 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
         jPanel3.add(contrasenia, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(27, 140, 188));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Aceptar");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButton(evt);
-            }
-        });
+        loginBtn.setBackground(new java.awt.Color(27, 140, 188));
+        loginBtn.setForeground(new java.awt.Color(255, 255, 255));
+        loginBtn.setText("Aceptar");
+        loginBtn.setBorder(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -139,7 +142,7 @@ public class LoginFrame extends javax.swing.JFrame {
         gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(30, 10, 0, 10);
-        jPanel3.add(jButton1, gridBagConstraints);
+        jPanel3.add(loginBtn, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(252, 252, 252));
 
@@ -252,11 +255,6 @@ public class LoginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButton
-       mainMenu.setVisible();
-       dispose();
-    }//GEN-LAST:event_loginButton
-
     private void mostrarContrsenia(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mostrarContrsenia
         if(mostrarContrasenia.isSelected()){
            contrasenia.setEchoChar((char) 0);
@@ -265,9 +263,12 @@ public class LoginFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mostrarContrsenia
 
+    public void addLoginButtonListener(UsuariosController.LoginButtonListener loginButtonListener) {
+        loginBtn.addActionListener(loginButtonListener);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField contrasenia;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -276,8 +277,26 @@ public class LoginFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton loginBtn;
     private javax.swing.JCheckBox mostrarContrasenia;
+    private javax.swing.JTextField nombreUsuario;
     private javax.swing.JPanel panelFoto;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarMenuPrincipal() {
+        mainMenu.setVisible();
+       dispose();
+    }
+    
+    public UsuarioDTO getUsuarioDTO(){
+        
+        char[] passwordChars = contrasenia.getPassword();
+                String password = new String(passwordChars);
+        
+        return new UsuarioDTO(
+        nombreUsuario.getText(),
+        password
+        );
+    }
+    
 }

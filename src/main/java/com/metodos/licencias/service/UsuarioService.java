@@ -135,4 +135,9 @@ public class UsuarioService {
         }
         
     }
+    
+    public Usuario validarContrasenia(String nombreUsuario, String contrasenia){
+        return uRepository.findFirstByNombreUsuarioAndContrasenia(nombreUsuario, contrasenia);
+    }
+    
 }
