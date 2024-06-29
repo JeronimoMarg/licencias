@@ -178,7 +178,7 @@ public class LicenciaService {
     public List<LicenciaDTO> buscarLicenciasAsociadas(TitularDTO titularSeleccionado) {
         //busca las licencias asociadas segun el numero de documento de un titular.
         List<Licencia> licencias = repository.findByTitular_NumeroDocumento(Long.parseLong(titularSeleccionado.getNumDNI()));
-        return licencias.stream().filter(l -> !l.getObsoleta()).map(l -> aDTO(l)).toList();
+        return licencias.stream().filter(l -> !l.isObsoleta()).map(l -> aDTO(l)).toList();
     }
 
     public boolean esActiva(LicenciaDTO lic) {
@@ -208,7 +208,7 @@ public class LicenciaService {
         //  1. la licencia esta vencida
         //  2. la licencia esta habilitada para la renovacion
         Licencia licencia = repository.findByNumeroLicencia(numLicencia);
-        boolean retorno = licencia.getHabilitadaRenovacion() || LocalDate.now().isAfter(licencia.getFinVigencia());
+        boolean retorno = licencia.isHabilitadaRenovacion() || LocalDate.now().isAfter(licencia.getFinVigencia());
         return retorno;
     }
 

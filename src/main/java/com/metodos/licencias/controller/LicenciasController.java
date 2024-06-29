@@ -164,7 +164,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
     }
 
     private void validarRenovacionLicencia(Long numLicencia) {
-        if(licenciaService.puedeRenovarse(numLicencia)){
+        if(!licenciaService.puedeRenovarse(numLicencia)){
             throw new RenovacionException("La licencia seleccionada para renovar tiene que estar no vigente o asociada a un titular con datos modificados");
         }
     }

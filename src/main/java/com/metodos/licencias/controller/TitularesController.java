@@ -215,6 +215,7 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
                 }
             } catch (Exception e1) {
                 JOptionPane.showMessageDialog(null, e1.getMessage());
+                e1.printStackTrace();
             }
         } 
     }
