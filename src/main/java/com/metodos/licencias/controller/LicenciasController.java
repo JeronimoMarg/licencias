@@ -53,6 +53,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         //listener del boton de emitir
         this.infoTitular.Licencias_emitir_btn.addActionListener(this);
         this.infoTitular.Licencias_emitirCopia_btn.addActionListener(this);
+        this.infoTitular.Licencias_renovar_btn.addActionListener(this);
 
         inicializar_cmbx();
     }
@@ -136,6 +137,20 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
                 }
             } catch (Exception e1){
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        }
+        else if (e.getSource() == this.infoTitular.Licencias_renovar_btn){
+            try{
+                int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
+                if(fila>=0){
+                    //OBTENER EL ID DE LA LICENCIA.
+                    Long numLicencia = (Long) infoTitular.Licencias_tabla.getValueAt(fila, 0);
+                    //RENOVAR LICENCIA
+                }else{
+                    JOptionPane.showMessageDialog(null, "Seleccione una licencia para renovarla.");
+                }
+            }catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
         }
