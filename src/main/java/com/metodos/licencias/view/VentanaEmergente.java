@@ -6,6 +6,7 @@ package com.metodos.licencias.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 /**
@@ -24,6 +25,8 @@ public class VentanaEmergente extends javax.swing.JFrame {
         setMinimumSize(new Dimension(300, 200));
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        ImageIcon customIcon = new ImageIcon("logo.png");
+        setIconImage(customIcon.getImage());
         setLocationRelativeTo(null);
         setVisible(true);
     }

@@ -19,9 +19,9 @@ import com.metodos.licencias.DTO.TitularDTO;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.LicenciaService;
 import com.metodos.licencias.service.TipoLicenciaService;
-import com.metodos.licencias.service.TitularService;
 import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.util.Item;
+import com.metodos.licencias.view.VentanaEmergente;
 
 import jakarta.annotation.PostConstruct;
 
@@ -110,8 +110,8 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
              try{
                 validarLicencia(licenciaDTO, titularDTO);
                 validarTitular(licenciaDTO, titularDTO);
-                JOptionPane.showMessageDialog(null, "Paso validacion");
                 licenciaDTO = licenciaService.guardarLicencia(licenciaDTO, titularDTO);
+                inicializar_tabla();
                 int respuesta = JOptionPane.showConfirmDialog(null, "Licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                 if(respuesta == JOptionPane.YES_OPTION){
                     infoTitular.mostrarLicencia(licenciaDTO);
@@ -193,6 +193,26 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         if(licenciaService.claseBError(titularDTO2.getNumDNI(),licenciaDTO2.getTipoLicencia().getAtributo1())){
             throw new ClaseBErrorException("El titular no cumple con los requisitos de vigencia de clase B asociada.");
         } 
+    }
+    
+    private void inicializar_tabla() {
+        
+        TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
+        List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
+
+        tabla.setRowCount(0);
+        tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
+        Object[] row = new Object[6];
+        for(LicenciaDTO lic: licenciasAsociadas){
+            row[0] = lic.getNumeroLicencia();
+            row[1] = lic.getInicioVigencia();
+            row[2] = lic.getFinVigencia();
+            row[3] = licenciaService.esActiva(lic);
+            row[4] = lic.getTipoLicencia();
+            row[5] = lic.getNumCopia();
+            tabla.addRow(row);
+        }
+        
     }
     
 }

@@ -54,7 +54,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         Alta_usuario_numerodni1 = new RoundedTextField(cornerRadius,grisOscuro);
         Alta_usuario_tipodni1 = new RoundedComboBox(cornerRadius,grisOscuro);
         jLabel13 = new javax.swing.JLabel();
-        Busqueda_usuario_guardarBtn1 = new RoundedButton(cornerRadius);
+        eliminarBtn = new RoundedButton(cornerRadius);
         volver_btn = new RoundedButton(cornerRadius);
         contraseniaField = new RoundedPasswordField(cornerRadius,grisOscuro);
         jPanel2 = new javax.swing.JPanel();
@@ -220,14 +220,14 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
         jPanel1.add(jLabel13, gridBagConstraints);
 
-        Busqueda_usuario_guardarBtn1.setBackground(new java.awt.Color(27, 140, 188));
-        Busqueda_usuario_guardarBtn1.setForeground(new java.awt.Color(255, 255, 255));
-        Busqueda_usuario_guardarBtn1.setText("Eliminar usuario");
-        Busqueda_usuario_guardarBtn1.setBorder(null);
-        Busqueda_usuario_guardarBtn1.setFocusable(false);
-        Busqueda_usuario_guardarBtn1.addActionListener(new java.awt.event.ActionListener() {
+        eliminarBtn.setBackground(new java.awt.Color(27, 140, 188));
+        eliminarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        eliminarBtn.setText("Eliminar usuario");
+        eliminarBtn.setBorder(null);
+        eliminarBtn.setFocusable(false);
+        eliminarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Busqueda_usuario_guardarBtn1ActionPerformed(evt);
+                eliminarBtnActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -236,7 +236,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.ipady = 25;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
-        jPanel1.add(Busqueda_usuario_guardarBtn1, gridBagConstraints);
+        jPanel1.add(eliminarBtn, gridBagConstraints);
 
         volver_btn.setBackground(new java.awt.Color(204, 204, 204));
         volver_btn.setForeground(new java.awt.Color(51, 51, 51));
@@ -275,6 +275,7 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 30);
         jPanel1.add(jPanel2, gridBagConstraints);
 
         mostrarContrasenia.setBackground(new java.awt.Color(252, 252, 252));
@@ -316,9 +317,9 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_editarBtnActionPerformed
 
-    private void Busqueda_usuario_guardarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Busqueda_usuario_guardarBtn1ActionPerformed
+    private void eliminarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Busqueda_usuario_guardarBtn1ActionPerformed
+    }//GEN-LAST:event_eliminarBtnActionPerformed
 
     private void volver_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver_btnActionPerformed
        main.switchScreen("Usuarios");
@@ -339,9 +340,9 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> Alta_usuario_tipodni;
     private javax.swing.JComboBox<String> Alta_usuario_tipodni1;
     private javax.swing.JTextField Alta_usuario_usuario;
-    private javax.swing.JButton Busqueda_usuario_guardarBtn1;
     private javax.swing.JPasswordField contraseniaField;
     private javax.swing.JButton editarBtn;
+    private javax.swing.JButton eliminarBtn;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -428,6 +429,14 @@ public class UsuarioSeleccionado extends javax.swing.JPanel {
         contraseniaField.setText(usuario.getContrasenia());
         
         
+    }
+
+    public void addEditarButtonListener(UsuariosController.EditarButtonListener editarButtonListener) {
+        editarBtn.addActionListener(editarButtonListener);
+    }
+
+    public void addEliminarButtonListener(UsuariosController.EliminarButtonListener eliminarButtonListener) {
+        eliminarBtn.addActionListener(eliminarButtonListener);
     }
     
 }

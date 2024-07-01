@@ -17,6 +17,8 @@ import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
+import com.metodos.licencias.view.VentanaEmergente;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 
@@ -84,7 +86,6 @@ public class LicenciaService {
     public LicenciaDTO guardarLicencia(LicenciaDTO licenciaDTO, TitularDTO titularDTO) {
         //guarda la licencia en la bd
         Licencia licencia = aEntidad(licenciaDTO, titularDTO);
-        licencia.setEmitidaPor(new Tramite(TipoTramite.EMISION));
         repository.save(licencia);
         return (aDTO(licencia));    //se retorna el DTO para poder actualizarlo y que muestre los datos correctamente.
     }
@@ -192,6 +193,10 @@ public class LicenciaService {
         Licencia licenciaACopiar = repository.findByNumeroLicencia(numLicencia);
         //AUMENTA EL NUMERO DE LA COPIA
         licenciaACopiar.aumentarNumCopia();
+        //LE ASOCIA UN USUARIO LOGEADO (OCURRE UN TRAMITE)
+        if(licenciaACopiar.getTramiteCopia() == null){
+            licenciaACopiar.setTramiteCopia(new ArrayList<Tramite>());}
+        licenciaACopiar.addTramiteCopia(new Tramite(TipoTramite.EMISION_COPIA));
         //LO GUARDA
         repository.save(licenciaACopiar);
         //DEVUELVE EL DTO (para que se puedan mostrar los datos)

@@ -29,7 +29,7 @@ public class LicenciaEmitidaFrame extends  JFrame {
         setContentPane(licenciaEmitidaContainer);
         
         pack();
-        setSize(600, 690);
+        setSize(800, 690);
         setLocationRelativeTo(null);
         setVisible(true);
         

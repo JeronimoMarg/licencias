@@ -12,6 +12,7 @@ import com.metodos.licencias.service.UsuarioService;
 import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.logic.UsuarioLogeado;
 import com.metodos.licencias.view.LoginFrame;
+import com.metodos.licencias.view.UsuarioSeleccionado;
 import com.metodos.licencias.view.VentanaEmergente;
 import jakarta.annotation.PostConstruct;
 import java.awt.event.ActionEvent;
@@ -37,12 +38,14 @@ public class UsuariosController{
     private UsuarioService usuarioService;
     private Usuarios usuarioView;
     private LoginFrame loginView;
+    private UsuarioSeleccionado usuarioSeleccionadoView;
 
     @Autowired
-    public UsuariosController(UsuarioService userService, Usuarios usuarioView, LoginFrame login) {
+    public UsuariosController(UsuarioService userService, Usuarios usuarioView, LoginFrame login, UsuarioSeleccionado usuarioSeleccionado) {
         this.usuarioService = userService;
         this.usuarioView = usuarioView;
         this.loginView = login;
+        this.usuarioSeleccionadoView = usuarioSeleccionado;
     }
 
     @PostConstruct
@@ -64,6 +67,9 @@ public class UsuariosController{
         for(Rol r:roles){
             usuarioView.setBusquedaRol(r.toString());
         }
+        
+        this.usuarioSeleccionadoView.addEditarButtonListener(new EditarButtonListener());
+        this.usuarioSeleccionadoView.addEliminarButtonListener(new EliminarButtonListener());
     }
     
     private void validarUsuario(UsuarioDTO usuario) throws UsuarioDNIExistenteException, UsuarioExistenteException, DNIExistenteException, Exception{
@@ -125,28 +131,42 @@ public class UsuariosController{
     }
     
     public class LoginButtonListener implements ActionListener {
+
         @Override
-        public void actionPerformed(ActionEvent e){
-            
+        public void actionPerformed(ActionEvent e) {
+
             UsuarioDTO usuarioIngresado = loginView.getUsuarioDTO();
-            System.out.println(usuarioIngresado.getUsuario());
-            System.out.println(usuarioIngresado.getContrasenia());
             try {
-                if(usuarioService.usuarioExistente(usuarioIngresado.getUsuario())){
+                if (usuarioIngresado.getUsuario().isEmpty() || usuarioIngresado.getContrasenia().isEmpty()) {
+                        new VentanaEmergente("No se permiten valores nulos");
+                } else if (usuarioService.usuarioExistente(usuarioIngresado.getUsuario())) {
                     Usuario usuarioLogeado = usuarioService.validarContrasenia(usuarioIngresado.getUsuario(), usuarioIngresado.getContrasenia());
-                    if(usuarioLogeado != null){
+                    if (usuarioLogeado != null) {
                         UsuarioLogeado.setUsuarioLogeado(usuarioLogeado);
                         loginView.mostrarMenuPrincipal();
-                    }else{
+                    } else {
                         new VentanaEmergente("La contraseña ingresada es incorrecta");
                     }
-                }
-                else{
+                } else {
                     new VentanaEmergente("El usuario ingresado no existe");
                 }
             } catch (Exception ex) {
-                new VentanaEmergente("No se permiten valores nulos");
+                new VentanaEmergente(ex.getLocalizedMessage());
             }
+        }
+    }
+    
+    public class EditarButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+
+        }
+    }
+    
+    public class EliminarButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+
         }
     }
     

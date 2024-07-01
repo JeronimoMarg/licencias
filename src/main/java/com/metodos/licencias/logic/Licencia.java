@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import java.util.ArrayList;
 import lombok.Data;
 
 @Entity(name="licencias")
@@ -29,6 +30,8 @@ public class Licencia {
     
     @OneToOne(cascade = CascadeType.ALL)
     private Tramite emitidaPor;
+    
+    private ArrayList<Tramite> tramiteCopia;
 
     private String observaciones;
 
@@ -40,4 +43,9 @@ public class Licencia {
     public void aumentarNumCopia(){
         numeroCopia++;
     }
+    
+    public void addTramiteCopia(Tramite tramite){
+        tramiteCopia.add(tramite);
+    }
+    
 }
