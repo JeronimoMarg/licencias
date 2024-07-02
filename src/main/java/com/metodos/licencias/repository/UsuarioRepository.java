@@ -19,4 +19,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>, JpaSpeci
 
     Usuario findFirstByNombreUsuarioAndContrasenia(String nombreUsuario, String contrasenia);
     
+    Usuario deleteByNroDocumento(String numeroDocumento);
+    
 }

@@ -5,6 +5,7 @@ import com.metodos.licencias.logic.Rol;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.repository.UsuarioRepository;
+import com.metodos.licencias.view.VentanaEmergente;
 
 import jakarta.persistence.criteria.Predicate;
 
@@ -138,6 +139,28 @@ public class UsuarioService {
     
     public Usuario validarContrasenia(String nombreUsuario, String contrasenia){
         return uRepository.findFirstByNombreUsuarioAndContrasenia(nombreUsuario, contrasenia);
+    }
+    
+    public void editarUsuario(UsuarioDTO usuarioDTO){
+        Usuario usuario = buscarUsuario(usuarioDTO.getTipoDocumento(),usuarioDTO.getNroDocumento());
+        usuario.setContrasenia(usuarioDTO.getContrasenia());
+        usuario.setNombreUsuario(usuarioDTO.getUsuario());
+        usuario.setRol(Rol.valueOf(usuarioDTO.getRol()));
+        try{
+            uRepository.save(usuario);
+        }catch(Exception  e){
+            System.out.println("[!!!!!] "+e.getMessage());
+            throw e;
+        }
+    }
+    
+    public void eliminarUsuario(UsuarioDTO usuarioDTO){
+        try{
+            uRepository.deleteByNroDocumento(usuarioDTO.getNroDocumento());
+        }catch(Exception e){
+            System.out.println("[!!!!!] "+e.getMessage());
+            throw e;
+        }
     }
     
 }

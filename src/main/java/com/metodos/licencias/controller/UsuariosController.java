@@ -23,6 +23,7 @@ import java.lang.String;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -159,14 +160,36 @@ public class UsuariosController{
     public class EditarButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-
+                UsuarioDTO usuario = usuarioSeleccionadoView.getUsuarioDTO();
+                try{
+                    usuarioService.editarUsuario(usuario);
+                    new VentanaEmergente("El usuario se modificó exitosamente.");
+                }catch(Exception exc){
+                    System.out.println("[!!!!!] "+exc.getMessage());
+                    new VentanaEmergente("Error al guardar los datos editados en la base de datos.");
+                }
         }
     }
     
     public class EliminarButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-
+            UsuarioDTO usuario = usuarioSeleccionadoView.getUsuarioDTO();
+    
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar el usuario seleccionado?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+                try {
+                    usuarioService.eliminarUsuario(usuario);
+                    usuarioSeleccionadoView.volver();
+                    new VentanaEmergente("El usuario se eliminó exitosamente.");
+                } catch (Exception exc) {
+                    System.out.println("[!!!!!] "+exc.getMessage());
+                    new VentanaEmergente("Error al eliminar el usuario de la base de datos.");
+                }
+            }
+            
+            
         }
     }
     
