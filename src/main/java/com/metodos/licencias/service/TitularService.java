@@ -160,7 +160,7 @@ public class TitularService {
                 predicates.add(criteriaBuilder.equal(root.get("tipoDocumento"), tipoDocEnum));
             }
             if (numeroDoc != null && !numeroDoc.isEmpty()) {
-                predicates.add(criteriaBuilder.equal(root.get("numeroDoc"), numeroDoc));
+                predicates.add(criteriaBuilder.equal(root.get("numeroDocumento"), numeroDoc));
             }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
