@@ -1,5 +1,6 @@
 package com.metodos.licencias.logic;
 
+import jakarta.persistence.CascadeType;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,6 +34,10 @@ public class Tramite {
     @JoinColumn(name="id_usuario")
     private Usuario usuarioAdministrativo;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_licencia")
+    private Licencia licenciaAsociada;
+    
     public Tramite (TipoTramite tipo){
         this.tipoTramite = tipo;
         this.fechaRealizacion = LocalDate.now();

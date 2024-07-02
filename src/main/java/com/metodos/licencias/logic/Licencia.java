@@ -2,13 +2,11 @@ package com.metodos.licencias.logic;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.util.ArrayList;
 import lombok.Data;
 
 @Entity(name="licencias")
@@ -27,12 +25,7 @@ public class Licencia {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private TipoLicencia tipoLicencia;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    private Tramite emitidaPor;
-    
-    private ArrayList<Tramite> tramiteCopia;
-
+ 
     private String observaciones;
 
     @ManyToOne
@@ -44,8 +37,5 @@ public class Licencia {
         numeroCopia++;
     }
     
-    public void addTramiteCopia(Tramite tramite){
-        tramiteCopia.add(tramite);
-    }
     
 }

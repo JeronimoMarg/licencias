@@ -5,7 +5,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import com.metodos.licencias.logic.TipoDocumento;
-import com.metodos.licencias.logic.Usuario;;
+import com.metodos.licencias.logic.Usuario;import jakarta.transaction.Transactional;
+;
 
 @Repository
 
@@ -18,7 +19,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long>, JpaSpeci
     Usuario findFirstByTipoDocumentoAndNroDocumento(TipoDocumento tipoDocumento, String nroDocumento);
 
     Usuario findFirstByNombreUsuarioAndContrasenia(String nombreUsuario, String contrasenia);
-    
-    Usuario deleteByNroDocumento(String numeroDocumento);
+
+    Usuario findFirstByNroDocumento(String numDoc);
     
 }

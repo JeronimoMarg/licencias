@@ -43,12 +43,9 @@ public class NewTitulares extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         Alta_titular_guardarBtn = new RoundedButton(cornerRadius);
         jLabel18 = new javax.swing.JLabel();
-        Alta_titular_clase = new RoundedComboBox(cornerRadius, grisOscuro);
         Alta_titular_gruposanguineo = new RoundedComboBox(cornerRadius, grisOscuro);
         Alta_titular_tipodni = new RoundedComboBox(cornerRadius, grisOscuro);
         Alta_titular_fechanac = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -164,18 +161,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
         jPanel1.add(jLabel18, gridBagConstraints);
 
-        Alta_titular_clase.setBackground(new java.awt.Color(252, 252, 252));
-        Alta_titular_clase.setModel(new javax.swing.DefaultComboBoxModel<>());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.ipady = 16;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
-        jPanel1.add(Alta_titular_clase, gridBagConstraints);
-
         Alta_titular_gruposanguineo.setBackground(new java.awt.Color(252, 252, 252));
         Alta_titular_gruposanguineo.setModel(new javax.swing.DefaultComboBoxModel<>());
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -211,24 +196,6 @@ public class NewTitulares extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(Alta_titular_fechanac, gridBagConstraints);
-
-        jLabel1.setText("Clase solicitada");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 5, 0);
-        jPanel1.add(jLabel1, gridBagConstraints);
-
-        jLabel5.setText("Licencia");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
-        jPanel1.add(jLabel5, gridBagConstraints);
 
         jLabel6.setText("Tipo DNI");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -486,7 +453,6 @@ public class NewTitulares extends javax.swing.JPanel {
     private javax.swing.JTextField Alta_titular_altura;
     private javax.swing.JTextField Alta_titular_apellido;
     private javax.swing.JTextField Alta_titular_calle;
-    public javax.swing.JComboBox<String> Alta_titular_clase;
     private javax.swing.JTextField Alta_titular_dni;
     private javax.swing.JCheckBox Alta_titular_esdonante;
     public com.toedter.calendar.JDateChooser Alta_titular_fechanac;
@@ -500,7 +466,6 @@ public class NewTitulares extends javax.swing.JPanel {
     public javax.swing.JTextField Busqueda_titular_numerodni;
     public javax.swing.JTable Busqueda_titular_tabla;
     public javax.swing.JComboBox<String> Busqueda_titular_tipodni;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -513,7 +478,6 @@ public class NewTitulares extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -526,8 +490,7 @@ public class NewTitulares extends javax.swing.JPanel {
 
     
     public TitularDTO getTitularDTO(){
-        if(this.Alta_titular_clase.getSelectedItem()==null) { 
-            //esto es de prueba porque no está seteado el combobox de clase de licencia.
+
             return new TitularDTO(
                 this.Alta_titular_nombre.getText().toString().trim(),
                 this.Alta_titular_apellido.getText().toString().trim(),
@@ -538,21 +501,7 @@ public class NewTitulares extends javax.swing.JPanel {
                 this.Alta_titular_esdonante.isSelected(),
                 this.Alta_titular_calle.getText().toString().trim(),
                 this.Alta_titular_altura.getText().toString().trim()
-                //,"A"
             ); 
-        }
-        return new TitularDTO(
-            this.Alta_titular_nombre.getText().toString().trim(),
-            this.Alta_titular_apellido.getText().toString().trim(),
-            this.Alta_titular_tipodni.getSelectedItem().toString(),
-            this.Alta_titular_dni.getText().toString().trim(),
-            this.Alta_titular_gruposanguineo.getSelectedItem().toString(),
-            this.Alta_titular_fechanac.getDate(),
-            this.Alta_titular_esdonante.isSelected(),
-            this.Alta_titular_calle.getText().toString().trim(),
-            this.Alta_titular_altura.getText().toString().trim()
-            //,this.Alta_titular_clase.getSelectedItem().toString()
-        );
 
     }
     

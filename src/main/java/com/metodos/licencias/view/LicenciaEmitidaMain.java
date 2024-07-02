@@ -53,6 +53,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
     private double zoomFactor = 1;
     PDDocument document = null;
     JFrame frame;
+    LicenciaDTO licencia;
     
     public LicenciaEmitidaMain(LicenciaDTO licencia, JFrame main) {
         this.frame = main;
@@ -71,7 +72,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         });
         
         
-        
+        this.licencia = licencia;
         initComponents();
         armarCardLayout(licencia);
         pdfConfig();
@@ -393,15 +394,15 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
     private void llenarPDF(PDDocument document) throws IOException {
        PDAcroForm pDAcroForm = document.getDocumentCatalog().getAcroForm();
             PDField field = pDAcroForm.getField("field_tipo");
-            field.setValue("tipo");
+            field.setValue(licencia.getTipoLicencia().getAtributo1());
             field = pDAcroForm.getField("field_nro");
-            field.setValue("numero");
+            field.setValue(licencia.getNumeroLicencia().toString());
             field = pDAcroForm.getField("field_inicio");
-            field.setValue("inicio");
+            field.setValue(licencia.getInicioVigencia().toString());
             field = pDAcroForm.getField("field_fin");
-            field.setValue("fin");
+            field.setValue(licencia.getFinVigencia().toString());
             field = pDAcroForm.getField("field_observaciones");
-            field.setValue("observaciones");
+            field.setValue(licencia.getObservaciones());
     }
     
     private void pdfConfig() {

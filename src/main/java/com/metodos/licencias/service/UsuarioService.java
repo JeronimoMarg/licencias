@@ -90,8 +90,8 @@ public class UsuarioService {
         return new UsuarioDTO(usuario.getTipoDocumento().toString(), usuario.getNroDocumento(), usuario.getNombreUsuario(), usuario.getContrasenia(), usuario.getRol().toString());
     }
 
-    private Usuario buscarUsuario(String tipoDoc, String numDoc){
-        return uRepository.findFirstByTipoDocumentoAndNroDocumento(TipoDocumento.valueOf(tipoDoc),numDoc);
+    private Usuario buscarUsuarioDocumento(String numDoc){
+        return uRepository.findFirstByNroDocumento(numDoc);
     }
 
     private Specification<Usuario> search(String usuario, String rol, String tipoDoc, String numeroDoc) {
@@ -121,7 +121,7 @@ public class UsuarioService {
         Usuario user = uRepository.findFirstByNombreUsuario(nombreUsuario);
         return crearUsuarioDto(user);
     }
-
+    
     public void actualizarUsuario(UsuarioDTO usuario) throws Exception {
 
         try{
@@ -140,26 +140,38 @@ public class UsuarioService {
     public Usuario validarContrasenia(String nombreUsuario, String contrasenia){
         return uRepository.findFirstByNombreUsuarioAndContrasenia(nombreUsuario, contrasenia);
     }
-    
-    public void editarUsuario(UsuarioDTO usuarioDTO){
-        Usuario usuario = buscarUsuario(usuarioDTO.getTipoDocumento(),usuarioDTO.getNroDocumento());
-        usuario.setContrasenia(usuarioDTO.getContrasenia());
-        usuario.setNombreUsuario(usuarioDTO.getUsuario());
-        usuario.setRol(Rol.valueOf(usuarioDTO.getRol()));
-        try{
-            uRepository.save(usuario);
-        }catch(Exception  e){
-            System.out.println("[!!!!!] "+e.getMessage());
-            throw e;
+
+    public void editarUsuario(UsuarioDTO usuarioDTO) {
+        Usuario usuario = new Usuario();
+        usuario = buscarUsuarioDocumento(usuarioDTO.getNroDocumento());
+        if (usuario != null) {
+            usuario.setContrasenia(usuarioDTO.getContrasenia());
+            usuario.setNombreUsuario(usuarioDTO.getUsuario());
+            usuario.setRol(Rol.valueOf(usuarioDTO.getRol()));
+            try {
+                uRepository.save(usuario);
+            } catch (Exception e) {
+                throw e;
+            }
+        } else {
+            System.out.println("Usuario no encontrado en la base de datos");
         }
+
     }
     
     public void eliminarUsuario(UsuarioDTO usuarioDTO){
-        try{
-            uRepository.deleteByNroDocumento(usuarioDTO.getNroDocumento());
-        }catch(Exception e){
-            System.out.println("[!!!!!] "+e.getMessage());
-            throw e;
+     
+        Usuario usuario = new Usuario();
+        usuario = buscarUsuarioDocumento(usuarioDTO.getNroDocumento());
+
+        if (usuario != null) {
+            try {
+                uRepository.delete(usuario);
+            } catch (Exception e) {
+                throw e;
+            }
+        } else {
+            System.out.println("Usuario no encontrado en la base de datos");
         }
     }
     

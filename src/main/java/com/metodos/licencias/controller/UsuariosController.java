@@ -163,6 +163,7 @@ public class UsuariosController{
                 UsuarioDTO usuario = usuarioSeleccionadoView.getUsuarioDTO();
                 try{
                     usuarioService.editarUsuario(usuario);
+                    usuarioView.clearTable();
                     new VentanaEmergente("El usuario se modificó exitosamente.");
                 }catch(Exception exc){
                     System.out.println("[!!!!!] "+exc.getMessage());
@@ -181,6 +182,7 @@ public class UsuariosController{
             if (respuesta == JOptionPane.YES_OPTION) {
                 try {
                     usuarioService.eliminarUsuario(usuario);
+                    usuarioView.clearTable();
                     usuarioSeleccionadoView.volver();
                     new VentanaEmergente("El usuario se eliminó exitosamente.");
                 } catch (Exception exc) {

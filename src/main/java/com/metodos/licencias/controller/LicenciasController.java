@@ -128,6 +128,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     //EMITIR COPIA.
                     validarEmisionCopia((boolean) infoTitular.Licencias_tabla.getValueAt(fila, 3));   //el 3 es para obtener el boolean de activa/inactiva
                     LicenciaDTO licenciaCopiada = licenciaService.emitirCopia(numLicencia);
+                    inicializar_tabla();
                     //PREGUNTAR SI SE QUIERE MOSTRAR INFO (lleva a imprimir)
                     int respuesta = JOptionPane.showConfirmDialog(null, "Emision de copia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                     if(respuesta == JOptionPane.YES_OPTION){
@@ -149,6 +150,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     //RENOVAR LICENCIA
                     validarRenovacionLicencia(numLicencia);
                     LicenciaDTO licenciaRenovada = licenciaService.renovarLicencia(numLicencia);
+                    inicializar_tabla();
                     int respuesta = JOptionPane.showConfirmDialog(null, "Renovacion de licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                     if(respuesta == JOptionPane.YES_OPTION){
                         infoTitular.mostrarLicencia(licenciaRenovada);

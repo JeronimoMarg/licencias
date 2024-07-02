@@ -17,6 +17,7 @@ import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
+import com.metodos.licencias.repository.TramiteRepository;
 import com.metodos.licencias.view.VentanaEmergente;
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ import lombok.AllArgsConstructor;
 public class LicenciaService {
 
     private LicenciaRepository repository;
+    private TramiteRepository tRepository;
     private TipoLicenciaRepository tipoLicenciaRepository;
     private TitularService titularService;
 
@@ -87,6 +89,8 @@ public class LicenciaService {
         //guarda la licencia en la bd
         Licencia licencia = aEntidad(licenciaDTO, titularDTO);
         repository.save(licencia);
+        //guardar tramite
+        nuevoTramite(licencia,TipoTramite.EMISION);
         return (aDTO(licencia));    //se retorna el DTO para poder actualizarlo y que muestre los datos correctamente.
     }
 
@@ -107,7 +111,6 @@ public class LicenciaService {
         Licencia licencia = new Licencia();
         licencia.setTitular(titularService.findByDNI_entidad(titularDTO.getNumDNI()));
         licencia.setTipoLicencia(buscarTipoLicencia(licenciaDTO.getTipoLicencia()));
-        licencia.setEmitidaPor(new Tramite(TipoTramite.EMISION));
         licencia.setObservaciones(licenciaDTO.getObservaciones());
         licencia.setNumeroCopia(0);                              //en este caso es cero porque este metodo se utiliza solamente cuando se va a guardar una entidad por primera vez
         licencia.setHabilitadaRenovacion(false);        //habilitadaRenovacion sera solamente true cuando se modifique el titular
@@ -193,12 +196,12 @@ public class LicenciaService {
         Licencia licenciaACopiar = repository.findByNumeroLicencia(numLicencia);
         //AUMENTA EL NUMERO DE LA COPIA
         licenciaACopiar.aumentarNumCopia();
-        //LE ASOCIA UN USUARIO LOGEADO (OCURRE UN TRAMITE)
-        if(licenciaACopiar.getTramiteCopia() == null){
-            licenciaACopiar.setTramiteCopia(new ArrayList<Tramite>());}
-        licenciaACopiar.addTramiteCopia(new Tramite(TipoTramite.EMISION_COPIA));
         //LO GUARDA
         repository.save(licenciaACopiar);
+        
+        //agregar el nuevo tramite
+        nuevoTramite(licenciaACopiar, TipoTramite.EMISION_COPIA);
+        
         //DEVUELVE EL DTO (para que se puedan mostrar los datos)
         return aDTO(licenciaACopiar);
     }
@@ -222,7 +225,6 @@ public class LicenciaService {
     public LicenciaDTO renovarLicencia(Long numLicencia) {
         Licencia licencia = repository.findByNumeroLicencia(numLicencia);
         Licencia nuevaLicencia = new Licencia();
-        nuevaLicencia.setEmitidaPor(new Tramite(TipoTramite.RENOVACION));
         nuevaLicencia.setNumeroCopia(0);
         nuevaLicencia.setObservaciones(licencia.getObservaciones());
         nuevaLicencia.setTipoLicencia(licencia.getTipoLicencia());
@@ -234,6 +236,18 @@ public class LicenciaService {
         licencia.setObsoleta(true);
         repository.save(licencia);
         
+        //guardar nuevo tramite
+        nuevoTramite(nuevaLicencia, TipoTramite.RENOVACION);
+        
         return aDTO(nuevaLicencia);
+    }
+
+    private void nuevoTramite(Licencia licencia, TipoTramite tipoTramite) {
+        
+        Tramite tramite = new Tramite(tipoTramite);
+        tramite.setLicenciaAsociada(licencia);
+        System.out.println(tramite.getTipoTramite());
+        tRepository.save(tramite);
+        
     }
 }
