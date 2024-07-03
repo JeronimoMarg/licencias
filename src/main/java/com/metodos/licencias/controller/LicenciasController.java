@@ -16,11 +16,15 @@ import org.springframework.stereotype.Controller;
 import com.metodos.licencias.exceptions.*;
 import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.DTO.UsuarioDTO;
+import com.metodos.licencias.logic.FactorSanguineo;
+import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.service.LicenciaService;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.util.Item;
+import com.metodos.licencias.view.Licencias;
 import com.metodos.licencias.view.VentanaEmergente;
 
 import jakarta.annotation.PostConstruct;
@@ -29,6 +33,7 @@ import jakarta.annotation.PostConstruct;
 public class LicenciasController implements ActionListener, KeyListener, MouseListener{
 
     private InfoTitular infoTitular;
+    private Licencias licencias;
 
     @Autowired
     private LicenciaService licenciaService;
@@ -40,8 +45,9 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
     private TitularDTO titularDTO;
 
     @Autowired
-    public LicenciasController(InfoTitular infoTitular){
+    public LicenciasController(InfoTitular infoTitular, Licencias licencias){
         this.infoTitular = infoTitular;
+        this.licencias = licencias;
         
     }
 
@@ -54,8 +60,10 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         this.infoTitular.Licencias_emitir_btn.addActionListener(this);
         this.infoTitular.Licencias_emitirCopia_btn.addActionListener(this);
         this.infoTitular.Licencias_renovar_btn.addActionListener(this);
+        this.licencias.addSearchButtonListener(new LicenciasController.SearchButtonListener());
 
         inicializar_cmbx();
+        inicializar_cmbx_GS();
     }
 
     
@@ -164,6 +172,18 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         }
 
     }
+    
+    public class SearchButtonListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+            //validacion
+            //validarUsuario(usuario);
+            List<LicenciaDTO> listaLicencias;
+            listaLicencias = licenciaService.busquedaFiltrosLicencia(licencias.getNombre(),licencias.getApellido(),licencias.getGrupoSanguineo(),licencias.getCondicionDonante(),licencias.getVigencia());
+            licencias.clearTable();
+            llenarTabla(listaLicencias);
+        }
+    }
 
     private void validarRenovacionLicencia(Long numLicencia) {
         if(!licenciaService.puedeRenovarse(numLicencia)){
@@ -214,7 +234,20 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             row[5] = lic.getNumCopia();
             tabla.addRow(row);
         }
-        
+    }
+    
+    public void inicializar_cmbx_GS(){
+        //combo de tipo de factores
+        FactorSanguineo[] factores = FactorSanguineo.values();
+        for(FactorSanguineo factor:factores){
+            licencias.grupoSanguineo.addItem(factor.toString());
+        }
+    }
+    
+     private void llenarTabla(List<LicenciaDTO> listaLicencias){
+        for(LicenciaDTO licencia : listaLicencias){
+            licencias.cargarTabla(licencia);
+        }
     }
     
 }

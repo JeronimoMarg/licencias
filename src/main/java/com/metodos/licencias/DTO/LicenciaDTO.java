@@ -17,6 +17,8 @@ public class LicenciaDTO {
     private Item tipoLicencia;
     private String observaciones;
     private Integer numCopia;
+    private String nombreTitular;
+    private String apellidoTitular;
 
     public LicenciaDTO(Item tipoLicencia, String observaciones){
         this.tipoLicencia = tipoLicencia;
@@ -29,5 +31,14 @@ public class LicenciaDTO {
         this.finVigencia = from2;
         this.tipoLicencia = item;
         this.observaciones = observaciones2;
+    }
+
+    public LicenciaDTO(Long numeroLicencia, Date from, Date from0, Item item, String observaciones, int numeroCopia) {
+        this.numeroLicencia = numeroLicencia;
+        this.inicioVigencia = from;
+        this.finVigencia = from0;
+        this.tipoLicencia = item;
+        this.observaciones = observaciones;
+        this.numCopia = numeroCopia;
     }
 }

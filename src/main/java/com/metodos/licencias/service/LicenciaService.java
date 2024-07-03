@@ -10,18 +10,23 @@ import org.springframework.stereotype.Service;
 import com.metodos.licencias.util.Item;
 import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.logic.Licencia;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.logic.TipoTramite;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
+import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
 import com.metodos.licencias.repository.TramiteRepository;
 import com.metodos.licencias.view.VentanaEmergente;
+import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 
 @Service
 @AllArgsConstructor
@@ -250,4 +255,77 @@ public class LicenciaService {
         tRepository.save(tramite);
         
     }
+
+    public List<LicenciaDTO> busquedaFiltrosLicencia( String nombre, String apellido, String gs, String esDonante, boolean vigente) {
+        
+        List<Licencia> licenciasEncontradas = repository.findAll(search(nombre, apellido, gs, esDonante, vigente));
+        return ListaLicenciasADTO(licenciasEncontradas);
+
+    }
+    
+    private Specification<Licencia> search(String nombre, String apellido, String grupoSanguineo, String esDonante, boolean vigencia) {
+    return (root, query, criteriaBuilder) -> {
+        List<Predicate> predicates = new ArrayList<>();
+
+        // Join para acceder a la entidad Titular desde Licencia
+        Join<Licencia, Titular> titularJoin = root.join("titular");
+
+        
+        if (nombre != null && !nombre.isEmpty()) {
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(titularJoin.get("nombre")), "%" + nombre.toLowerCase() + "%"));
+        }
+
+        if (apellido != null && !apellido.isEmpty()) {
+            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(titularJoin.get("apellido")), "%" + apellido.toLowerCase() + "%"));
+        }
+        
+        if (grupoSanguineo != null && !grupoSanguineo.isEmpty() && grupoSanguineo != "Todos") {
+            predicates.add(criteriaBuilder.equal(titularJoin.get("factorSanguíneo"), grupoSanguineo));
+        }
+        
+        if (esDonante != "Todos") {
+            if(esDonante == "Es donante"){
+                predicates.add(criteriaBuilder.equal(titularJoin.get("donanteDeOrganos"), true));
+            } else  {
+                predicates.add(criteriaBuilder.equal(titularJoin.get("donanteDeOrganos"), false));
+            }
+        }
+        
+        Predicate vigenciaPredicate;
+        if (vigencia) {
+            // Fecha de fin de vigencia mayor a la fecha actual y no habilitadaRenovacion
+            vigenciaPredicate = criteriaBuilder.and(
+                criteriaBuilder.greaterThanOrEqualTo(root.get("finVigencia"), LocalDate.now()),
+                criteriaBuilder.equal(root.get("habilitadaRenovacion"), false)
+            );
+        } else {
+            // Fecha de fin de vigencia menor o igual a la fecha actual o habilitadaRenovacion
+            vigenciaPredicate = criteriaBuilder.or(
+                criteriaBuilder.lessThan(root.get("finVigencia"), LocalDate.now()),
+                criteriaBuilder.equal(root.get("habilitadaRenovacion"), true)
+            );
+        }
+
+        predicates.add(vigenciaPredicate);
+        
+
+        // Crear la condición final con AND
+        return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+    };
+}
+
+    private List<LicenciaDTO> ListaLicenciasADTO(List<Licencia> licenciasEncontradas) {
+        LicenciaDTO licenciaDTO;
+        List<LicenciaDTO> licenciaDTOs = new ArrayList();
+        for (Licencia licencia : licenciasEncontradas) {
+            licenciaDTO = aDTO(licencia);
+            licenciaDTO.setApellidoTitular(licencia.getTitular().getApellido());
+            licenciaDTO.setNombreTitular(licencia.getTitular().getNombre());
+            licenciaDTOs.add(licenciaDTO);
+        }
+
+        return licenciaDTOs;
+
+    }
+    
 }

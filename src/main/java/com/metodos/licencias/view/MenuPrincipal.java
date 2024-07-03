@@ -24,11 +24,13 @@ public class MenuPrincipal extends javax.swing.JFrame{
     
     private final UsuariosMain panelUsuarios;
     private final TitularesMain panelTitulares;
+    private final Licencias panelLicencias;
     
     @Autowired
-    public MenuPrincipal(TitularesMain panelTitulares, UsuariosMain panelUsuarios) {
+    public MenuPrincipal(TitularesMain panelTitulares, UsuariosMain panelUsuarios, Licencias panelLicencias) {
         this.panelUsuarios = panelUsuarios;
         this.panelTitulares = panelTitulares;
+        this.panelLicencias = panelLicencias;
         
         //creacion Frame
         //JFrame frame = new JFrame("Licencias");
@@ -124,7 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame{
        botonLicencias.setSeleccionado(true);
        botonTitulares.setSeleccionado(false);
        botonUsuarios.setSeleccionado(false);
-       cl.show(mainPanel, "Card1");
+       cl.show(mainPanel, "Licencias");
     }                                        
 
     private void botonTitularesActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -145,15 +147,12 @@ public class MenuPrincipal extends javax.swing.JFrame{
         mainPanel.setBackground(new Color(150,150,150));
 
         // Create the cards
-        JPanel card1 = new JPanel();
-        card1.add(new JLabel("PANTALLA LICENCIAS"));
-        card1.setBackground(new Color(194,194,194));
-        
+        JPanel card1 = panelLicencias;
         JPanel card2 = panelTitulares;
         JPanel card3 = panelUsuarios;
         
         // Add the cards to the panel with identifiers
-        mainPanel.add(card1, "Card1");
+        mainPanel.add(card1, "Licencias");
         mainPanel.add(card2, "Titulares");
         mainPanel.add(card3, "Usuarios");
                 
