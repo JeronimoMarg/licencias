@@ -4,23 +4,19 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Date;
 import org.springframework.stereotype.Service;
 import com.metodos.licencias.util.Item;
 import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
-import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.logic.Licencia;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.logic.TipoTramite;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
-import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
 import com.metodos.licencias.repository.TramiteRepository;
-import com.metodos.licencias.view.VentanaEmergente;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import java.util.ArrayList;
@@ -82,7 +78,7 @@ public class LicenciaService {
 
     public Double calcularCosto(Licencia licencia, Long aniosVigencia){
         return 8 + licencia.getTipoLicencia().getCostos().stream()
-            .filter(costo -> costo.getVigencia().equals(aniosVigencia))
+            .filter(costo -> Long.valueOf(costo.getVigencia()).equals(aniosVigencia))
             .findFirst().orElseThrow().getCosto();
     }
 
