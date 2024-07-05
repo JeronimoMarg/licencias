@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import com.metodos.licencias.util.Item;
 import com.metodos.licencias.DTO.LicenciaDTO;
 import com.metodos.licencias.DTO.TitularDTO;
+import com.metodos.licencias.logic.Costo;
 import com.metodos.licencias.logic.Licencia;
 import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.logic.TipoTramite;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.logic.Tramite;
+import com.metodos.licencias.repository.CostoRepository;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
 import com.metodos.licencias.repository.TramiteRepository;
@@ -32,6 +34,7 @@ public class LicenciaService {
     private TramiteRepository tRepository;
     private TipoLicenciaRepository tipoLicenciaRepository;
     private TitularService titularService;
+    private CostoRepository costoRepository;
 
     // Agrega los atributos de fechas de inicio y fin de vigencia
     public Long calcularVigencia(Licencia licencia){
@@ -77,12 +80,17 @@ public class LicenciaService {
     }
 
     public Double calcularCosto(Licencia licencia, Long aniosVigencia){
-        return 8 + licencia.getTipoLicencia().getCostos().stream()
+        return 8 + obtenerCostosTipoLicencia(licencia.getTipoLicencia()).stream()
             .filter(costo -> Long.valueOf(costo.getVigencia()).equals(aniosVigencia))
             .findFirst().orElseThrow().getCosto();
     }
 
-    public Double calcularCosto(Licencia licencia){
+    public List<Costo> obtenerCostosTipoLicencia(TipoLicencia tipo){
+        return costoRepository.findByLicenciaPerteneciente_Id(tipo.getId());
+    }
+
+    public Double calcularCosto(LicenciaDTO licenciaDTO){
+        Licencia licencia = repository.findByNumeroLicencia(licenciaDTO.getNumeroLicencia())
         return calcularCosto(licencia, ChronoUnit.YEARS.between(licencia.getInicioVigencia(), licencia.getFinVigencia()));
     }
 

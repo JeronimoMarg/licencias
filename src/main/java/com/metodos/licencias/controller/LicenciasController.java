@@ -121,11 +121,12 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                 licenciaDTO = licenciaService.guardarLicencia(licenciaDTO, titularDTO);
                 inicializar_tabla();
                 int respuesta = JOptionPane.showConfirmDialog(null, "Licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                Double costo = licenciaService.calcularCosto(licenciaDTO);
                 if(respuesta == JOptionPane.YES_OPTION){
-                    infoTitular.mostrarLicencia(licenciaDTO,titularDTO,420.69);
+                    infoTitular.mostrarLicencia(licenciaDTO, titularDTO,costo);
                 }else{
-                 //COMPROBANTE
-                infoTitular.mostrarComprobante(titularDTO,420.69);   
+                    //COMPROBANTE
+                    infoTitular.mostrarComprobante(titularDTO, costo);
                 }
             }catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());
@@ -146,10 +147,10 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     //PREGUNTAR SI SE QUIERE MOSTRAR INFO (lleva a imprimir)
                     int respuesta = JOptionPane.showConfirmDialog(null, "Emision de copia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                     if(respuesta == JOptionPane.YES_OPTION){
-                        infoTitular.mostrarLicencia(licenciaCopiada, titularDTO,420.69);
+                        infoTitular.mostrarLicencia(licenciaCopiada, titularDTO,50.0);
                     }else{
                         //COMPROBANTE
-                        infoTitular.mostrarComprobante(titularDTO,420.69);   
+                        infoTitular.mostrarComprobante(titularDTO,50.0);   
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
@@ -170,11 +171,12 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     LicenciaDTO licenciaRenovada = licenciaService.renovarLicencia(numLicencia);
                     inicializar_tabla();
                     int respuesta = JOptionPane.showConfirmDialog(null, "Renovacion de licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+                    Double costo = licenciaService.calcularCosto(licenciaRenovada);
                     if(respuesta == JOptionPane.YES_OPTION){
-                        infoTitular.mostrarLicencia(licenciaRenovada,titularDTO,420.69);
+                        infoTitular.mostrarLicencia(licenciaRenovada,titularDTO, costo);
                     }else{
                         //COMPROBANTE
-                        infoTitular.mostrarComprobante(titularDTO,420.69);   
+                        infoTitular.mostrarComprobante(titularDTO, costo);   
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para renovarla.");
