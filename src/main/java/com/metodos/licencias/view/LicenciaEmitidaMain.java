@@ -5,6 +5,7 @@
 package com.metodos.licencias.view;
 
 import com.metodos.licencias.DTO.LicenciaDTO;
+import com.metodos.licencias.DTO.TitularDTO;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -54,8 +55,9 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
     PDDocument document = null;
     JFrame frame;
     LicenciaDTO licencia;
+    TitularDTO titular;
     
-    public LicenciaEmitidaMain(LicenciaDTO licencia, JFrame main) {
+    public LicenciaEmitidaMain(LicenciaDTO licencia, TitularDTO titularDTO, JFrame main) {
         this.frame = main;
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -69,12 +71,28 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
 
                 frame.dispose();
             }
+            
+            
+        });
+        
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+               try {
+                    document.close();
+                } catch (IOException ex) {
+                    VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+                }
+
+                frame.dispose();
+            }
         });
         
         
         this.licencia = licencia;
+        this.titular = titularDTO;
         initComponents();
-        armarCardLayout(licencia);
+        armarCardLayout(licencia, titularDTO);
         pdfConfig();
         pdf.revalidate();
         pdf.repaint();
@@ -108,6 +126,24 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         cerrarBtn = new RoundedButton(15);
         pdfButton = new RoundedButton(15);
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        esDonanteTitular = new javax.swing.JCheckBox();
+        apellidoTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        nombreTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        tipoDocumentoTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        numeroDocumentoTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        fechaNacimientoTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        grupoSanguineoTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        calleTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        alturaTitular = new RoundedLabel(cornerRadius,grisOscuro);
+        jLabel12 = new javax.swing.JLabel();
         pdf = new RoundedPanel(15);
 
         setBackground(new java.awt.Color(194, 194, 194));
@@ -119,10 +155,10 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         licenciaPanel.setBackground(new java.awt.Color(252, 252, 252));
         licenciaPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Licencia");
+        jLabel1.setText("Titular");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         licenciaPanel.add(jLabel1, gridBagConstraints);
@@ -234,16 +270,16 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 38, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -262,7 +298,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
@@ -281,13 +317,197 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 18;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 30);
         licenciaPanel.add(pdfButton, gridBagConstraints);
+
+        jLabel7.setText("Nombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        licenciaPanel.add(jLabel7, gridBagConstraints);
+
+        jLabel8.setText("Apellido");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 30);
+        licenciaPanel.add(jLabel8, gridBagConstraints);
+
+        jLabel9.setText("Fecha de nacimiento");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        licenciaPanel.add(jLabel9, gridBagConstraints);
+
+        jLabel10.setText("Tipo de documento");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        licenciaPanel.add(jLabel10, gridBagConstraints);
+
+        jLabel11.setText("Numero de documento");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 30);
+        licenciaPanel.add(jLabel11, gridBagConstraints);
+
+        jLabel16.setText("Calle");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 0, 0);
+        licenciaPanel.add(jLabel16, gridBagConstraints);
+
+        jLabel17.setText("Altura");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 30);
+        licenciaPanel.add(jLabel17, gridBagConstraints);
+
+        jLabel18.setText("Grupo sanguíneo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 30);
+        licenciaPanel.add(jLabel18, gridBagConstraints);
+
+        esDonanteTitular.setBackground(new java.awt.Color(252, 252, 252));
+        esDonanteTitular.setText("Es donante");
+        esDonanteTitular.setEnabled(false);
+        esDonanteTitular.setFocusable(false);
+        esDonanteTitular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esDonanteTitularActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 10);
+        licenciaPanel.add(esDonanteTitular, gridBagConstraints);
+
+        apellidoTitular.setBackground(new java.awt.Color(252, 252, 252));
+        apellidoTitular.setForeground(new java.awt.Color(80, 80, 80));
+        apellidoTitular.setText("jLabel7");
+        apellidoTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 30);
+        licenciaPanel.add(apellidoTitular, gridBagConstraints);
+
+        nombreTitular.setBackground(new java.awt.Color(252, 252, 252));
+        nombreTitular.setForeground(new java.awt.Color(80, 80, 80));
+        nombreTitular.setText("jLabel8");
+        nombreTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 10);
+        licenciaPanel.add(nombreTitular, gridBagConstraints);
+
+        tipoDocumentoTitular.setBackground(new java.awt.Color(252, 252, 252));
+        tipoDocumentoTitular.setForeground(new java.awt.Color(80, 80, 80));
+        tipoDocumentoTitular.setText("jLabel9");
+        tipoDocumentoTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 10);
+        licenciaPanel.add(tipoDocumentoTitular, gridBagConstraints);
+
+        numeroDocumentoTitular.setBackground(new java.awt.Color(252, 252, 252));
+        numeroDocumentoTitular.setForeground(new java.awt.Color(80, 80, 80));
+        numeroDocumentoTitular.setText("jLabel10");
+        numeroDocumentoTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 30);
+        licenciaPanel.add(numeroDocumentoTitular, gridBagConstraints);
+
+        fechaNacimientoTitular.setBackground(new java.awt.Color(252, 252, 252));
+        fechaNacimientoTitular.setForeground(new java.awt.Color(80, 80, 80));
+        fechaNacimientoTitular.setText("jLabel10");
+        fechaNacimientoTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 10);
+        licenciaPanel.add(fechaNacimientoTitular, gridBagConstraints);
+
+        grupoSanguineoTitular.setBackground(new java.awt.Color(252, 252, 252));
+        grupoSanguineoTitular.setForeground(new java.awt.Color(80, 80, 80));
+        grupoSanguineoTitular.setText("jLabel9");
+        grupoSanguineoTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 30);
+        licenciaPanel.add(grupoSanguineoTitular, gridBagConstraints);
+
+        calleTitular.setBackground(new java.awt.Color(252, 252, 252));
+        calleTitular.setForeground(new java.awt.Color(80, 80, 80));
+        calleTitular.setText("jLabel7");
+        calleTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 0, 10);
+        licenciaPanel.add(calleTitular, gridBagConstraints);
+
+        alturaTitular.setBackground(new java.awt.Color(252, 252, 252));
+        alturaTitular.setForeground(new java.awt.Color(80, 80, 80));
+        alturaTitular.setText("jLabel8");
+        alturaTitular.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 30);
+        licenciaPanel.add(alturaTitular, gridBagConstraints);
+
+        jLabel12.setText("Licencia");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
+        licenciaPanel.add(jLabel12, gridBagConstraints);
 
         cardPanel.add(licenciaPanel, "Panel");
 
@@ -322,36 +542,72 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         */
     }//GEN-LAST:event_pdfButtonJButton2ActionPerformed
 
+    private void esDonanteTitularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esDonanteTitularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_esDonanteTitularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alturaTitular;
+    private javax.swing.JLabel apellidoTitular;
+    private javax.swing.JLabel calleTitular;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JButton cerrarBtn;
+    private javax.swing.JCheckBox esDonanteTitular;
+    private javax.swing.JLabel fechaNacimientoTitular;
     private javax.swing.JLabel finLicencia;
+    private javax.swing.JLabel grupoSanguineoTitular;
     private javax.swing.JLabel inicioLicencia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel licenciaPanel;
+    private javax.swing.JLabel nombreTitular;
     private javax.swing.JLabel nroLicencia;
+    private javax.swing.JLabel numeroDocumentoTitular;
     private javax.swing.JLabel observaciones;
     private javax.swing.JPanel pdf;
     private javax.swing.JButton pdfButton;
+    private javax.swing.JLabel tipoDocumentoTitular;
     private javax.swing.JLabel tipoLicencia;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCardLayout(LicenciaDTO licencia){
+    private void armarCardLayout(LicenciaDTO licencia, TitularDTO titular){
 
         cl = (CardLayout) (cardPanel.getLayout());
         
+        //datos licencia
         tipoLicencia.setText(" " + licencia.getTipoLicencia().getAtributo1());
-        nroLicencia.setText(licencia.getNumeroLicencia().toString());
-        inicioLicencia.setText(licencia.getInicioVigencia().toString());
-        finLicencia.setText(licencia.getFinVigencia().toString());
+        nroLicencia.setText(" " +licencia.getNumeroLicencia().toString());
+        inicioLicencia.setText(" " +licencia.getInicioVigencia().toString());
+        finLicencia.setText(" " +licencia.getFinVigencia().toString());
         observaciones.setText(" " + licencia.getObservaciones());
+        
+        //datos titular
+        nombreTitular.setText( " " +titular.getNombre());
+        apellidoTitular.setText(" " +titular.getApellido());
+        tipoDocumentoTitular.setText(" " +titular.getTipoDoc());
+        numeroDocumentoTitular.setText(" " +titular.getNumDNI());
+        fechaNacimientoTitular.setText(" " +titular.getFechaNacimiento().toString());
+        grupoSanguineoTitular.setText(" " +titular.getGrupoSanguineo());
+        calleTitular.setText(" " +titular.getCalle());
+        alturaTitular.setText(" " +titular.getAltura());
+        esDonanteTitular.setSelected(titular.esDonante());
+        
+        
         
     }
     

@@ -24,7 +24,9 @@ public class TitularDTO {
     
     //private String claseSolicitada;
 
-
+public boolean esDonante(){
+    return donante;
+}
     
 
 }

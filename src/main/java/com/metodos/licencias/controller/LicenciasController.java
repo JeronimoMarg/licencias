@@ -122,13 +122,17 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                 inicializar_tabla();
                 int respuesta = JOptionPane.showConfirmDialog(null, "Licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                 if(respuesta == JOptionPane.YES_OPTION){
-                    infoTitular.mostrarLicencia(licenciaDTO);
+                    infoTitular.mostrarLicencia(licenciaDTO,titularDTO,420.69);
+                }else{
+                 //COMPROBANTE
+                infoTitular.mostrarComprobante(titularDTO,420.69);   
                 }
             }catch (Exception e1){
                 JOptionPane.showMessageDialog(null, e1.getMessage());
             }
         }else if(e.getSource() == this.infoTitular.Licencias_emitirCopia_btn){
             try{
+                titularDTO = infoTitular.getTitularDTO();
                 int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
                 if(fila >=0 ){
                     //OBTENER EL ID DE LA LICENCIA.
@@ -137,10 +141,15 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     validarEmisionCopia((boolean) infoTitular.Licencias_tabla.getValueAt(fila, 3));   //el 3 es para obtener el boolean de activa/inactiva
                     LicenciaDTO licenciaCopiada = licenciaService.emitirCopia(numLicencia);
                     inicializar_tabla();
+                    //infoTitular.revalidate();
+                    //infoTitular.repaint();
                     //PREGUNTAR SI SE QUIERE MOSTRAR INFO (lleva a imprimir)
                     int respuesta = JOptionPane.showConfirmDialog(null, "Emision de copia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                     if(respuesta == JOptionPane.YES_OPTION){
-                        infoTitular.mostrarLicencia(licenciaCopiada);
+                        infoTitular.mostrarLicencia(licenciaCopiada, titularDTO,420.69);
+                    }else{
+                        //COMPROBANTE
+                        infoTitular.mostrarComprobante(titularDTO,420.69);   
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para emitir una copia.");
@@ -151,6 +160,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         }
         else if (e.getSource() == this.infoTitular.Licencias_renovar_btn){
             try{
+                titularDTO = infoTitular.getTitularDTO();
                 int fila = this.infoTitular.Licencias_tabla.getSelectedRow();
                 if(fila>=0){
                     //OBTENER EL ID DE LA LICENCIA.
@@ -161,7 +171,10 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
                     inicializar_tabla();
                     int respuesta = JOptionPane.showConfirmDialog(null, "Renovacion de licencia creada con exito, ¿Desea ver los datos e imprimir?", "Confirmacion", JOptionPane.YES_NO_OPTION);
                     if(respuesta == JOptionPane.YES_OPTION){
-                        infoTitular.mostrarLicencia(licenciaRenovada);
+                        infoTitular.mostrarLicencia(licenciaRenovada,titularDTO,420.69);
+                    }else{
+                        //COMPROBANTE
+                        infoTitular.mostrarComprobante(titularDTO,420.69);   
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Seleccione una licencia para renovarla.");
@@ -222,8 +235,9 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
         List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
 
-        tabla.setRowCount(0);
+        
         tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
+        tabla.setRowCount(0);
         Object[] row = new Object[6];
         for(LicenciaDTO lic: licenciasAsociadas){
             row[0] = lic.getNumeroLicencia();
