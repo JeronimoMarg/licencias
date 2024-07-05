@@ -135,6 +135,7 @@ public class Licencias extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         jPanel1.add(vigente, gridBagConstraints);
 
+        grupoSanguineo.setBackground(new java.awt.Color(252, 252, 252));
         grupoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -198,6 +199,7 @@ public class Licencias extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 30);
         jPanel1.add(imprimirBtn, gridBagConstraints);
 
+        esDonante.setBackground(new java.awt.Color(252, 252, 252));
         esDonante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Es donante", "No es donante" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -250,7 +252,7 @@ public class Licencias extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField apellido;
-    private javax.swing.JButton buscarBtn;
+    public javax.swing.JButton buscarBtn;
     private javax.swing.JComboBox<String> esDonante;
     public javax.swing.JComboBox<String> grupoSanguineo;
     private javax.swing.JButton imprimirBtn;
@@ -262,7 +264,7 @@ public class Licencias extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;
-    private javax.swing.JTable tablaLicencias;
+    public javax.swing.JTable tablaLicencias;
     private javax.swing.JCheckBox vigente;
     // End of variables declaration//GEN-END:variables
 

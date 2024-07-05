@@ -5,6 +5,7 @@
 package com.metodos.licencias.view;
 
 import com.metodos.licencias.DTO.LicenciaDTO;
+import com.metodos.licencias.DTO.TitularDTO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +16,7 @@ import javax.swing.JPanel;
  */
 public class LicenciaEmitidaFrame extends  JFrame {
     
-    public LicenciaEmitidaFrame(LicenciaDTO licenciaDTO){
+    public LicenciaEmitidaFrame(LicenciaDTO licenciaDTO, TitularDTO titularDTO){
         
         //creacion Frame
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,11 +26,11 @@ public class LicenciaEmitidaFrame extends  JFrame {
         setIconImage(customIcon.getImage());
     
         //inicializo container
-        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licenciaDTO, this);
+        JPanel licenciaEmitidaContainer = new LicenciaEmitidaMain(licenciaDTO, titularDTO,this);
         setContentPane(licenciaEmitidaContainer);
         
         pack();
-        setSize(800, 690);
+        setSize(800, 900);
         setLocationRelativeTo(null);
         setVisible(true);
         

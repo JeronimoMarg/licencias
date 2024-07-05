@@ -258,8 +258,9 @@ public class TitularesController implements ActionListener, KeyListener, MouseLi
         TitularDTO titularSeleccionado = this.infoTitular.getTitularDTO();
         List<LicenciaDTO> licenciasAsociadas = licenciaService.buscarLicenciasAsociadas(titularSeleccionado);
 
-        tabla.setRowCount(0);
+        
         tabla = (DefaultTableModel) infoTitular.Licencias_tabla.getModel();
+        tabla.setRowCount(0);
         Object[] row = new Object[6];
         for(LicenciaDTO lic: licenciasAsociadas){
             row[0] = lic.getNumeroLicencia();
