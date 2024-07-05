@@ -155,7 +155,7 @@ public class LicenciaService {
     }
 
     public boolean claseBError(String dniTitular, String claseLicenciaSolicitada){
-        List<Licencia> listadoLicencias = repository.findByTitular_Id(Long.parseLong(dniTitular));
+        List<Licencia> listadoLicencias = repository.findByTitular_NumeroDocumento(Long.parseLong(dniTitular));
         boolean tiempoMinimoClaseB = true; 
         LocalDate fechaActual = LocalDate.now();
         boolean pasa = true;
