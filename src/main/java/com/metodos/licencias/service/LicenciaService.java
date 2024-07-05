@@ -42,17 +42,17 @@ public class LicenciaService {
         
         if (edadTitular < 21){
             if (existenLicenciasDe(licencia.getTitular())){
-                aniosVigencia = 1L;
-            }else{
                 aniosVigencia = 3L;
+            }else{
+                aniosVigencia = 1L;
             }
-        }
+        } else 
         if (edadTitular < 46){
             aniosVigencia = 5L;
-        }
-        if (edadTitular < 60){
+        } else
+        if (edadTitular < 61){
             aniosVigencia = 4L;   
-        }
+        } else
         if (edadTitular < 70){
             aniosVigencia = 3L;
         }
