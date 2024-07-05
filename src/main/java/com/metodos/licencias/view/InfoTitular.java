@@ -70,7 +70,6 @@ public class InfoTitular extends javax.swing.JPanel {
         mod_titular_esDonante = new javax.swing.JCheckBox();
         mod_titular_volverBtn = new RoundedButton(cornerRadius);
         jPanel3 = new javax.swing.JPanel();
-        eliminarTitularBtn = new RoundedButton(cornerRadius);
         jPanel2 = new RoundedPanel(30);
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -220,11 +219,11 @@ public class InfoTitular extends javax.swing.JPanel {
         Mod_titular_editar1.setBorder(null);
         Mod_titular_editar1.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 14;
         gridBagConstraints.ipadx = 60;
         gridBagConstraints.ipady = 25;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 30, 0);
         jPanel1.add(Mod_titular_editar1, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -330,27 +329,6 @@ public class InfoTitular extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 30);
         jPanel1.add(jPanel3, gridBagConstraints);
-
-        eliminarTitularBtn.setBackground(new java.awt.Color(27, 140, 188));
-        eliminarTitularBtn.setForeground(new java.awt.Color(255, 255, 255));
-        eliminarTitularBtn.setText("Eliminar");
-        eliminarTitularBtn.setBorder(null);
-        eliminarTitularBtn.setEnabled(false);
-        eliminarTitularBtn.setFocusable(false);
-        eliminarTitularBtn.setMaximumSize(new java.awt.Dimension(32, 16));
-        eliminarTitularBtn.setMinimumSize(new java.awt.Dimension(32, 16));
-        eliminarTitularBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarTitular(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.ipadx = 60;
-        gridBagConstraints.ipady = 25;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        jPanel1.add(eliminarTitularBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -529,10 +507,6 @@ public class InfoTitular extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_mod_titular_esDonanteActionPerformed
 
-    private void eliminarTitular(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTitular
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarTitular
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Licencias_emitirCopia_btn;
     public javax.swing.JButton Licencias_emitir_btn;
@@ -543,7 +517,6 @@ public class InfoTitular extends javax.swing.JPanel {
     public com.toedter.calendar.JDateChooser Mod_titular_fechanac;
     public javax.swing.JComboBox<String> Mod_titular_gruposanguineo;
     public javax.swing.JComboBox<String> Mod_titular_tipodni;
-    private javax.swing.JButton eliminarTitularBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

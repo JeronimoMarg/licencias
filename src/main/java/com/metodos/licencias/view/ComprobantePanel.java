@@ -274,7 +274,7 @@ public class ComprobantePanel extends javax.swing.JPanel {
             String date = dateFormat.format(currentDate);
             field.setValue(date);
             field = pDAcroForm.getField("costoLicenciaField");
-            field.setValue(costo.toString());
+            field.setValue((costo - 8.0)+"");
             field = pDAcroForm.getField("nombreField");
             field.setValue(titular.getNombre());
             field = pDAcroForm.getField("apellidoField");
@@ -288,9 +288,8 @@ public class ComprobantePanel extends javax.swing.JPanel {
             field = pDAcroForm.getField("telefonoOrganizacionField");
             field.setValue("telefonoOrganizacion");
             field = pDAcroForm.getField("totalOperacionField");
-            field.setValue("costo + costo administrativo? -> " + (costo+8.0));
-            field = pDAcroForm.getField("formaPagoField");
-            field.setValue("forma de pago del comprobante");
+            field.setValue(""+(costo));
+
     }
     
     void descargarPDF(PDDocument document) throws IOException{

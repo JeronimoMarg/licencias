@@ -21,12 +21,7 @@ public class TipoLicencia {
     private Long id;
 
     private String letraClase;
-    private String descripción;
+    private String descripcion;
     private int edadMinima;
 
-    /* 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_costo")
-    private List<Costo> costos;  
-    */
 }

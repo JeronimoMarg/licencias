@@ -20,6 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -659,6 +660,33 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
             field.setValue(licencia.getFinVigencia().toString());
             field = pDAcroForm.getField("field_observaciones");
             field.setValue(licencia.getObservaciones());
+            field = pDAcroForm.getField("field_nombre");
+            field.setValue(titular.getNombre());
+            field = pDAcroForm.getField("field_apellido");
+            field.setValue(titular.getApellido());
+            field = pDAcroForm.getField("field_tipoDocumento");
+            field.setValue(titular.getTipoDoc());
+            field = pDAcroForm.getField("field_numeroDocumento");
+            field.setValue(titular.getNumDNI());
+            field = pDAcroForm.getField("field_fechaNacimiento");
+            Date fechaNacimiento = titular.getFechaNacimiento();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String date = dateFormat.format(fechaNacimiento);
+            field.setValue(date);
+            field = pDAcroForm.getField("field_grupoSanguineo");
+            field.setValue(titular.getGrupoSanguineo());
+            field = pDAcroForm.getField("field_calle");
+            field.setValue(titular.getCalle());
+            field = pDAcroForm.getField("field_altura");
+            field.setValue(titular.getAltura());
+            field = pDAcroForm.getField("field_esDonante");
+            if(titular.esDonante()){
+                field.setValue("Es donante de sangre.");
+            } else {
+                field.setValue("No es donante de sangre.");
+            }
+            
+            
     }
     
     private void pdfConfig() {
