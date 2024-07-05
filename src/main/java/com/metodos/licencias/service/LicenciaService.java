@@ -90,7 +90,7 @@ public class LicenciaService {
     }
 
     public Double calcularCosto(LicenciaDTO licenciaDTO){
-        Licencia licencia = repository.findByNumeroLicencia(licenciaDTO.getNumeroLicencia())
+        Licencia licencia = repository.findByNumeroLicencia(licenciaDTO.getNumeroLicencia());
         return calcularCosto(licencia, ChronoUnit.YEARS.between(licencia.getInicioVigencia(), licencia.getFinVigencia()));
     }
 
