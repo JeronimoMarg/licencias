@@ -2,7 +2,7 @@
 INSERT INTO metodosagiles.usuario (id, contrasenia, nombre_usuario,nro_documento,rol,tipo_documento) VALUES (1, 'root','root',123,'SUPERUSUARIO','DNI');
 
 -- Insertos en la tabla tipodelicencias
-INSERT INTO metodosagiles.tipodelicencias (id, descripción, edad_minima, letra_clase) VALUES
+INSERT INTO metodosagiles.tipodelicencias (id, descripcion, edad_minima, letra_clase) VALUES
 (1, 'Licencia tipo A', 17, 'A'),
 (2, 'Licencia tipo B', 17, 'B'),
 (3, 'Licencia tipo C', 21, 'C'),
