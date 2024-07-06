@@ -3,6 +3,8 @@ package com.metodos.licencias.service;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.metodos.licencias.logic.Licencia;
+import com.metodos.licencias.logic.TipoLicencia;
 import com.metodos.licencias.logic.Titular;
 import com.metodos.licencias.repository.LicenciaRepository;
 import com.metodos.licencias.repository.TipoLicenciaRepository;
@@ -33,6 +36,57 @@ public class LicenciaServiceTest {
     @Mock
     private TitularService titularService;
 
+    // esAptoProfesional/claseBError
+    // clase C y tiene licencia B de mas de un anio
+    @Test
+    public void claseCConBMasUnAnioDevuelveFalse(){
+        Licencia licencia = new Licencia();
+        Titular titular = new Titular();
+        TipoLicencia tipo = new TipoLicencia();
+        titular.setFechaNacimiento(LocalDate.now().minusYears(25));
+        titular.setId(1L);
+        licencia.setTitular(titular);
+        tipo.setLetraClase("B");
+        licencia.setTipoLicencia(tipo);
+        licencia.setInicioVigencia(LocalDate.now().minusYears(2));
+
+        // Lista con una licencia clase B con mas de un anio de vigencia
+        List<Licencia> lista = new ArrayList<>();
+        lista.add(licencia);
+
+        when(licenciaRepository.findByTitular_Id(Mockito.anyLong())).thenReturn(lista);
+
+        boolean resultado = licenciaService.claseBError("123", "C");
+
+        Assertions.assertThat(resultado).isFalse();
+    }
+    
+    // clase D y tiene licencia B de menos de un anio
+    @Test
+    public void claseCConBMasUnAnioDevuelveTrue(){
+        Licencia licencia = new Licencia();
+        Titular titular = new Titular();
+        TipoLicencia tipo = new TipoLicencia();
+        titular.setFechaNacimiento(LocalDate.now().minusYears(25));
+        titular.setId(1L);
+        licencia.setTitular(titular);
+        tipo.setLetraClase("B");
+        licencia.setTipoLicencia(tipo);
+        licencia.setInicioVigencia(LocalDate.now());
+
+        // Lista con una licencia clase B con mas de un anio de vigencia
+        List<Licencia> lista = new ArrayList<>();
+        lista.add(licencia);
+
+        when(licenciaRepository.findByTitular_Id(Mockito.anyLong())).thenReturn(lista);
+
+        boolean resultado = licenciaService.claseBError("123", "C");
+
+        Assertions.assertThat(resultado).isTrue();
+    }
+
+
+    // Calcular vigencia
     // mes y dia de vencimiento iguales a los de fecha de nacimiento
     @Test
     public void diaMesNacimientoIgualADiaMesVencimiento(){
@@ -189,5 +243,50 @@ public class LicenciaServiceTest {
         Long vigencia = licenciaService.calcularVigencia(licencia);
 
         Assertions.assertThat(vigencia).isEqualTo(Long.valueOf(1));
+    }
+    // puedeRenovarse
+
+
+    // licencia que fue habilitada para la renovacion
+    @Test
+    public void licenciaHabilitadaDevuelveTrue(){
+        Licencia licencia = new Licencia();
+        licencia.setHabilitadaRenovacion(true);
+
+        // Existe licencia del titular
+        when(licenciaRepository.findByNumeroLicencia(Mockito.anyLong())).thenReturn(licencia);
+
+        boolean resultado = licenciaService.puedeRenovarse(Long.valueOf(12));
+
+        Assertions.assertThat(resultado).isTrue();
+    }
+
+    // licencia que ha vencido
+    @Test
+    public void licenciaFechaVencidaDevuelveTrue(){
+        Licencia licencia = new Licencia();
+        licencia.setFinVigencia(LocalDate.now().minusDays(1));
+
+        // Existe licencia del titular
+        when(licenciaRepository.findByNumeroLicencia(Mockito.anyLong())).thenReturn(licencia);
+
+        boolean resultado = licenciaService.puedeRenovarse(Long.valueOf(12));
+
+        Assertions.assertThat(resultado).isTrue();
+    }
+
+    // licencia que no requiere renovacion
+    @Test
+    public void licenciaValidaDevuelveFalse(){
+        Licencia licencia = new Licencia();
+        licencia.setFinVigencia(LocalDate.now().plusDays(20));
+        licencia.setHabilitadaRenovacion(false);
+
+        // Existe licencia del titular
+        when(licenciaRepository.findByNumeroLicencia(Mockito.anyLong())).thenReturn(licencia);
+
+        boolean resultado = licenciaService.puedeRenovarse(Long.valueOf(12));
+
+        Assertions.assertThat(resultado).isFalse();
     }
 }
