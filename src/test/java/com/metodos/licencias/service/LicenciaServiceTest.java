@@ -78,7 +78,7 @@ public class LicenciaServiceTest {
         List<Licencia> lista = new ArrayList<>();
         lista.add(licencia);
 
-        when(licenciaRepository.findByTitular_Id(Mockito.anyLong())).thenReturn(lista);
+        when(licenciaRepository.findByTitular_NumeroDocumento(Mockito.anyLong())).thenReturn(lista);
 
         boolean resultado = licenciaService.claseBError("123", "C");
 
