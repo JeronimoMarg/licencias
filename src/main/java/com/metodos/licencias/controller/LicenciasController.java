@@ -24,8 +24,8 @@ import com.metodos.licencias.service.LicenciaService;
 import com.metodos.licencias.service.TipoLicenciaService;
 import com.metodos.licencias.view.InfoTitular;
 import com.metodos.licencias.util.Item;
+import com.metodos.licencias.view.LicenciaEmitidaFrame;
 import com.metodos.licencias.view.Licencias;
-import com.metodos.licencias.view.VentanaEmergente;
 
 import jakarta.annotation.PostConstruct;
 
@@ -61,6 +61,7 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
         this.infoTitular.Licencias_emitirCopia_btn.addActionListener(this);
         this.infoTitular.Licencias_renovar_btn.addActionListener(this);
         this.licencias.addSearchButtonListener(new LicenciasController.SearchButtonListener());
+        this.licencias.addImprimirButtonListener(new LicenciasController.ImprimirButtonListener());
 
         inicializar_cmbx();
         inicializar_cmbx_GS();
@@ -265,5 +266,32 @@ public class LicenciasController implements ActionListener, KeyListener, MouseLi
             licencias.cargarTabla(licencia);
         }
     }
-    
+
+    public class ImprimirButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                //titularDTO = infoTitular.getTitularDTO();
+                int fila = licencias.tablaLicencias.getSelectedRow();
+                if (fila >= 0) {
+                    //OBTENER EL ID DE LA LICENCIA.
+                    Long numLicencia = (Long) licencias.tablaLicencias.getValueAt(fila, 0);
+
+                    //IMPRIMIMR LICENCIA
+                    LicenciaDTO licencia = licenciaService.buscarLicencia(numLicencia);
+                    TitularDTO titular = licenciaService.titularAsociado(numLicencia);
+
+                    LicenciaEmitidaFrame licenciaFrame = new LicenciaEmitidaFrame(licenciaDTO, titularDTO);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Seleccione una licencia para imprimir.");
+                }
+            } catch (Exception e1) {
+                JOptionPane.showMessageDialog(null, e1.getMessage());
+            }
+        }
+    }
+
 }

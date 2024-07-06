@@ -13,7 +13,6 @@ import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.logic.UsuarioLogeado;
 import com.metodos.licencias.view.LoginFrame;
 import com.metodos.licencias.view.UsuarioSeleccionado;
-import com.metodos.licencias.view.VentanaEmergente;
 import jakarta.annotation.PostConstruct;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +20,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.String;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -139,20 +136,20 @@ public class UsuariosController{
             UsuarioDTO usuarioIngresado = loginView.getUsuarioDTO();
             try {
                 if (usuarioIngresado.getUsuario().isEmpty() || usuarioIngresado.getContrasenia().isEmpty()) {
-                        new VentanaEmergente("No se permiten valores nulos");
+                        JOptionPane.showMessageDialog(null, "No se permiten valores nulos");
                 } else if (usuarioService.usuarioExistente(usuarioIngresado.getUsuario())) {
                     Usuario usuarioLogeado = usuarioService.validarContrasenia(usuarioIngresado.getUsuario(), usuarioIngresado.getContrasenia());
                     if (usuarioLogeado != null) {
                         UsuarioLogeado.setUsuarioLogeado(usuarioLogeado);
                         loginView.mostrarMenuPrincipal();
                     } else {
-                        new VentanaEmergente("La contraseña ingresada es incorrecta");
+                        JOptionPane.showMessageDialog(null, "La contraseña ingresada es incorrecta");
                     }
                 } else {
-                    new VentanaEmergente("El usuario ingresado no existe");
+                    JOptionPane.showMessageDialog(null, "El usuario ingresado no existe");
                 }
             } catch (Exception ex) {
-                new VentanaEmergente(ex.getLocalizedMessage());
+                JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
             }
         }
     }
@@ -164,10 +161,10 @@ public class UsuariosController{
                 try{
                     usuarioService.editarUsuario(usuario);
                     usuarioView.clearTable();
-                    new VentanaEmergente("El usuario se modificó exitosamente.");
+                    JOptionPane.showMessageDialog(null, "El usuario se modificó exitosamente.");
                 }catch(Exception exc){
                     System.out.println("[!!!!!] "+exc.getMessage());
-                    new VentanaEmergente("Error al guardar los datos editados en la base de datos.");
+                    JOptionPane.showMessageDialog(null, "Error al guardar los datos editados en la base de datos.");
                 }
         }
     }
@@ -184,10 +181,10 @@ public class UsuariosController{
                     usuarioService.eliminarUsuario(usuario);
                     usuarioView.clearTable();
                     usuarioSeleccionadoView.volver();
-                    new VentanaEmergente("El usuario se eliminó exitosamente.");
+                    JOptionPane.showMessageDialog(null, "El usuario se eliminó exitosamente.");
                 } catch (Exception exc) {
                     System.out.println("[!!!!!] "+exc.getMessage());
-                    new VentanaEmergente("Error al eliminar el usuario de la base de datos.");
+                    JOptionPane.showMessageDialog(null, "Error al eliminar el usuario de la base de datos.");
                 }
             }
             

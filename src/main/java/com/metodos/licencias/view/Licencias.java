@@ -189,7 +189,6 @@ public class Licencias extends javax.swing.JPanel {
         imprimirBtn.setBackground(new java.awt.Color(27, 140, 188));
         imprimirBtn.setForeground(new java.awt.Color(255, 255, 255));
         imprimirBtn.setText("Imprimir");
-        imprimirBtn.setEnabled(false);
         imprimirBtn.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -303,4 +302,11 @@ public boolean getVigencia(){
         buscarBtn.addActionListener(searchButtonListener);
     }
 
+    public void addImprimirButtonListener(LicenciasController.ImprimirButtonListener imprimirButtonListener){
+        imprimirBtn.addActionListener(imprimirButtonListener);
+    }
+    
+    
+    
+    
 }

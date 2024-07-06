@@ -9,6 +9,7 @@ import com.metodos.licencias.controller.UsuariosController;
 import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -493,8 +494,7 @@ public class Usuarios extends javax.swing.JPanel {
     
     public void usuarioCreado(){
         //ventana emergente con confirmacion
-        VentanaEmergente ventanaEmergente = new VentanaEmergente("Usuario creado exitosamente.");
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, "Usuario creado exitosamente.");
         //limpiar inputs
         Alta_usuario_numerodni1.setText("");
         Alta_usuario_contrasenia.setText("");
@@ -506,24 +506,21 @@ public class Usuarios extends javax.swing.JPanel {
     
     public void nombreUsuarioExistente(String mensajeError){
         //ventana emergente error
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, mensajeError);
         //cambiar borde a rojo
         ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
     }
 
     public void dniExistente(String mensajeError){
         //ventana emergente error
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, mensajeError);
         //cambiar borde a rojo         
         ((RoundedTextField)Alta_usuario_numerodni1).setBorderColor(Color.RED);
     }
         
     public void nombreDniExistentes(String mensajeError){
         //ventana emergente error
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, mensajeError);
         //cambiar ambos bordes a rojo 
         ((RoundedTextField)Alta_usuario_numerodni1).setBorderColor(Color.RED);
         ((RoundedTextField)Alta_usuario_usuario).setBorderColor(Color.RED);
@@ -532,8 +529,7 @@ public class Usuarios extends javax.swing.JPanel {
 
     public void ventanaError(String message) {
         //ventana emergente con confirmacion
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(message);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, message);
     }
     
     public void setAltaTipoDNI(String tipo){

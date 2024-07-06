@@ -5,8 +5,6 @@ import com.metodos.licencias.logic.Rol;
 import com.metodos.licencias.logic.TipoDocumento;
 import com.metodos.licencias.logic.Usuario;
 import com.metodos.licencias.repository.UsuarioRepository;
-import com.metodos.licencias.view.VentanaEmergente;
-
 import jakarta.persistence.criteria.Predicate;
 
 import java.util.ArrayList;

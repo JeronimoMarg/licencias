@@ -8,6 +8,7 @@ import com.metodos.licencias.DTO.UsuarioDTO;
 import com.metodos.licencias.controller.UsuariosController;
 import com.metodos.licencias.logic.Rol;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 import org.springframework.stereotype.Component;
 
@@ -142,8 +143,7 @@ public class PantallaLogin extends javax.swing.JPanel {
     
     public void nombreUsuarioExistente(String mensajeError){
         //ventana emergente error
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(mensajeError);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, mensajeError);
         //cambiar borde a rojo
         ((RoundedTextField)login_usuario).setBorderColor(Color.RED);
     }
@@ -151,8 +151,7 @@ public class PantallaLogin extends javax.swing.JPanel {
         
     public void ventanaError(String message) {
         //ventana emergente con confirmacion
-        VentanaEmergente ventanaEmergente = new VentanaEmergente(message);
-        ventanaEmergente.setVisible(true);
+        JOptionPane.showMessageDialog(null, message);
     }
     
 }
