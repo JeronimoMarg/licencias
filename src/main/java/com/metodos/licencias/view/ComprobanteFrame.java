@@ -26,7 +26,8 @@ public class ComprobanteFrame extends javax.swing.JFrame {
         
         ImageIcon customIcon = new ImageIcon("logo.png");
         setIconImage(customIcon.getImage());
-    
+        setTitle("Comprobante");
+        
         //inicializo container
         JPanel comprobantePanel = new ComprobantePanel(titularDTO,costo,this);
         setContentPane(comprobantePanel);

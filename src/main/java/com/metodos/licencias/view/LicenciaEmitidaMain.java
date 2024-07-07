@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -67,7 +68,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
                 try {
                     document.close();
                 } catch (IOException ex) {
-                    VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+                    JOptionPane.showMessageDialog(null, "Error al cerrar el documento PDF");
                 }
 
                 frame.dispose();
@@ -82,7 +83,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
                try {
                     document.close();
                 } catch (IOException ex) {
-                    VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+                    JOptionPane.showMessageDialog(null, "Error al cerrar el documento PDF");
                 }
 
                 frame.dispose();
@@ -528,7 +529,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
         try {
             document.close();
         } catch (IOException ex) {
-            VentanaEmergente cerrarArchivo = new VentanaEmergente("Error al cerrar el documento PDF");
+            JOptionPane.showMessageDialog(null, "Error al cerrar el documento PDF");
         }
         frame.dispose();
     }//GEN-LAST:event_cerrarBtnJButton1ActionPerformed
@@ -629,7 +630,7 @@ public class LicenciaEmitidaMain extends javax.swing.JPanel {
             llenarPDF(document);
             }
             catch(Exception e){
-                VentanaEmergente errorCargarDoc = new VentanaEmergente("No se puede completar el cargado del PDF");
+                JOptionPane.showMessageDialog(null, "No se puede completar el cargado del PDF");
             }
             
             int pageCount = document.getNumberOfPages();

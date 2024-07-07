@@ -332,4 +332,16 @@ public class LicenciaService {
 
     }
     
+    public LicenciaDTO buscarLicencia(long numLicencia){
+        return aDTO(repository.findByNumeroLicencia(numLicencia));
+    }
+    
+    public TitularDTO titularAsociado(long numLicencia){
+        
+        Licencia licencia = repository.findByNumeroLicencia(numLicencia);
+        Titular titularAsociado = licencia.getTitular();
+        return titularService.aDTO(titularAsociado);
+        
+    }
+    
 }
