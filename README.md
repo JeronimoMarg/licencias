@@ -5,7 +5,7 @@ docker build -t mysql-licencias-configurado -f Dockerfile-mysql .
 
 - Para ejecutar el contenedor:
 ```console
-docker run -d -p 3306:3306 --name mysql-licencias-configurado mysql-licencias-configurado
+docker run -d -p 3307:3306 --name mysql-licencias-configurado mysql-licencias-configurado
 ```
 
 - Para eliminar el contenedor y empezar de nuevo
@@ -18,3 +18,7 @@ docker rm mysql-licencias-configurado     # Elimina el contenedor
 ```console
 docker exec -it mysql-licencias-configurado mysql -uroot -p
 ```
+
+- IMPORTANTE
+En el application properties cambiar el nombre de user a 'usuario' y la password a 'root'
+Ademas, escuchar en el puerto 3307
