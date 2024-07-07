@@ -1,13 +1,15 @@
 FROM mysql:latest
 
-WORKDIR /app
-
-COPY ./schema.sql .
-COPY ./tablas.sql .
-COPY ./data.sql .
-
+# Set environment variables for MySQL
 ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=metodosagiles
+ENV MYSQL_USER=usuario
+ENV MYSQL_PASSWORD=root
 
-RUN cat schema.sql | mysql -u root -proot
-RUN cat tablas.sql | mysql -u root -proot
-RUN cat data.sql | mysql -u root -proot
+# Copy SQL scripts to initialize the database
+COPY 01_schema.sql /docker-entrypoint-initdb.d/
+COPY 02_tablas.sql /docker-entrypoint-initdb.d/
+COPY 03_data.sql /docker-entrypoint-initdb.d/
+
+# Expose the default MySQL port
+EXPOSE 3306
