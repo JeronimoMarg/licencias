@@ -39,8 +39,10 @@ Ademas, escuchar en el puerto 3307
 Es necesario que MySQL este instalado en el mismo equipo donde se ejecuta la aplicacion.
 
 - Conexion a la base de datos:
-Si la instancia escucha en un puerto diferente al 3306, este debe cambiarse en un archivo
-"application.properties" en el directorio donde se encuentra el ejecutable
+Debe modificarse el puerto al correspondiente, segun el que escuche MySQL en
+la instancia local, por lo general, el puerto 3306. Para esto se debe modificar
+el archivo "application.properties" en el directorio donde se encuentra el ejecutable
+o en main/resources (en este caso sera necesario volver a compilar).
 ```console
 spring.datasource.url = jdbc:mysql://127.0.0.1:<puerto>/metodosagiles
 ```
