@@ -50,3 +50,5 @@ Debe importarse el archivo `01_schema.sql`
 Debe importarse el archivo `02_tablas.sql`
 - Carga de datos: estos datos son necesarios para el correcto funcionamiento de la aplicacion
 Debe importarse el archivo `03_data.sql`
+- Carga de tablas de secuencia
+Debe importarse el archivo `04_seq.sql`
